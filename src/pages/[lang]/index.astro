@@ -1,0 +1,34 @@
+---
+import Base from '../../layouts/Base.astro';
+import { pathRoute } from '../../core/paths.ts';
+import { LOCALES, dict, type Lang } from '../../i18n/index.ts';
+import { loadContent } from '../../lib/content.ts';
+import { pathUrl } from '../../lib/urls.ts';
+
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Lang;
+const t = dict(lang);
+const { paths, graph } = await loadContent(lang);
+---
+
+<Base lang={lang}>
+  <section class="hero">
+    <h1>{t.site.tagline}</h1>
+    <p>{t.site.intro}</p>
+  </section>
+  <h2>{t.path.heading}</h2>
+  <ul class="cards">
+    {[...paths].map(([id, path]) => (
+      <li>
+        <h3>
+          <a href={pathUrl(lang, id)}>{path.titre}</a>
+        </h3>
+        <p>{path.description}</p>
+        <p class="meta">{t.path.bricks(pathRoute(graph, paths, id).length)}</p>
+      </li>
+    ))}
+  </ul>
+</Base>

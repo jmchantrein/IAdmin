@@ -1,0 +1,6 @@
+---
+import { DEFAULT_LOCALE } from '../i18n/index.ts';
+import { homeUrl } from '../lib/urls.ts';
+
+return Astro.redirect(homeUrl(DEFAULT_LOCALE));
+---
