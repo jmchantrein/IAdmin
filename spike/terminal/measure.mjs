@@ -15,7 +15,7 @@ const here = import.meta.dirname;
 const out = path.join(here, 'out', image);
 const v86Root = process.env.V86_ROOT;
 const MEMORY_SIZES = [128, 256];
-const BOOT_TIMEOUT_MS = 15 * 60_000;
+const BOOT_TIMEOUT_MS = 10 * 60_000;
 
 const files = {
   wasm: path.join(here, '../../node_modules/v86/build/v86.wasm'),
@@ -57,10 +57,15 @@ async function measure(memoryMb) {
   let start = performance.now();
   let emulator = new V86(machineOptions({ image, memoryMb, files }));
   let machine = drive(emulator);
+  // Boot timeline: the last console line every 30 s, to see where a slow boot spends its time.
+  const lastLine = () => machine.learnerText().trimEnd().split('\n').at(-1)?.slice(-110) ?? '';
+  const heartbeat = setInterval(() => console.log(`[${seconds(start)} s] ${lastLine()}`), 30_000);
   try {
     await machine.ready(BOOT_TIMEOUT_MS);
     await waitFor(() => atPrompt(machine.learnerText()), 120_000, 'invite du terminal');
+    clearInterval(heartbeat);
   } catch (error) {
+    clearInterval(heartbeat);
     console.log(
       `--- fin de la console (${memoryMb} Mo) ---\n${machine.learnerText().slice(-3000)}`,
     );
