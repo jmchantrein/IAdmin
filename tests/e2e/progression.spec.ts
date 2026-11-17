@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs';
-import { capture, expect, test } from './fixtures.ts';
+import { capture, expect, hydrated, test } from './fixtures.ts';
 
 const KEY = 'iadmin:progression';
 const stored = {
@@ -16,6 +16,7 @@ const summary = 'progress-summary';
 test('exporter, effacer puis importer rend la même progression', async ({ page }) => {
   await page.goto('');
   await page.getByRole('link', { name: 'Ma progression' }).click();
+  await hydrated(page);
   await expect(page.getByTestId(summary)).toHaveText('Aucune brique acquise pour l’instant.');
 
   await page.evaluate(

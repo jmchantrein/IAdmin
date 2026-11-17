@@ -1,6 +1,6 @@
 import { isQuickExercise } from '../../src/core/schema.ts';
 import { loadContent } from '../load.ts';
-import { capture, expect, test } from './fixtures.ts';
+import { capture, expect, hydrated, test } from './fixtures.ts';
 import { solveBrick, solveExercise } from './play.ts';
 
 const { bricks } = loadContent('fr');
@@ -35,6 +35,7 @@ test('valider une brique rend la suivante disponible, et la progression persiste
 
   // Free navigation: a brick opens even when its prerequisite is not acquired.
   await page.getByRole('link', { name: 'Le bit' }).click();
+  await hydrated(page);
   await expect(page.locator(`.reminders ${brick('donnees/information')}`)).toContainText(
     'À voir d’abord',
   );
@@ -44,7 +45,19 @@ test('valider une brique rend la suivante disponible, et la progression persiste
   await manipulation.getByRole('switch').click();
   await expect(manipulation.getByTestId('bits-value')).toHaveText('1');
 
+  // Records what is stored at the very moment "validated" appears on screen: the fact must
+  // already be saved, or a learner who leaves the page at once would lose it.
+  await page.evaluate(() => {
+    new MutationObserver((_, observer) => {
+      if (!document.querySelector('[data-testid="brick-validated"]')) return;
+      document.body.dataset.storedWhenShown = localStorage.getItem('iadmin:progression') ?? '';
+      observer.disconnect();
+    }).observe(document.body, { childList: true, subtree: true });
+  });
   await solveBrick(page, bit);
+  expect(await page.evaluate(() => document.body.dataset.storedWhenShown)).toContain(
+    '"donnees/bit":{"etat":"validee"',
+  );
   await expect(page.getByTestId('exercises-progress')).toHaveText(
     `${bit.exercices.length} / ${bit.exercices.length} exercices réussis`,
   );
@@ -57,6 +70,7 @@ test('valider une brique rend la suivante disponible, et la progression persiste
   expect(JSON.parse(stored!).briques['donnees/bit'].etat).toBe('validee');
 
   await page.getByRole('link', { name: 'Parcours : Fondements' }).click();
+  await hydrated(page);
   await expect(page.locator(brick('donnees/bit'))).toHaveAttribute('data-status', 'validee');
   await expect(page.locator(brick('donnees/combinaisons'))).toHaveAttribute(
     'data-status',
@@ -141,4 +155,30 @@ test.describe('progression illisible', () => {
       '{"format":"autre"}',
     );
   });
+});
+
+test('une réponse tapée avant la fin du chargement est conservée et jugée', async ({ page }) => {
+  // Holds back the script that makes the page interactive, as a slow connection would.
+  let release!: () => void;
+  const held = new Promise<void>((resolve) => (release = resolve));
+  await page.route('**/_astro/client.*.js', async (route) => {
+    await held;
+    await route.continue();
+  });
+
+  const navigation = page.goto('fr/briques/donnees/combinaisons/');
+  const exercise = page.locator('.exercises > ol > li').last();
+  const field = exercise.getByRole('textbox');
+  const submit = exercise.getByRole('button', { name: 'Valider' });
+
+  // The page is readable but not interactive yet: the learner types anyway.
+  await field.fill('4');
+  await expect(submit).toBeDisabled();
+
+  release();
+  await navigation;
+  await expect(submit).toBeEnabled();
+  await expect(field).toHaveValue('4');
+  await submit.click();
+  await expect(exercise.locator('.feedback')).toHaveText('Exact.');
 });

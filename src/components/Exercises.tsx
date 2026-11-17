@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'preact/hooks';
+import { useState } from 'preact/hooks';
 import { useProgress } from '../browser/useProgress.ts';
 import { isAcquired } from '../core/progress.ts';
 import type { Exercise as ExerciseData } from '../core/schema.ts';
@@ -26,9 +26,13 @@ export function Exercises({ brickId, exercises, lang, next }: Props) {
   const complete = solved.size === exercises.length;
   const alreadyValidated = progress !== null && isAcquired(progress, brickId) && !complete;
 
-  useEffect(() => {
-    if (complete) validate(brickId);
-  }, [complete]);
+  const succeed = (index: number) => {
+    const next = new Set(solved).add(index);
+    setSolved(next);
+    // Stored in the same event as the last success, before "validated" is shown: a learner
+    // who leaves the page at once keeps the fact.
+    if (next.size === exercises.length) validate(brickId);
+  };
 
   return (
     <div class="exercises">
@@ -41,7 +45,7 @@ export function Exercises({ brickId, exercises, lang, next }: Props) {
               exercise={exercise}
               lang={lang}
               name={`exercice-${i}`}
-              onSuccess={() => setSolved((previous) => new Set(previous).add(i))}
+              onSuccess={() => succeed(i)}
             />
           </li>
         ))}

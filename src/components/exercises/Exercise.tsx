@@ -1,4 +1,4 @@
-import { useState } from 'preact/hooks';
+import { useEffect, useState } from 'preact/hooks';
 import { isNumber, runCheck } from '../../core/check.ts';
 import { seededOrder } from '../../core/shuffle.ts';
 import type { Exercise as ExerciseData } from '../../core/schema.ts';
@@ -18,7 +18,11 @@ type Feedback = { ok: boolean; text: string } | null;
 /** One exercise of any type: collects an answer, checks it, gives feedback. */
 export function Exercise({ exercise, lang, name, onSuccess }: Props) {
   const t = dict(lang).exercises;
-  const [answer, setAnswer] = useState('');
+  const [widgetValue, setWidgetValue] = useState('');
+  // The button works only once this script runs: a click before that would make the
+  // browser submit the form itself and reload the page.
+  const [ready, setReady] = useState(false);
+  useEffect(() => setReady(true), []);
   const [feedback, setFeedback] = useState<Feedback>(null);
 
   // A numeric check only reads digits: say so, or "huit" is refused without a reason.
@@ -26,7 +30,7 @@ export function Exercise({ exercise, lang, name, onSuccess }: Props) {
   const expectsNumber = typeof lastStep === 'object' && 'nombre' in lastStep;
   const answerHint = expectsNumber ? t.answerNumber : t.answer;
 
-  const judge = (): Feedback => {
+  const judge = (answer: string): Feedback => {
     if (exercise.type === 'choix') {
       const option = exercise.options[Number(answer)];
       if (answer === '' || !option) return { ok: false, text: t.choose };
@@ -44,13 +48,19 @@ export function Exercise({ exercise, lang, name, onSuccess }: Props) {
 
   const submit = (event: Event) => {
     event.preventDefault();
-    const result = judge();
+    // Fields are left to the browser and read here: an answer given before this script was
+    // ready stays in its field and is judged like any other.
+    const given =
+      exercise.type === 'widget'
+        ? widgetValue
+        : String(new FormData(event.currentTarget as HTMLFormElement).get(name) ?? '');
+    const result = judge(given);
     setFeedback(result);
     if (result?.ok) onSuccess?.();
   };
 
-  const change = (value: string) => {
-    setAnswer(value);
+  const changeWidget = (value: string) => {
+    setWidgetValue(value);
     setFeedback(null);
   };
 
@@ -63,13 +73,7 @@ export function Exercise({ exercise, lang, name, onSuccess }: Props) {
           {seededOrder(exercise.options.length, exercise.consigne).map((i) => (
             <li>
               <label>
-                <input
-                  type="radio"
-                  name={name}
-                  value={i}
-                  checked={answer === String(i)}
-                  onChange={() => change(String(i))}
-                />
+                <input type="radio" name={name} value={i} onChange={() => setFeedback(null)} />
                 <span>{exercise.options[i]!.texte}</span>
               </label>
             </li>
@@ -84,15 +88,21 @@ export function Exercise({ exercise, lang, name, onSuccess }: Props) {
           placeholder={answerHint}
           inputMode={expectsNumber ? 'decimal' : 'text'}
           autocomplete="off"
-          value={answer}
-          onInput={(event) => change(event.currentTarget.value)}
+          onInput={() => setFeedback(null)}
         />
       )}
       {exercise.type === 'widget' && (
-        <Widget widget={exercise.widget} params={exercise.params} lang={lang} onChange={change} />
+        <Widget
+          widget={exercise.widget}
+          params={exercise.params}
+          lang={lang}
+          onChange={changeWidget}
+        />
       )}
       <div class="exercise-footer">
-        <button type="submit">{t.submit}</button>
+        <button type="submit" disabled={!ready}>
+          {t.submit}
+        </button>
         <p class={`feedback ${feedback ? (feedback.ok ? 'ok' : 'ko') : ''}`} role="status">
           {feedback?.text}
         </p>

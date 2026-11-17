@@ -65,6 +65,7 @@ est résumé ici au fil de l'eau.
 - [x] Paramètre `poids` de `bascule-bits` : poids sous chaque bit et total ; la rangée tient sur une ligne jusqu'à 8 bits, en mobile aussi.
 - [x] Lot 1 : `donnees/binaire-lire`, `donnees/binaire-ecrire`, `donnees/octet`, écrites, jouées par le test, relues par un agent neuf (1 écart bloquant, 10 à corriger, une vingtaine de mineurs) puis corrigées.
 - [x] Les options d'un `choix` s'affichent dans un ordre mélangé et stable : la bonne réponse était la première option de tous les QCM du site.
+- [x] Deux défauts révélés par un échec de la CI puis par la répétition des tests, corrigés avec un test de non-régression chacun : la validation d'une brique s'enregistrait après l'affichage de « Brique validée » (quitter la page aussitôt la perdait) ; une réponse tapée avant la fin du chargement était effacée au démarrage du script. Le bouton « Valider » reste inactif tant que la page n'est pas interactive.
 - [x] Les deux procédures de la fabrique intègrent les leçons de ces relectures : forme de réponse explicite, valeurs sans palindrome, valeurs hors de portée du widget de la page, un seul sens par mot.
 
 ### J3 — Export/import, « pas à pas », fabrique (2026-11-17)
