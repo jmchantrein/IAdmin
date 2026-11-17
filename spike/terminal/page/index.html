@@ -8,7 +8,7 @@
     <pre id="terminal"></pre>
     <script type="module">
       import { V86 } from '/v86/libv86.mjs';
-      import { drive, machineOptions } from '/spike/machine.mjs';
+      import { drive, machineOptions, printed } from '/spike/machine.mjs';
 
       const params = new URLSearchParams(location.search);
       const memoryMb = Number(params.get('mem'));
@@ -31,6 +31,7 @@
       );
       const machine = drive(emulator);
       window.machine = machine;
+      window.printed = printed;
       // Milliseconds from page start until the machine answers a command.
       window.ready = machine.ready(120_000).then(() => Math.round(performance.now() - start));
       setInterval(() => {

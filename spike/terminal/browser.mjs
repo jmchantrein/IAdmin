@@ -102,7 +102,7 @@ for (const memoryMb of [128, 256]) {
 
     // The learner's terminal answers too.
     await page.evaluate(() => window.machine.type('echo $((6*7))\n'));
-    await page.waitForFunction(() => /\n42\r?\n/.test(window.machine.learnerText()), null, {
+    await page.waitForFunction(() => window.printed(window.machine.learnerText(), '42'), null, {
       timeout: 30_000,
     });
     run.learnerTerminal = true;

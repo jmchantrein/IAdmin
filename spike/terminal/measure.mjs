@@ -8,7 +8,7 @@ import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { V86 } from 'v86';
-import { atPrompt, drive, machineOptions } from './machine.mjs';
+import { atPrompt, drive, machineOptions, printed } from './machine.mjs';
 
 const image = process.argv[2];
 const here = import.meta.dirname;
@@ -49,7 +49,7 @@ function rootfsStats() {
   };
 }
 
-async function measure(memoryMb) {
+async function measureSteps(memoryMb, live) {
   const result = { memoryMb };
   const statePath = path.join(out, `state-${memoryMb}.bin`);
 
@@ -57,20 +57,15 @@ async function measure(memoryMb) {
   let start = performance.now();
   let emulator = new V86(machineOptions({ image, memoryMb, files }));
   let machine = drive(emulator);
+  Object.assign(live, { emulator, machine });
   // Boot timeline: the last console line every 30 s, to see where a slow boot spends its time.
   const lastLine = () => machine.learnerText().trimEnd().split('\n').at(-1)?.slice(-110) ?? '';
   const heartbeat = setInterval(() => console.log(`[${seconds(start)} s] ${lastLine()}`), 30_000);
   try {
     await machine.ready(BOOT_TIMEOUT_MS);
     await waitFor(() => atPrompt(machine.learnerText()), 120_000, 'invite du terminal');
+  } finally {
     clearInterval(heartbeat);
-  } catch (error) {
-    clearInterval(heartbeat);
-    console.log(
-      `--- fin de la console (${memoryMb} Mo) ---\n${machine.learnerText().slice(-3000)}`,
-    );
-    await emulator.destroy();
-    return { ...result, error: error.message };
   }
   result.coldBootS = seconds(start);
 
@@ -84,7 +79,7 @@ async function measure(memoryMb) {
 
   // 3. The learner's terminal works on its own.
   machine.type('echo $((6*7))\n');
-  await waitFor(() => /\n42\r?\n/.test(machine.learnerText()), 30_000, 'écho du terminal');
+  await waitFor(() => printed(machine.learnerText(), '42'), 30_000, 'écho du terminal');
 
   result.memory = (await machine.exec('free -m | awk \'NR==2 {print $3 "/" $2}\'')).output.trim();
   result.manFr = (
@@ -115,6 +110,7 @@ async function measure(memoryMb) {
   start = performance.now();
   emulator = new V86(machineOptions({ image, memoryMb, files, initialState: `${statePath}.zst` }));
   machine = drive(emulator);
+  Object.assign(live, { emulator, machine });
   try {
     await machine.ready(120_000);
     result.warmStartS = seconds(start);
@@ -125,10 +121,24 @@ async function measure(memoryMb) {
   return result;
 }
 
+/** Runs the steps; on any failure, shows the end of the console and stops the emulator. */
+async function measure(memoryMb) {
+  const live = {};
+  try {
+    return await measureSteps(memoryMb, live);
+  } catch (error) {
+    const text = JSON.stringify(live.machine?.learnerText().slice(-1500) ?? '');
+    console.log(`--- fin de la console (${memoryMb} Mo), caractères de contrôle visibles ---`);
+    console.log(text);
+    await live.emulator?.destroy();
+    return { memoryMb, error: error.message };
+  }
+}
+
 const results = { image, ...rootfsStats(), runs: [] };
 for (const memoryMb of MEMORY_SIZES) {
   console.log(`\n=== ${image}, ${memoryMb} Mo ===`);
-  const run = await measure(memoryMb).catch((error) => ({ memoryMb, error: error.message }));
+  const run = await measure(memoryMb);
   console.log(JSON.stringify(run, null, 2));
   results.runs.push(run);
 }

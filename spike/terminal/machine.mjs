@@ -106,5 +106,11 @@ export function drive(emulator) {
   };
 }
 
+/**
+ * True when the learner's terminal printed `line` on a line of its own. Bash sends control
+ * sequences ending in a carriage return before a command's output, hence `\r` as a line start.
+ */
+export const printed = (text, line) => new RegExp(`[\\r\\n]${line}\\r?\\n`).test(text);
+
 /** True when the learner's terminal shows a shell prompt. */
 export const atPrompt = (text) => /[#$] $/.test(text);
