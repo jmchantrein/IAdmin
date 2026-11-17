@@ -21,11 +21,15 @@ règles pédagogiques par `docs/pedagogie.md`, le gabarit par
   procédé étape par étape, utilise `pas-a-pas`.
 - Formule la `consigne` comme une question précise que l'apprenant résout en agissant.
 - Avec `pas-a-pas` : une étape montre un seul changement, sa `legende` tient en une phrase.
+  Pose une question dont la réponse se trouve en déroulant (prédire la suite, compter).
+- Énonce la règle du procédé pour tous les cas, y compris les cas limites (égalité,
+  dernier élément).
 - Si aucun widget ne convient, propose-le dans `TODO.md` et arrête-toi là.
 
 ## 3. Écrire l'explication
 
-- Commence par nommer ce que l'apprenant vient d'observer dans la manipulation.
+- Commence par nommer ce que l'apprenant vient réellement de faire ou d'observer dans la
+  manipulation.
 - Donne ensuite le terme technique, puis la forme générale.
 - Tiens en 150 mots ; chaque phrase sert un `acquis`.
 - Écris le `resume` en 40 mots au plus, lisible sans la page : il sert de rappel ailleurs.
@@ -38,7 +42,10 @@ règles pédagogiques par `docs/pedagogie.md`, le gabarit par
   elle ne se recopie pas.
 - Place au moins un exercice dans un contexte différent de celui de la manipulation.
 - Fais prédire un résultat dans au moins un exercice.
-- Rédige chaque énoncé pour qu'il se comprenne seul, sans « comme ci-dessus ».
+- Rédige chaque énoncé pour qu'il se comprenne seul, sans « comme ci-dessus » ni « le
+  même procédé » : rappelle la règle en une phrase.
+- Vérifie que l'exercice oblige à exercer son `acquis` : aucun raccourci ne donne la réponse.
+- Une réponse vérifiée par `nombre` s'écrit en chiffres ; l'interface le précise à l'apprenant.
 - `choix` : trois options ; chaque mauvaise option vient d'une erreur typique de débutant,
   et son `retour` nomme cette erreur et donne la raison de la bonne réponse.
 - `saisie` et `widget` : donne la `solution`, des `contre_exemples` tirés d'erreurs

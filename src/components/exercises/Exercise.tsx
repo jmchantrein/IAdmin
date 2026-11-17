@@ -41,6 +41,11 @@ export function Exercise({ exercise, lang, name, onSuccess }: Props) {
     if (result?.ok) onSuccess?.();
   };
 
+  // A numeric check only reads digits: say so, or "huit" is refused without a reason.
+  const lastStep = exercise.type === 'saisie' ? exercise.verif.at(-1) : undefined;
+  const expectsNumber = typeof lastStep === 'object' && 'nombre' in lastStep;
+  const answerHint = expectsNumber ? t.answerNumber : t.answer;
+
   const change = (value: string) => {
     setAnswer(value);
     setFeedback(null);
@@ -71,8 +76,9 @@ export function Exercise({ exercise, lang, name, onSuccess }: Props) {
         <input
           type="text"
           name={name}
-          aria-label={t.answer}
-          placeholder={t.answer}
+          aria-label={answerHint}
+          placeholder={answerHint}
+          inputMode={expectsNumber ? 'decimal' : 'text'}
           autocomplete="off"
           value={answer}
           onInput={(event) => change(event.currentTarget.value)}

@@ -49,6 +49,7 @@ export const fr = {
     number: (n: number) => `Exercice ${n}`,
     submit: 'Valider',
     answer: 'Ta réponse',
+    answerNumber: 'Ta réponse, en chiffres',
     correct: 'Exact.',
     choose: 'Choisis une réponse.',
     validated: 'Brique validée',
@@ -90,6 +91,8 @@ export const fr = {
   },
   widgets: {
     steps: {
+      active: 'en cours',
+      out: 'écartée',
       previous: 'Précédent',
       next: 'Suivant',
       position: (step: number, total: number) => `Étape ${step} / ${total}`,

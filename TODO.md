@@ -11,12 +11,9 @@ est résumé ici au fil de l'eau.
 - [ ] Régler GitHub Pages sur la source « GitHub Actions » (Settings › Pages) ; le déploiement part de `main`.
 - [ ] Fusionner la branche de travail dans `main` pour obtenir la première mise en ligne.
 
-### J3 — Reste à faire
-
-- [ ] Relecture adverse de `algo/algorithme` par un agent neuf selon `docs/fabrique/relire-brique.md` (en cours), puis correction des écarts.
-
 ### J4 — Parcours Fondements complet
 
+- [ ] Relire `donnees/information`, `donnees/bit` et `donnees/combinaisons` selon `docs/fabrique/relire-brique.md` : elles ont été écrites avant la procédure.
 - [ ] Briques `donnees/` : binaire-lire, binaire-ecrire, addition-binaire, octet, texte-code, hash.
 - [ ] Briques `logique/` : vrai-faux, non-et-ou, table-de-verite, portes-logiques, additionneur.
 - [ ] Briques `algo/` : variable, condition, boucle, recherche-lineaire, recherche-dichotomique.
@@ -50,6 +47,8 @@ est résumé ici au fil de l'eau.
 - [ ] La progression d'une brique en cours (exercices réussis) vit en mémoire : un rechargement la remet à zéro.
 - [ ] Le widget `pas-a-pas` montre une seule rangée de cases : un flux entre deux commandes ou un arbre demanderont une autre forme, à proposer ici avant de l'écrire.
 - [ ] L'import fusionne toujours ; remplacer sa progression par un fichier demande d'effacer d'abord.
+- [ ] Un exercice `saisie` n'a qu'un seul `retour`, commun à toutes les mauvaises réponses : un retour par contre-exemple nommerait mieux chaque erreur (relevé par la relecture adverse).
+- [ ] Les distracteurs et contre-exemples sont jugés « typiques » par des LLM, sans essai par un débutant.
 - [ ] Zod est chargé dans le navigateur pour valider la progression et les paramètres de widget : mesurer son poids si les pages ralentissent.
 
 ## Fait
@@ -60,7 +59,9 @@ est résumé ici au fil de l'eau.
 - [x] Une progression illisible est déplacée de côté une seule fois ; la page permet d'en télécharger la copie puis de la supprimer. Un navigateur sans stockage est signalé.
 - [x] Widget générique `pas-a-pas` : étapes déclarées dans la brique (cases, cases mises en avant ou écartées, étiquettes, légende), avance et recul par bouton.
 - [x] Brique `algo/algorithme`, première entrée de haut niveau et premier usage de `pas-a-pas`.
-- [x] Procédures `docs/fabrique/rediger-brique.md` et `relire-brique.md`, skills de renvoi ; `algo/algorithme` écrite en suivant la première.
+- [x] Procédures `docs/fabrique/rediger-brique.md` et `relire-brique.md`, skills de renvoi.
+- [x] Épreuve de la fabrique : `algo/algorithme` écrite selon la première procédure, relue par un agent neuf selon la seconde (1 écart bloquant, 7 à corriger, 5 mineurs), puis corrigée ; les deux procédures ont été complétées d'après ses remarques.
+- [x] Une réponse attendue en nombre est annoncée « en chiffres » dans le champ de saisie ; le widget `pas-a-pas` dit aussi par le texte ce que ses couleurs montrent.
 
 ### J2 — Spike terminal Linux (2026-11-17)
 

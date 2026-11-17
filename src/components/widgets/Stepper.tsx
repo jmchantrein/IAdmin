@@ -16,15 +16,22 @@ export function Stepper({ params, onChange, t }: WidgetProps<'pas-a-pas'>) {
 
   return (
     <div class="widget steps">
-      <ol class="steps-cells" aria-hidden="true">
-        {step.cases.map((cell, i) => (
-          <li
-            class={`${step.actifs.includes(i) ? 'active' : ''} ${step.ecartes.includes(i) ? 'out' : ''}`}
-          >
-            <span class="cell">{cell}</span>
-            <span class="cell-label">{step.etiquettes[String(i)] ?? ''}</span>
-          </li>
-        ))}
+      <ol class="steps-cells">
+        {step.cases.map((cell, i) => {
+          const active = step.actifs.includes(i);
+          const out = step.ecartes.includes(i);
+          const label = step.etiquettes[String(i)];
+          return (
+            <li class={`${active ? 'active' : ''} ${out ? 'out' : ''}`}>
+              <span class="cell">{cell}</span>
+              <span class="cell-label">{label ?? ''}</span>
+              {/* What the colours show, for readers who do not see them. */}
+              <span class="sr-only">
+                {out ? text.out : ''} {active && !label ? text.active : ''}
+              </span>
+            </li>
+          );
+        })}
       </ol>
       <p class="steps-caption" aria-live="polite" data-testid="steps-caption">
         {step.legende}
