@@ -1,5 +1,6 @@
 import { useState } from 'preact/hooks';
 import { isNumber, runCheck } from '../../core/check.ts';
+import { seededOrder } from '../../core/shuffle.ts';
 import type { Exercise as ExerciseData } from '../../core/schema.ts';
 import { dict, type Lang } from '../../i18n/index.ts';
 import { Widget } from '../Widget.tsx';
@@ -58,7 +59,8 @@ export function Exercise({ exercise, lang, name, onSuccess }: Props) {
       <p class="consigne">{exercise.consigne}</p>
       {exercise.type === 'choix' && (
         <ul class="options">
-          {exercise.options.map((option, i) => (
+          {/* Shown in an order of their own: the author's first option is often the right one. */}
+          {seededOrder(exercise.options.length, exercise.consigne).map((i) => (
             <li>
               <label>
                 <input
@@ -68,7 +70,7 @@ export function Exercise({ exercise, lang, name, onSuccess }: Props) {
                   checked={answer === String(i)}
                   onChange={() => change(String(i))}
                 />
-                <span>{option.texte}</span>
+                <span>{exercise.options[i]!.texte}</span>
               </label>
             </li>
           ))}

@@ -32,6 +32,8 @@ règles pédagogiques par `docs/pedagogie.md`, le gabarit par
   manipulation.
 - Donne ensuite le terme technique, puis la forme générale.
 - Tiens en 150 mots ; chaque phrase sert un `acquis`.
+- Emploie chaque mot dans un seul sens d'un bout à l'autre de la brique et des briques
+  qu'elle requiert (valeur, cas, tenir, place).
 - Écris le `resume` en 40 mots au plus, lisible sans la page : il sert de rappel ailleurs.
 
 ## 4. Écrire les exercices
@@ -46,6 +48,13 @@ règles pédagogiques par `docs/pedagogie.md`, le gabarit par
   même procédé » : rappelle la règle en une phrase.
 - Vérifie que l'exercice oblige à exercer son `acquis` : aucun raccourci ne donne la réponse.
 - Une réponse vérifiée par `nombre` s'écrit en chiffres ; l'interface le précise à l'apprenant.
+- Quand deux formes de réponse sont défendables (un nombre ou son écriture binaire),
+  demande explicitement celle que tu vérifies.
+- Choisis des valeurs que leurs erreurs typiques ne redonnent pas : évite les
+  palindromes (`101`, `1001`) dès que l'ordre des chiffres compte.
+- Prends des valeurs hors de portée du widget de la manipulation, qui reste sous les
+  yeux pendant les exercices, et différentes des exemples résolus des briques requises.
+- Écris les options d'un `choix` dans l'ordre que tu veux : l'interface les mélange.
 - `choix` : trois options ; chaque mauvaise option vient d'une erreur typique de débutant,
   et son `retour` nomme cette erreur et donne la raison de la bonne réponse.
 - `saisie` et `widget` : donne la `solution`, des `contre_exemples` tirés d'erreurs

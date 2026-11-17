@@ -37,8 +37,10 @@ Pour chaque point, cite la ligne en cause et dis ce qui cloche.
    lecture différente de l'énoncé. Pour chaque `saisie`, cherche une bonne réponse que la
    `verif` refuserait (unité, espace, majuscule, écriture en lettres).
 8. **Réponse recopiable ou raccourci.** Signale un exercice dont la réponse se lit telle
-   quelle dans l'explication ou dans un autre énoncé, et un exercice que l'on réussit
-   sans exercer son `acquis`.
+   quelle dans l'explication, dans un autre énoncé ou dans une brique requise, et un
+   exercice que l'on réussit sans exercer son `acquis`. Essaie en particulier de faire
+   donner la réponse par le widget de la manipulation, qui reste sous les yeux, et
+   vérifie qu'une erreur typique (ordre inversé) ne redonne pas la bonne réponse.
 9. **Retours.** Chaque `retour` nomme l'erreur et donne une raison. Signale un retour qui
    se contente de dire « faux », et un retour qui donne la réponse sans raison.
 10. **Distracteurs.** Chaque mauvaise option correspond à une erreur qu'un débutant
@@ -46,8 +48,9 @@ Pour chaque point, cite la ligne en cause et dis ce qui cloche.
 11. **Progression.** Les exercices vont du plus guidé au plus autonome ; un au moins
     change de contexte ; un au moins fait prédire. Chaque énoncé se lit seul, hors de la
     page, et se résout avec la page seule.
-12. **Langue.** Tutoiement, phrases courtes, aucun terme d'expert non défini. Le `resume`
-    se comprend hors de la page.
+12. **Langue.** Tutoiement, phrases courtes, aucun terme d'expert non défini. Chaque mot
+    garde un seul sens dans la brique et dans celles qu'elle requiert. Le `resume` se
+    comprend hors de la page.
 
 ## Rapporter
 

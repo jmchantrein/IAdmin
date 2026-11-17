@@ -13,7 +13,7 @@ est résumé ici au fil de l'eau.
 
 ### J4 — Parcours Fondements complet
 
-- [ ] Lot 1 : corriger `donnees/binaire-lire`, `donnees/binaire-ecrire` et `donnees/octet` d'après leur relecture adverse (en cours), puis recadrage par le propriétaire.
+- [ ] Recadrage par le propriétaire sur le lot 1 (ton, niveau, besoins de widgets des lots suivants) avant d'enchaîner.
 - [ ] Lot 2 : `donnees/addition-binaire`, `donnees/texte-code`, `donnees/hash`. Widgets pressentis, à proposer ici avant de les écrire : `pas-a-pas` à plusieurs rangées pour l'addition posée, un widget d'empreinte pour `hash`.
 - [ ] Lot 3 : `logique/vrai-faux`, `logique/non-et-ou`, `logique/table-de-verite`. Widget pressenti : une porte logique (interrupteurs, porte, lampe).
 - [ ] Lot 4 : `logique/portes-logiques`, `logique/additionneur`. Même widget, peut-être un petit circuit ; lot à réduire si le widget dépasse ce qu'il justifie.
@@ -50,6 +50,8 @@ est résumé ici au fil de l'eau.
 - [ ] L'import fusionne toujours ; remplacer sa progression par un fichier demande d'effacer d'abord.
 - [ ] Un exercice `saisie` n'a qu'un seul `retour`, commun à toutes les mauvaises réponses : un retour par contre-exemple nommerait mieux chaque erreur (relevé par la relecture adverse).
 - [ ] Les distracteurs et contre-exemples sont jugés « typiques » par des LLM, sans essai par un débutant.
+- [ ] Le widget de la manipulation reste utilisable pendant les exercices : dans `donnees/octet`, il permet encore de lire la réponse de l'exercice sur 5 bits. Accepté pour l'instant ; le masquer ou le replier après la manipulation serait une réponse générale.
+- [ ] Écarts mineurs laissés après relecture du lot 1 : deux acquis d'`octet` contiennent un « et » ; trois exercices de `binaire-ecrire` donnent encore la liste des poids ; la première étape de son animation ne suit pas le même découpage que les suivantes.
 - [ ] Zod est chargé dans le navigateur pour valider la progression et les paramètres de widget : mesurer son poids si les pages ralentissent.
 
 ## Fait
@@ -61,7 +63,9 @@ est résumé ici au fil de l'eau.
 - [x] Une saisie qui porte une unité (« 3 bits ») reçoit le message « écris seulement le nombre » au lieu du retour d'erreur.
 - [x] Le suivi de `bascule-bits` liste les combinaisons trouvées sans annoncer leur total.
 - [x] Paramètre `poids` de `bascule-bits` : poids sous chaque bit et total ; la rangée tient sur une ligne jusqu'à 8 bits, en mobile aussi.
-- [x] Lot 1 écrit et joué par le test : `donnees/binaire-lire`, `donnees/binaire-ecrire`, `donnees/octet`.
+- [x] Lot 1 : `donnees/binaire-lire`, `donnees/binaire-ecrire`, `donnees/octet`, écrites, jouées par le test, relues par un agent neuf (1 écart bloquant, 10 à corriger, une vingtaine de mineurs) puis corrigées.
+- [x] Les options d'un `choix` s'affichent dans un ordre mélangé et stable : la bonne réponse était la première option de tous les QCM du site.
+- [x] Les deux procédures de la fabrique intègrent les leçons de ces relectures : forme de réponse explicite, valeurs sans palindrome, valeurs hors de portée du widget de la page, un seul sens par mot.
 
 ### J3 — Export/import, « pas à pas », fabrique (2026-11-17)
 

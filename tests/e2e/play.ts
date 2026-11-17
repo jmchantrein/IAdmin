@@ -48,14 +48,15 @@ export async function solveExercise(
   const feedback = scope.locator('.feedback');
 
   if (exercise.type === 'choix') {
-    const radios = scope.getByRole('radio');
+    // Options are displayed shuffled: each radio carries the index of its option as value.
+    const radio = (index: number) => scope.locator(`input[type="radio"][value="${index}"]`);
     if (wrongFirst) {
       const wrong = exercise.options.findIndex((option) => !option.correct);
-      await radios.nth(wrong).check();
+      await radio(wrong).check();
       await submit.click();
       await expect(feedback).toHaveText(exercise.options[wrong]!.retour!);
     }
-    await radios.nth(exercise.options.findIndex((option) => option.correct)).check();
+    await radio(exercise.options.findIndex((option) => option.correct)).check();
   } else if (exercise.type === 'saisie') {
     const field = scope.getByRole('textbox');
     if (wrongFirst) {

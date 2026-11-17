@@ -103,7 +103,7 @@ export const fr = {
       weightLabel: 'poids',
       weightHint: 'Le nombre écrit sous chaque bit est son poids.',
       total: 'Total',
-      value: 'Valeur',
+      value: 'Écriture',
       found: (done: number) =>
         done > 1 ? `${done} combinaisons trouvées` : `${done} combinaison trouvée`,
       complete: (total: number) => `Tu les as toutes trouvées : il y en a ${total}.`,

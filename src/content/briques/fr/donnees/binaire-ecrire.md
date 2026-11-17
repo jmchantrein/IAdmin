@@ -8,48 +8,53 @@ acquis:
 requiert:
   - donnees/binaire-lire
 manipulation:
-  consigne: Comment écrire 13 en binaire ? Avant chaque clic sur « Suivant », devine si le poids suivant tient dans ce qui reste.
+  consigne: Comment écrire 13 en binaire ? À partir du poids 4, devine avant chaque clic si le poids tient dans ce qui reste.
   widget: pas-a-pas
   params:
     etapes:
-      - legende: Tu veux écrire 13, et tu commences par le plus grand poids qui ne dépasse pas 13.
-        cases: ['8', '4', '2', '1']
-        actifs: [0]
-      - legende: 'Le poids 8 tient dans 13 : tu écris 1 sous ce poids, et il reste 5.'
-        cases: ['8', '4', '2', '1']
-        actifs: [0]
-        etiquettes: { 0: '1' }
-      - legende: 'Le poids 4 tient dans 5 : tu écris 1, et il reste 1.'
-        cases: ['8', '4', '2', '1']
+      - legende: 'Tu veux écrire 13 : le poids 16 dépasse 13, tu pars donc du poids 8.'
+        cases: ['16', '8', '4', '2', '1']
         actifs: [1]
-        etiquettes: { 0: '1', 1: '1' }
-      - legende: 'Le poids 2 ne tient pas dans 1 : tu écris 0, et il reste toujours 1.'
-        cases: ['8', '4', '2', '1']
+        ecartes: [0]
+      - legende: 'Le poids 8 tient dans 13 : tu écris 1 sous ce poids, et il reste 5.'
+        cases: ['16', '8', '4', '2', '1']
+        actifs: [1]
+        ecartes: [0]
+        etiquettes: { 1: '1' }
+      - legende: 'Le poids 4 tient dans 5 : tu écris 1, et il reste 1.'
+        cases: ['16', '8', '4', '2', '1']
         actifs: [2]
-        etiquettes: { 0: '1', 1: '1', 2: '0' }
-      - legende: 'Le poids 1 tient dans 1 : tu écris 1, et il ne reste rien.'
-        cases: ['8', '4', '2', '1']
+        ecartes: [0]
+        etiquettes: { 1: '1', 2: '1' }
+      - legende: 'Le poids 2 ne tient pas dans 1 : tu écris 0, et il reste toujours 1.'
+        cases: ['16', '8', '4', '2', '1']
         actifs: [3]
-        etiquettes: { 0: '1', 1: '1', 2: '0', 3: '1' }
-      - legende: Tu lis de gauche à droite les chiffres écrits sous les poids, et tu obtiens 1101.
-        cases: ['8', '4', '2', '1']
-        ecartes: [2]
-        etiquettes: { 0: '1', 1: '1', 2: '0', 3: '1' }
+        ecartes: [0]
+        etiquettes: { 1: '1', 2: '1', 3: '0' }
+      - legende: 'Le poids 1 tient dans 1 : tu écris 1, et il ne reste rien.'
+        cases: ['16', '8', '4', '2', '1']
+        actifs: [4]
+        ecartes: [0]
+        etiquettes: { 1: '1', 2: '1', 3: '0', 4: '1' }
+      - legende: "Tu lis de gauche à droite les chiffres écrits sous les poids : 13 s'écrit 1101."
+        cases: ['16', '8', '4', '2', '1']
+        ecartes: [0]
+        etiquettes: { 1: '1', 2: '1', 3: '0', 4: '1' }
 exercices:
   - type: saisie
-    consigne: Tu écris 6 en binaire avec les poids 4, 2 et 1. Le poids 4 tient dans 6, il reste 2. Le poids 2 tient dans 2, il ne reste rien. Le poids 1 ne tient pas dans ce reste. Quelle est l'écriture binaire de 6 ?
-    verif: [sans_espaces, { regex: '0*110' }]
-    solution: '110'
-    contre_exemples: ['011', '6', '101', '111']
-    retour: Écris un chiffre par poids, de gauche à droite. Tu écris 1 quand le poids tient et 0 quand il ne tient pas. Ici, les poids 4 et 2 tiennent, le poids 1 ne tient pas.
+    consigne: Tu écris 12 en binaire avec les poids 8, 4, 2 et 1. Le poids 8 tient dans 12, il reste 4. Le poids 4 tient dans 4, il ne reste rien. Les poids 2 et 1 ne tiennent pas dans ce reste. Quelle est l'écriture binaire de 12 ?
+    verif: [sans_espaces, { regex: '0*1100' }]
+    solution: '1100'
+    contre_exemples: ['0011', '12', '1010', '11']
+    retour: Écris un chiffre par poids, de gauche à droite. Tu écris 1 quand le poids tient et 0 quand il ne tient pas. Ici, les poids 8 et 4 tiennent, les poids 2 et 1 ne tiennent pas.
   - type: widget
-    consigne: Affiche le nombre 10 en allumant les bons bits. De gauche à droite, les bits pèsent 8, 4, 2 et 1.
+    consigne: Affiche le nombre 14 en allumant les bons bits. De gauche à droite, les bits pèsent 8, 4, 2 et 1.
     widget: bascule-bits
     params: { bits: 4 }
-    verif: [{ egal: '1010' }]
-    solution: '1010'
-    contre_exemples: ['0101', '1100', '0010']
-    retour: Pars du plus grand poids. Le poids 8 tient dans 10, il reste 2. Le poids 4 ne tient pas dans 2. Le poids 2 tient, et il ne reste rien pour le poids 1.
+    verif: [{ egal: '1110' }]
+    solution: '1110'
+    contre_exemples: ['0111', '1101', '1010']
+    retour: Pars du plus grand poids. Le poids 8 tient dans 14, il reste 6. Le poids 4 tient dans 6, il reste 2. Le poids 2 tient, et il ne reste rien pour le poids 1.
   - type: choix
     consigne: Quelle est l'écriture binaire de 16 ?
     options:
@@ -57,14 +62,14 @@ exercices:
         correct: true
       - texte: '1111'
         retour: 1111 vaut 8 + 4 + 2 + 1, soit 15. Il manque 1. Comme 16 est lui-même un poids, son écriture n'a qu'un seul bit à 1.
-      - texte: '1000'
-        retour: 1000 vaut 8. Le poids 16 se trouve au cinquième rang en partant de la droite, il faut donc cinq chiffres.
+      - texte: '100000'
+        retour: 100000 vaut 32, il y a un zéro de trop. Le poids 16 se trouve à la cinquième place en partant de la droite, il faut donc cinq chiffres.
   - type: saisie
-    consigne: Écris le nombre 21 en binaire. Les poids utiles sont 16, 8, 4, 2 et 1.
-    verif: [sans_espaces, { regex: '0*10101' }]
-    solution: '10101'
-    contre_exemples: ['10110', '11001', '21', '1101']
-    retour: Pars du plus grand poids. Le poids 16 tient dans 21, il reste 5. Le poids 8 ne tient pas dans 5. Le poids 4 tient, il reste 1. Termine avec les poids 2 et 1.
+    consigne: Écris le nombre 22 en binaire.
+    verif: [sans_espaces, { regex: '0*10110' }]
+    solution: '10110'
+    contre_exemples: ['01101', '10101', '22', '1011']
+    retour: Pars du plus grand poids qui ne dépasse pas 22, c'est 16, et il reste 6. Le poids 8 ne tient pas dans 6. Le poids 4 tient, il reste 2. Termine avec les poids 2 et 1, puis lis les chiffres de gauche à droite.
   - type: saisie
     consigne: Une rangée de 5 lampes affiche un nombre en binaire, une lampe allumée valant 1. Les lampes pèsent 16, 8, 4, 2 et 1. Combien de lampes sont allumées quand la rangée affiche 19 ?
     verif: [rogner, { nombre: 3 }]
@@ -74,12 +79,14 @@ exercices:
 ---
 
 Tu viens d'écrire 13 en binaire en te posant la même question pour chaque poids :
-tient-il dans ce qui reste ?
+tient-il dans ce qui reste ? Tu as ainsi **décomposé** 13 en une somme de poids :
+13 = 8 + 4 + 1.
 
 Voici la méthode en entier :
 
 1. Pars du plus grand poids qui ne dépasse pas le nombre.
-2. Si le poids tient dans ce qui reste, écris 1 et retire-le. Sinon, écris 0.
+2. Si le poids tient dans ce qui reste, c'est-à-dire s'il ne le dépasse pas, écris 1
+   et retire-le. Sinon, écris 0.
 3. Passe au poids suivant, deux fois plus petit, et recommence l'étape 2 jusqu'au
    poids 1 compris.
 

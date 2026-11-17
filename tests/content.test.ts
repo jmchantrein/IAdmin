@@ -12,7 +12,8 @@ describe.each(locales())('contenu « %s »', (lang) => {
   const { bricks, paths, graph, errors } = loadContent(lang);
 
   it('respecte le schéma', () => {
-    expect(errors).toEqual([]);
+    // Joined so that a failure prints every file and rule in full.
+    expect(errors.join('\n')).toBe('');
   });
 
   // A brick rejected by the schema is absent from the graph: the checks below would only
