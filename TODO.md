@@ -11,13 +11,6 @@ est résumé ici au fil de l'eau.
 - [ ] Régler GitHub Pages sur la source « GitHub Actions » (Settings › Pages) ; le déploiement part de `main`.
 - [ ] Fusionner la branche de travail dans `main` pour obtenir la première mise en ligne.
 
-### J2 — Spike terminal Linux
-
-- [ ] Construire en GitHub Actions deux images pour v86 : Debian minimale et Alpine + outils GNU.
-- [ ] Mesurer pour chacune : poids, temps de démarrage, remise à zéro par instantané, canal de contrôle (exécuter une commande et lire son code de retour), fonctionnement sous Node et sur Pages.
-- [ ] Vérifier la disponibilité de Debian en 32 bits (noyau i386 de Debian 12 et 13, `manpages-fr`) : non vérifié, les miroirs Debian sont bloqués dans les sessions cloud.
-- [ ] Écrire ici la décision chiffrée (Debian, Alpine, ou plan B shell simulé).
-
 ### J3 — Export/import, « pas à pas », fabrique
 
 - [ ] Export de la progression en fichier JSON, import avec validation puis fusion (l'état le plus fort gagne).
@@ -34,7 +27,10 @@ est résumé ici au fil de l'eau.
 
 ### J5 à J9
 
-- [ ] J5 — Terminal intégré : type d'exercice `terminal`, trois briques `shell/`.
+- [ ] J5 — Terminal intégré : type d'exercice `terminal`, trois briques `shell/`. Reprendre `spike/terminal` (image Debian 12, `machine.mjs`, `control-agent`), puis supprimer le dossier `spike/` et son workflow.
+- [ ] J5 — Vérifier le terminal sur le site réellement servi par GitHub Pages (le spike l'a mesuré sur un serveur local sans en-tête spécial).
+- [ ] J5 — Créer un compte apprenant sans privilèges dans l'image ; le spike travaille en `root`.
+- [ ] J5 — Publier avec l'image la liste des paquets et un lien vers leurs sources (noyau, outils GNU).
 - [ ] J6 — Ligne de commande complète, `shell/empreinte` réutilisant `donnees/hash`, cursus `debuter` qui inclut les deux parcours.
 - [ ] J7 — Test de positionnement par bissection du graphe ; accueil à trois portes (bas, moyen, haut niveau).
 - [ ] J8 — Assistant LLM optionnel : tuteur socratique et juge, type d'exercice `libre`, réglages.
@@ -47,12 +43,43 @@ est résumé ici au fil de l'eau.
 
 ### Dettes et portes à garder ouvertes
 
+- [ ] Terminal : l'émulateur v86 ne sait émuler que le 32 bits, et Debian 13 ne fournit plus de noyau 32 bits (constaté le 2026-11-17). L'image reste donc sur Debian 12, maintenue jusqu'en 2028 environ (date non vérifiée). Alpine + outils GNU, mesurée et conforme, est le repli prêt à l'emploi.
+- [ ] Terminal : chaque machine ouverte réserve 256 Mo dans le navigateur de l'apprenant. Un disque de démarrage réduit (`MODULES=list`) permettrait peut-être 128 Mo : non essayé.
+- [ ] Terminal : la première consultation d'une page de manuel prend environ 6 s sous Debian (0,6 à 1 s sous Alpine).
+- [ ] Terminal : `/etc/hosts` et `/etc/hostname` sont vides dans l'image Debian exportée depuis Docker ; le nom d'hôte vient de la ligne de commande du noyau.
+- [ ] Images 32 bits sous Docker : la résolution de noms échoue dans un conteneur Debian 32 bits avec le profil seccomp par défaut des runners GitHub (constaté) ; l'appel système bloqué n'est pas identifié. `spike/terminal/build.sh` lance donc le conteneur avec `seccomp=unconfined`.
 - [ ] Deuxième langue : décider comment partager la structure d'une brique (prérequis, exercices) entre langues.
 - [ ] Origine `jmchantrein.github.io` partagée avec les autres sites du compte (stockage du navigateur commun) : envisager un domaine dédié avant d'y stocker une clé d'API (J8).
 - [ ] La progression d'une brique en cours (exercices réussis) vit en mémoire : un rechargement la remet à zéro.
 - [ ] Zod est chargé dans le navigateur pour valider la progression et les paramètres de widget : mesurer son poids si les pages ralentissent.
 
 ## Fait
+
+### J2 — Spike terminal Linux (2026-11-17)
+
+- [x] Deux images construites et mesurées dans GitHub Actions (`.github/workflows/spike-vm.yml`, code jetable sous `spike/terminal`).
+- [x] Canal de contrôle sur le second port série : l'hôte exécute une commande, lit sa sortie et son code de retour, sans rien écrire dans le terminal de l'apprenant.
+- [x] Remise à zéro d'un exercice par restauration de l'instantané : un fichier créé par l'apprenant disparaît.
+- [x] Le même pilote fonctionne sous Node (pour rejouer les solutions en CI) et dans Chromium.
+- [x] **Décision : Debian 12 minimale, avec 256 Mo de mémoire.** Elle tient les trois seuils fixés et apporte un environnement courant et 222 pages de manuel en français. Alpine + outils GNU reste le repli.
+
+Mesures (run 3 du workflow, commit `67f6914`) :
+
+| Mesure                                    | Seuil   | Debian 12 (256 Mo)                | Alpine 3.21 + GNU (128 Mo)        |
+| ----------------------------------------- | ------- | --------------------------------- | --------------------------------- |
+| Téléchargé avant machine prête (Chromium) | ≤ 30 Mo | 20,6 Mo                           | 14,1 Mo                           |
+| Délai jusqu'à machine prête (Chromium)    | ≤ 5 s   | 2,0 s                             | 2,1 s                             |
+| Remise à zéro                             | ≤ 1 s   | 0,2 s                             | 0,1 s                             |
+| Canal de contrôle (`exit 3` rend 3)       | Réussi  | Réussi, 0 octet sur le terminal   | Réussi, 0 octet sur le terminal   |
+| Racine compressée dans le site            | ≤ 1 Go  | 149,9 Mo, 10 889 fichiers         | 40,7 Mo, 2 909 fichiers           |
+| Instantané compressé                      | —       | 17,4 Mo (70,7 Mo brut)            | 11,4 Mo (36,9 Mo brut)            |
+| Démarrage à froid sous Node               | —       | 47 s                              | 38 s                              |
+| `ls`, `man ls`, `grep` (à la demande)     | —       | 1,9 Mo ; 3,3 Mo en 6,5 s ; 0,1 Mo | 4,5 Mo ; 2,8 Mo en 0,6 s ; 0,7 Mo |
+| Total téléchargé après ces commandes      | —       | 25,8 Mo                           | 22,1 Mo                           |
+| Pages de manuel en français               | —       | 222                               | aucune                            |
+| Avec 128 Mo de mémoire                    | —       | panique du noyau au démarrage     | fonctionne                        |
+
+Constats annexes : Debian 13 en 32 bits propose `manpages-fr` mais aucun noyau (`linux-image-686` inconnu du dépôt, `linux-image-686-pae` sans candidat). Les délais Chromium sont mesurés sur un runner GitHub, serveur local : un téléchargement réel de 20 Mo prendra plus de 2 s selon la connexion.
 
 ### J1 — Tranche verticale (2026-11-17)
 

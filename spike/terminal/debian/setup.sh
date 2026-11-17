@@ -8,7 +8,7 @@ export DEBIAN_FRONTEND=noninteractive
 rm -f /etc/dpkg/dpkg.cfg.d/docker
 apt-get update
 apt-get install -y --no-install-recommends \
-  linux-image-686 systemd-sysv locales gawk less man-db manpages
+  linux-image-686 systemd-sysv locales gawk less man-db manpages procps
 apt-get install -y --reinstall --no-install-recommends bash coreutils grep sed findutils
 apt-get install -y --no-install-recommends manpages-fr || echo "manpages-fr absent"
 rm -rf /var/lib/apt/lists/*

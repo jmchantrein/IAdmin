@@ -14,7 +14,8 @@ const image = process.argv[2];
 const here = import.meta.dirname;
 const out = path.join(here, 'out', image);
 const v86Root = process.env.V86_ROOT;
-const MEMORY_SIZES = [128, 256];
+// Debian's initramfs does not fit in 128 MB: its kernel panics while unpacking it.
+const MEMORY_SIZES = image === 'debian' ? [256] : [128, 256];
 const BOOT_TIMEOUT_MS = 10 * 60_000;
 
 const files = {

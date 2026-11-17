@@ -55,7 +55,7 @@ const megabytes = (bytes) => Math.round((bytes / 1024 / 1024) * 10) / 10;
 const browser = await chromium.launch();
 const runs = [];
 
-for (const memoryMb of [128, 256]) {
+for (const memoryMb of image === 'debian' ? [256] : [128, 256]) {
   if (!fs.existsSync(path.join(out, `state-${memoryMb}.bin.zst`))) {
     runs.push({ memoryMb, error: 'instantané absent' });
     continue;
