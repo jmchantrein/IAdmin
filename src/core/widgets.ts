@@ -12,6 +12,8 @@ export const WIDGET_PARAMS = {
     bits: z.number().int().min(1).max(8),
     /** Show which combinations have already been found. */
     suivi: z.boolean().default(false),
+    /** Show the weight of each bit (…, 4, 2, 1) and the sum of the weights switched on. */
+    poids: z.boolean().default(false),
   }),
   /** Guess a secret number with yes/no questions. Value: number of questions once found. */
   devinette: z.strictObject({

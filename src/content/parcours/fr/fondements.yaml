@@ -1,5 +1,6 @@
 titre: Fondements
 description: Comprendre ce qu'est une information, comment une machine la représente avec des bits, et ce qu'est un algorithme.
 cibles:
-  - donnees/combinaisons
+  - donnees/binaire-ecrire
+  - donnees/octet
   - algo/algorithme

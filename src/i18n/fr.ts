@@ -50,6 +50,7 @@ export const fr = {
     submit: 'Valider',
     answer: 'Ta réponse',
     answerNumber: 'Ta réponse, en chiffres',
+    numberOnly: 'Écris seulement le nombre, en chiffres, sans unité ni autre mot.',
     correct: 'Exact.',
     choose: 'Choisis une réponse.',
     validated: 'Brique validée',
@@ -99,9 +100,13 @@ export const fr = {
     },
     bits: {
       toggle: (n: number) => `Bit ${n}`,
+      weightLabel: 'poids',
+      weightHint: 'Le nombre écrit sous chaque bit est son poids.',
+      total: 'Total',
       value: 'Valeur',
-      found: (done: number, total: number) => `${done} / ${total} combinaisons trouvées`,
-      complete: 'Tu les as toutes trouvées.',
+      found: (done: number) =>
+        done > 1 ? `${done} combinaisons trouvées` : `${done} combinaison trouvée`,
+      complete: (total: number) => `Tu les as toutes trouvées : il y en a ${total}.`,
     },
     guess: {
       prompt: 'Clique sur un nombre pour demander : « Est-il plus grand que ce nombre ? »',

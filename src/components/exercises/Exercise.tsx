@@ -1,5 +1,5 @@
 import { useState } from 'preact/hooks';
-import { runCheck } from '../../core/check.ts';
+import { isNumber, runCheck } from '../../core/check.ts';
 import type { Exercise as ExerciseData } from '../../core/schema.ts';
 import { dict, type Lang } from '../../i18n/index.ts';
 import { Widget } from '../Widget.tsx';
@@ -20,6 +20,11 @@ export function Exercise({ exercise, lang, name, onSuccess }: Props) {
   const [answer, setAnswer] = useState('');
   const [feedback, setFeedback] = useState<Feedback>(null);
 
+  // A numeric check only reads digits: say so, or "huit" is refused without a reason.
+  const lastStep = exercise.type === 'saisie' ? exercise.verif.at(-1) : undefined;
+  const expectsNumber = typeof lastStep === 'object' && 'nombre' in lastStep;
+  const answerHint = expectsNumber ? t.answerNumber : t.answer;
+
   const judge = (): Feedback => {
     if (exercise.type === 'choix') {
       const option = exercise.options[Number(answer)];
@@ -29,6 +34,8 @@ export function Exercise({ exercise, lang, name, onSuccess }: Props) {
         ? { ok: true, text: t.correct }
         : { ok: false, text: option.retour ?? '' };
     }
+    // "3 bits" may be right: ask for the number alone rather than calling the value wrong.
+    if (expectsNumber && !isNumber(answer)) return { ok: false, text: t.numberOnly };
     return runCheck(exercise.verif, answer)
       ? { ok: true, text: t.correct }
       : { ok: false, text: exercise.retour };
@@ -40,11 +47,6 @@ export function Exercise({ exercise, lang, name, onSuccess }: Props) {
     setFeedback(result);
     if (result?.ok) onSuccess?.();
   };
-
-  // A numeric check only reads digits: say so, or "huit" is refused without a reason.
-  const lastStep = exercise.type === 'saisie' ? exercise.verif.at(-1) : undefined;
-  const expectsNumber = typeof lastStep === 'object' && 'nombre' in lastStep;
-  const answerHint = expectsNumber ? t.answerNumber : t.answer;
 
   const change = (value: string) => {
     setAnswer(value);

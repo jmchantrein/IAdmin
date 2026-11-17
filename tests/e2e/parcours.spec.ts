@@ -1,5 +1,10 @@
+import { isQuickExercise } from '../../src/core/schema.ts';
+import { loadContent } from '../load.ts';
 import { capture, expect, test } from './fixtures.ts';
+import { solveBrick, solveExercise } from './play.ts';
 
+const { bricks } = loadContent('fr');
+const bit = bricks.get('donnees/bit')!;
 const brick = (id: string) => `[data-brick="${id}"]`;
 
 test("l'accueil mène au parcours", async ({ page }) => {
@@ -8,7 +13,9 @@ test("l'accueil mène au parcours", async ({ page }) => {
   await capture(page, 'accueil');
   await page.getByRole('link', { name: 'Fondements' }).click();
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Fondements');
-  await expect(page.locator('.path-list li')).toHaveCount(4);
+  // The path grows with the content: only its first brick is pinned here.
+  await expect(page.locator('.path-list li').first()).toContainText("L'information");
+  expect(await page.locator('.path-list li').count()).toBeGreaterThan(3);
 });
 
 test('valider une brique rend la suivante disponible, et la progression persiste', async ({
@@ -37,33 +44,11 @@ test('valider une brique rend la suivante disponible, et la progression persiste
   await manipulation.getByRole('switch').click();
   await expect(manipulation.getByTestId('bits-value')).toHaveText('1');
 
-  const exercise = (n: number) => page.locator('.exercises ol > li').nth(n - 1);
-  const submit = (n: number) => exercise(n).getByRole('button', { name: 'Valider' }).click();
-
-  await exercise(1).getByLabel('2', { exact: true }).check();
-  await submit(1);
-  await expect(exercise(1).getByRole('status')).toHaveText('Exact.');
-
-  // A wrong answer gets its own explanation, then the learner retries.
-  await exercise(2).getByLabel('Le jour de la semaine.').check();
-  await submit(2);
-  await expect(exercise(2).getByRole('status')).toContainText('sept jours');
-  await exercise(2).getByLabel('La porte est ouverte ou fermée.').check();
-  await submit(2);
-
-  await exercise(3).getByRole('textbox').fill('1');
-  await submit(3);
-  await expect(exercise(3).getByRole('status')).toContainText('le chiffre qui reste');
-  await exercise(3).getByRole('textbox').fill(' 0 ');
-  await submit(3);
-
-  await expect(page.getByTestId('brick-validated')).toBeHidden();
-  await exercise(4).getByRole('switch').click();
-  await submit(4);
-
-  await expect(page.getByTestId('exercises-progress')).toHaveText('4 / 4 exercices réussis');
+  await solveBrick(page, bit);
+  await expect(page.getByTestId('exercises-progress')).toHaveText(
+    `${bit.exercices.length} / ${bit.exercices.length} exercices réussis`,
+  );
   await expect(page.getByTestId('brick-validated')).toContainText('Brique validée');
-  await capture(page, 'brique-validee');
 
   // The fact is stored in the browser and survives a reload.
   await page.reload();
@@ -77,7 +62,7 @@ test('valider une brique rend la suivante disponible, et la progression persiste
     'data-status',
     'disponible',
   );
-  await expect(page.getByTestId('path-progress')).toHaveText('1 / 4 briques acquises');
+  await expect(page.getByTestId('path-progress')).toHaveText(/^1 \/ \d+ briques acquises$/);
 });
 
 test('une notion acquise est rappelée, avec un exercice pour se tester', async ({ page }) => {
@@ -95,19 +80,23 @@ test('une notion acquise est rappelée, avec un exercice pour se tester', async 
   const reminder = page.locator(`.reminders ${brick('donnees/bit')}`);
   await expect(reminder).toContainText('Rappel');
   await reminder.locator('summary').click();
-  await expect(reminder).toContainText('Un bit est la plus petite information possible');
-  await reminder.getByRole('button', { name: 'Me tester' }).click();
-  await reminder.getByRole('textbox').fill('0');
-  await reminder.getByRole('button', { name: 'Valider' }).click();
-  await expect(reminder.getByRole('status')).toHaveText('Exact.');
+  await expect(reminder).toContainText(bit.resume);
 
-  // Tracking widget: every combination of three bits can be found.
+  // "Test me" draws the last quick exercise of the recalled brick.
+  await reminder.getByRole('button', { name: 'Me tester' }).click();
+  await solveExercise(reminder, bit.exercices.findLast(isQuickExercise)!, { wrongFirst: true });
+
+  // Tracking widget: the combinations found are listed, the total is only told at the end.
   const manipulation = page.locator('.manipulation');
+  const found = manipulation.getByTestId('bits-found');
+  await expect(found).toHaveText('1 combinaison trouvée');
   const switches = manipulation.getByRole('switch');
   // Gray code: one switch per step visits the eight combinations.
-  for (const index of [2, 1, 2, 0, 2, 1, 2]) await switches.nth(index).click();
-  await expect(manipulation).toContainText('8 / 8 combinaisons trouvées');
-  await capture(page, 'combinaisons');
+  for (const index of [2, 1, 2, 0, 2, 1]) await switches.nth(index).click();
+  await expect(found).toHaveText('7 combinaisons trouvées');
+  await switches.nth(2).click();
+  await expect(found).toHaveText('Tu les as toutes trouvées : il y en a 8.');
+  await capture(page, 'combinaisons-manipulation');
 });
 
 test('la devinette trouve le nombre en éliminant des possibilités', async ({ page }) => {
@@ -120,18 +109,34 @@ test('la devinette trouve le nombre en éliminant des possibilités', async ({ p
     await cards.nth(threshold - 1).click();
   }
   await expect(message).toContainText('Trouvé');
-  await capture(page, 'information');
+});
+
+test('une saisie avec une unité demande le nombre seul', async ({ page }) => {
+  await page.goto('fr/briques/donnees/combinaisons/');
+  const exercise = page.locator('.exercises > ol > li').last();
+  await exercise.getByRole('textbox').fill('4 bits');
+  await exercise.getByRole('button', { name: 'Valider' }).click();
+  await expect(exercise.locator('.feedback')).toHaveText(
+    'Écris seulement le nombre, en chiffres, sans unité ni autre mot.',
+  );
+  await exercise.getByRole('textbox').fill('4');
+  await exercise.getByRole('button', { name: 'Valider' }).click();
+  await expect(exercise.locator('.feedback')).toHaveText('Exact.');
 });
 
 test.describe('progression illisible', () => {
   test.use({ expectedErrors: [/Progression illisible/] });
 
   test('elle est mise de côté, pas perdue', async ({ page }) => {
-    await page.addInitScript(() =>
-      localStorage.setItem('iadmin:progression', '{"format":"autre"}'),
-    );
+    await page.addInitScript(() => {
+      // Seeded once: the page moves it aside, and later loads must stay clean.
+      if (!sessionStorage.getItem('seeded')) {
+        sessionStorage.setItem('seeded', '1');
+        localStorage.setItem('iadmin:progression', '{"format":"autre"}');
+      }
+    });
     await page.goto('fr/parcours/fondements/');
-    await expect(page.getByTestId('path-progress')).toHaveText('0 / 4 briques acquises');
+    await expect(page.getByTestId('path-progress')).toHaveText(/^0 \/ \d+ briques acquises$/);
     expect(await page.evaluate(() => localStorage.getItem('iadmin:progression:illisible'))).toBe(
       '{"format":"autre"}',
     );

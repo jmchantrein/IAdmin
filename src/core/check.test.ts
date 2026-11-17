@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { runCheck } from './check.ts';
+import { isNumber, runCheck } from './check.ts';
 
 describe('runCheck', () => {
   it('applies filters in order before the predicate', () => {
@@ -25,5 +25,18 @@ describe('runCheck', () => {
 
   it('rejects a pipeline without predicate', () => {
     expect(() => runCheck(['rogner'], 'x')).toThrow();
+  });
+});
+
+describe('isNumber', () => {
+  it('accepts a number alone, with a dot or a comma', () => {
+    for (const answer of ['3', ' 12 ', '0', '0,5', '-2', '1.5'])
+      expect(isNumber(answer)).toBe(true);
+  });
+
+  it('rejects a number with a unit, words and empty answers', () => {
+    for (const answer of ['3 bits', 'trois', '', '  ', '12 mois', '3 ou 4']) {
+      expect(isNumber(answer)).toBe(false);
+    }
   });
 });

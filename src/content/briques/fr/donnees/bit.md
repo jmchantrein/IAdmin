@@ -1,60 +1,62 @@
 ---
 titre: Le bit
-resume: Un bit est la plus petite information possible. Il n'a que deux valeurs, notées 0 et 1.
+resume: Un bit est la plus petite unité d'information. C'est un choix entre deux possibilités, que l'on note 0 et 1.
 niveau: bas
 acquis:
-  - Dire ce qu'est un bit et citer ses deux valeurs.
+  - Citer les deux valeurs d'un bit et noter avec elles une situation à deux possibilités.
   - Reconnaître une information qui tient sur un seul bit.
 requiert:
   - donnees/information
 manipulation:
-  consigne: Combien de valeurs différentes ce bit peut-il prendre ? Bascule l'interrupteur pour le savoir.
+  consigne: Combien de positions différentes cet interrupteur peut-il prendre ?
   widget: bascule-bits
   params: { bits: 1 }
 exercices:
-  - type: choix
-    consigne: Combien de valeurs différentes un bit peut-il prendre ?
-    options:
-      - texte: '2'
-        correct: true
-      - texte: '8'
-        retour: Huit est le nombre de bits d'un octet, que tu verras bientôt. Un bit seul n'a que deux valeurs.
-      - texte: '10'
-        retour: Dix est le nombre de chiffres que nous utilisons pour compter. Un bit n'en utilise que deux.
+  - type: saisie
+    consigne: Tu notes avec un bit si un siège est occupé. Tu as choisi la valeur 1 pour « occupé ». Quelle valeur notes-tu pour un siège libre ?
+    verif: [rogner, { nombre: 0 }]
+    solution: '0'
+    contre_exemples: ['1', '2']
+    retour: Un bit n'a que deux valeurs, 0 et 1. Puisque 1 est déjà pris pour « occupé », il reste l'autre valeur pour « libre ».
   - type: choix
     consigne: Laquelle de ces informations tient sur un seul bit ?
     options:
-      - texte: La porte est ouverte ou fermée.
+      - texte: Le résultat d'un tirage à pile ou face.
         correct: true
       - texte: Le jour de la semaine.
-        retour: Il y a sept jours possibles. Un bit ne distingue que deux cas.
+        retour: Il y a sept jours possibles. Un bit ne distingue que deux possibilités.
       - texte: La couleur d'un feu tricolore.
-        retour: Le feu a trois couleurs possibles. Un bit ne distingue que deux cas.
-  - type: saisie
-    consigne: La lampe allumée se note 1. Comment se note la lampe éteinte ?
-    verif: [rogner, { egal: '0' }]
-    solution: '0'
-    contre_exemples: ['1', 'éteinte', '2']
-    retour: Un bit n'a que deux valeurs, notées par deux chiffres. Si l'un des deux états se note 1, l'autre se note avec le chiffre qui reste.
-  - type: widget
-    consigne: Mets le bit à 1.
-    widget: bascule-bits
-    params: { bits: 1 }
-    verif: [{ egal: '1' }]
-    solution: '1'
-    contre_exemples: ['0']
-    retour: La valeur 1 correspond à la lampe allumée. Bascule l'interrupteur jusqu'à ce que la lampe s'allume.
+        retour: Le feu a trois couleurs possibles. Un bit ne distingue que deux possibilités.
+  - type: choix
+    consigne: Tu notes avec un bit l'état d'une porte, 1 quand elle est ouverte et 0 quand elle est fermée. La porte est ouverte, puis quelqu'un la ferme. Que devient le bit ?
+    options:
+      - texte: Il passe de 1 à 0.
+        correct: true
+      - texte: Il passe de 0 à 1.
+        retour: Tu as inversé la convention. Ici, 1 note la porte ouverte. Au départ le bit vaut donc 1, et il prend l'autre valeur quand la porte se ferme.
+      - texte: Il reste à 1.
+        retour: Le bit note l'état de la porte. Quand cet état change, la valeur du bit change aussi.
+  - type: choix
+    consigne: Une ampoule peut être éteinte, allumée faiblement ou allumée fortement. Pourquoi un seul bit ne suffit-il pas à noter son état ?
+    options:
+      - texte: Parce qu'il y a trois possibilités et qu'un bit n'en distingue que deux.
+        correct: true
+      - texte: Parce qu'un bit ne peut noter que des nombres.
+        retour: Les valeurs 0 et 1 ne sont que des notations. On leur fait désigner ce que l'on veut, par exemple éteint et allumé. Ce qui manque ici, c'est une troisième valeur.
+      - texte: Parce qu'un bit ne peut noter que l'état d'un interrupteur.
+        retour: Un bit note n'importe quelle information à deux possibilités, pas seulement un interrupteur. Ce qui bloque ici, c'est le nombre de possibilités.
 ---
 
 L'interrupteur n'a que deux positions : la lampe est **éteinte** ou **allumée**. On ne
-peut pas faire plus simple, car avec une seule position il n'y aurait rien à apprendre.
+peut pas faire plus simple. Avec une seule position, il n'y aurait rien à apprendre en
+regardant la lampe.
 
-Cette information minimale s'appelle un **bit**. Par convention, on note ses deux
-valeurs `0` (éteint) et `1` (allumé).
+Ce choix entre deux possibilités est la plus petite unité d'information. On l'appelle
+un **bit**. Par convention, ses deux valeurs se notent `0` et `1`. Ici, `0` note la
+lampe éteinte et `1` la lampe allumée.
 
-Un bit répond à une question qui n'a que deux issues : oui ou non, vrai ou faux, ouvert
-ou fermé. Dans un ordinateur, tout est fait de bits, parce qu'il est facile de
-fabriquer un composant qui n'a que deux états, comme un interrupteur.
+Une information **tient sur un bit** quand elle n'a que deux possibilités, comme oui ou
+non. Dès qu'il y en a trois, un seul bit ne suffit plus.
 
-Un seul bit ne dit pas grand-chose. La suite montre ce qui se passe quand on en
-assemble plusieurs.
+Dans une machine, toute information est notée avec des bits, parce qu'il est facile de
+fabriquer une pièce qui n'a que deux positions, comme un interrupteur.

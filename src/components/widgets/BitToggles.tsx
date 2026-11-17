@@ -15,9 +15,14 @@ export function BitToggles({ params, onChange, t }: WidgetProps<'bascule-bits'>)
 
   const toggle = (index: number) => setBits(bits.map((on, i) => (i === index ? !on : on)));
 
+  // Weight of each bit, the rightmost one weighing 1.
+  const weights = bits.map((_, i) => 2 ** (params.bits - 1 - i));
+  const lit = weights.filter((_, i) => bits[i]);
+  const sum = lit.reduce((a, b) => a + b, 0);
+
   return (
     <div class="widget bits">
-      <div class="bits-row">
+      <div class="bits-row" style={{ '--bits': params.bits }}>
         {bits.map((on, i) => (
           <button
             type="button"
@@ -29,26 +34,37 @@ export function BitToggles({ params, onChange, t }: WidgetProps<'bascule-bits'>)
           >
             <span class="lamp" aria-hidden="true" />
             <span class="digit">{on ? '1' : '0'}</span>
+            {params.poids && (
+              <span class="weight">
+                <span class="sr-only">{t.widgets.bits.weightLabel} </span>
+                {weights[i]}
+              </span>
+            )}
           </button>
         ))}
       </div>
+      {params.poids && <p class="widget-hint">{t.widgets.bits.weightHint}</p>}
       <p class="widget-value">
         {t.widgets.bits.value} : <output data-testid="bits-value">{value}</output>
       </p>
+      {params.poids && (
+        <p class="widget-value" aria-live="polite">
+          {t.widgets.bits.total} :{' '}
+          <output data-testid="bits-total">
+            {lit.length > 1 ? `${lit.join(' + ')} = ${sum}` : sum}
+          </output>
+        </p>
+      )}
       {params.suivi && (
+        // Only what has been found is listed: the total stays for the learner to discover.
         <div class="bits-tracker">
           <ul aria-hidden="true">
-            {Array.from({ length: total }, (_, n) => n.toString(2).padStart(params.bits, '0')).map(
-              (combination) => (
-                <li class={seen.has(combination) ? 'found' : ''}>
-                  {seen.has(combination) ? combination : '?'.repeat(params.bits)}
-                </li>
-              ),
-            )}
+            {[...seen].sort().map((combination) => (
+              <li class="found">{combination}</li>
+            ))}
           </ul>
-          <p aria-live="polite">
-            {t.widgets.bits.found(seen.size, total)}
-            {seen.size === total && <strong> {t.widgets.bits.complete}</strong>}
+          <p aria-live="polite" data-testid="bits-found">
+            {seen.size === total ? t.widgets.bits.complete(total) : t.widgets.bits.found(seen.size)}
           </p>
         </div>
       )}

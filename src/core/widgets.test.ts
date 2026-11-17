@@ -23,3 +23,18 @@ describe('paramètres du widget « pas-a-pas »', () => {
     }
   });
 });
+
+describe('paramètres du widget « bascule-bits »', () => {
+  const schema = WIDGET_PARAMS['bascule-bits'];
+
+  it('hides the tracker and the weights unless asked', () => {
+    expect(schema.parse({ bits: 4 })).toEqual({ bits: 4, suivi: false, poids: false });
+    expect(schema.parse({ bits: 8, poids: true }).poids).toBe(true);
+  });
+
+  it('keeps the row between 1 and 8 bits and rejects unknown parameters', () => {
+    expect(schema.safeParse({ bits: 0 }).success).toBe(false);
+    expect(schema.safeParse({ bits: 9 }).success).toBe(false);
+    expect(schema.safeParse({ bits: 4, couleur: 'rouge' }).success).toBe(false);
+  });
+});

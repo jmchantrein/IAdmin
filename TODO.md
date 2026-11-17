@@ -13,11 +13,12 @@ est résumé ici au fil de l'eau.
 
 ### J4 — Parcours Fondements complet
 
-- [ ] Relire `donnees/information`, `donnees/bit` et `donnees/combinaisons` selon `docs/fabrique/relire-brique.md` : elles ont été écrites avant la procédure.
-- [ ] Briques `donnees/` : binaire-lire, binaire-ecrire, addition-binaire, octet, texte-code, hash.
-- [ ] Briques `logique/` : vrai-faux, non-et-ou, table-de-verite, portes-logiques, additionneur.
-- [ ] Briques `algo/` : variable, condition, boucle, recherche-lineaire, recherche-dichotomique.
-- [ ] Un défi de synthèse (`genre: defi`).
+- [ ] Lot 1 : corriger `donnees/binaire-lire`, `donnees/binaire-ecrire` et `donnees/octet` d'après leur relecture adverse (en cours), puis recadrage par le propriétaire.
+- [ ] Lot 2 : `donnees/addition-binaire`, `donnees/texte-code`, `donnees/hash`. Widgets pressentis, à proposer ici avant de les écrire : `pas-a-pas` à plusieurs rangées pour l'addition posée, un widget d'empreinte pour `hash`.
+- [ ] Lot 3 : `logique/vrai-faux`, `logique/non-et-ou`, `logique/table-de-verite`. Widget pressenti : une porte logique (interrupteurs, porte, lampe).
+- [ ] Lot 4 : `logique/portes-logiques`, `logique/additionneur`. Même widget, peut-être un petit circuit ; lot à réduire si le widget dépasse ce qu'il justifie.
+- [ ] Lot 5 : `algo/variable`, `algo/condition`, `algo/boucle`, avec `pas-a-pas`.
+- [ ] Lot 6 : `algo/recherche-lineaire`, `algo/recherche-dichotomique`, un défi de synthèse (`genre: defi`).
 
 ### J5 à J9
 
@@ -52,6 +53,15 @@ est résumé ici au fil de l'eau.
 - [ ] Zod est chargé dans le navigateur pour valider la progression et les paramètres de widget : mesurer son poids si les pages ralentissent.
 
 ## Fait
+
+### J4 — Parcours Fondements, première étape (2026-11-17)
+
+- [x] Test `tests/e2e/briques.spec.ts` : chaque brique est jouée comme par un apprenant (une mauvaise réponse et son retour, puis la solution) jusqu'à sa validation. Il suit le contenu sans retouche.
+- [x] Relecture adverse des trois briques de J1 (aucun écart bloquant, 16 à corriger, 13 mineurs), puis réécriture : exercices sur des cas nouveaux au lieu de réponses recopiables, questions de manipulation à réponse déterminée, vocabulaire resserré.
+- [x] Une saisie qui porte une unité (« 3 bits ») reçoit le message « écris seulement le nombre » au lieu du retour d'erreur.
+- [x] Le suivi de `bascule-bits` liste les combinaisons trouvées sans annoncer leur total.
+- [x] Paramètre `poids` de `bascule-bits` : poids sous chaque bit et total ; la rangée tient sur une ligne jusqu'à 8 bits, en mobile aussi.
+- [x] Lot 1 écrit et joué par le test : `donnees/binaire-lire`, `donnees/binaire-ecrire`, `donnees/octet`.
 
 ### J3 — Export/import, « pas à pas », fabrique (2026-11-17)
 
