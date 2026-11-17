@@ -1,0 +1,90 @@
+name: Spike VM
+
+# Throwaway measurements for milestone J2 (see spike/terminal/README.md).
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - spike/**
+      - .github/workflows/spike-vm.yml
+
+permissions:
+  contents: read
+
+env:
+  V86_ROOT: /tmp/v86
+  # Tools and BIOS files come from the v86 repository; the emulator itself from npm.
+  V86_COMMIT: 315b2b0b758703ef0e6cc7b4088d6068f83f3c20
+  V86_NPM: 0.5.473
+
+jobs:
+  mesurer:
+    strategy:
+      fail-fast: false
+      matrix:
+        image: [alpine, debian]
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - name: Outils
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq python3-zstandard zstd
+          git clone --quiet https://github.com/copy/v86 "$V86_ROOT"
+          git -C "$V86_ROOT" checkout --quiet "$V86_COMMIT"
+          npm ci
+          npm install --no-save "v86@$V86_NPM"
+      - name: Debian en 32 bits (diagnostic réseau, Debian 13)
+        if: matrix.image == 'debian'
+        continue-on-error: true
+        run: |
+          {
+            # Which Docker default breaks name resolution in a 32-bit glibc container?
+            for options in "" "--network host" "--security-opt seccomp=unconfined" \
+              "--network host --security-opt seccomp=unconfined"; do
+              echo "=== options : [$options]"
+              docker run --rm --platform linux/386 $options docker.io/i386/debian:bookworm-slim \
+                sh -c 'getent hosts deb.debian.org || echo "résolution impossible"' 2>&1 | tail -2
+            done
+            echo "=== Debian 13 (trixie) en i386"
+            docker run --rm --platform linux/386 --network host --security-opt seccomp=unconfined \
+              docker.io/i386/debian:trixie-slim sh -c \
+              'apt-get update -qq 2>&1 | tail -3; apt-cache policy linux-image-686 linux-image-686-pae manpages-fr'
+          } 2>&1 | tee "$RUNNER_TEMP/1-diagnostic.log"
+      - name: Construire l'image
+        run: |
+          set -o pipefail
+          spike/terminal/build.sh ${{ matrix.image }} 2>&1 | tee "$RUNNER_TEMP/2-image.log"
+      - name: Mesurer sous Node
+        id: node
+        run: |
+          set -o pipefail
+          node spike/terminal/measure.mjs ${{ matrix.image }} 2>&1 | tee "$RUNNER_TEMP/3-node.log"
+      - name: Mesurer dans Chromium
+        if: always() && steps.node.conclusion != 'skipped'
+        run: |
+          set -o pipefail
+          npx playwright install --with-deps chromium >/dev/null 2>&1
+          node spike/terminal/browser.mjs ${{ matrix.image }} 2>&1 | tee "$RUNNER_TEMP/4-chromium.log"
+      - name: Résultats
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: spike-${{ matrix.image }}
+          path: spike/terminal/out/${{ matrix.image }}/results-*.json
+          if-no-files-found: ignore
+      # Last step on purpose: the end of the job log then holds everything worth reading.
+      - name: Synthèse
+        if: always()
+        run: |
+          for log in "$RUNNER_TEMP"/[1-4]-*.log; do
+            [ -f "$log" ] || continue
+            echo "::group::$(basename "$log")"
+            tail -n 45 "$log"
+            echo "::endgroup::"
+          done

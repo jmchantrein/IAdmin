@@ -1,0 +1,7 @@
+#!/bin/sh
+# Shell driven by the host through the second serial port, invisible to the learner.
+stty -F /dev/ttyS1 raw -echo 115200
+cd /root
+# With its error output off the terminal, bash stays non-interactive: no prompt and no
+# control sequence get mixed into the replies. Commands redirect their own errors.
+exec /bin/bash --noprofile --norc </dev/ttyS1 >/dev/ttyS1 2>/dev/null

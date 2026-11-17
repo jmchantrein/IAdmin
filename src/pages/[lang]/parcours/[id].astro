@@ -1,0 +1,39 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { PathList, type PathBrick } from '../../../components/PathList.tsx';
+import { pathRoute } from '../../../core/paths.ts';
+import { LOCALES, type Lang } from '../../../i18n/index.ts';
+import { loadContent } from '../../../lib/content.ts';
+import { brickUrl } from '../../../lib/urls.ts';
+
+export async function getStaticPaths() {
+  const pages = [];
+  for (const lang of LOCALES) {
+    const { paths } = await loadContent(lang);
+    for (const id of paths.keys()) pages.push({ params: { lang, id } });
+  }
+  return pages;
+}
+
+const lang = Astro.params.lang as Lang;
+const id = Astro.params.id as string;
+const { bricks, paths, graph } = await loadContent(lang);
+const path = paths.get(id)!;
+
+const route: PathBrick[] = pathRoute(graph, paths, id).map((brickId) => {
+  const { data } = bricks.get(brickId)!;
+  return {
+    id: brickId,
+    titre: data.titre,
+    resume: data.resume,
+    requiert: data.requiert,
+    url: brickUrl(lang, brickId),
+  };
+});
+---
+
+<Base lang={lang} title={path.titre} description={path.description}>
+  <h1>{path.titre}</h1>
+  <p class="lead">{path.description}</p>
+  <PathList client:load bricks={route} lang={lang} />
+</Base>

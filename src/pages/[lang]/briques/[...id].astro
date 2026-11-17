@@ -1,0 +1,132 @@
+---
+import { render } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import { Exercises } from '../../../components/Exercises.tsx';
+import { Reminders, type Prerequisite } from '../../../components/Reminders.tsx';
+import { Widget } from '../../../components/Widget.tsx';
+import { dependents } from '../../../core/graph.ts';
+import { pathRoute } from '../../../core/paths.ts';
+import { isQuickExercise } from '../../../core/schema.ts';
+import { LOCALES, dict, type Lang } from '../../../i18n/index.ts';
+import { loadContent } from '../../../lib/content.ts';
+import { brickUrl, pathUrl } from '../../../lib/urls.ts';
+
+export async function getStaticPaths() {
+  const pages = [];
+  for (const lang of LOCALES) {
+    const { bricks } = await loadContent(lang);
+    for (const id of bricks.keys()) pages.push({ params: { lang, id } });
+  }
+  return pages;
+}
+
+const lang = Astro.params.lang as Lang;
+const id = Astro.params.id as string;
+const t = dict(lang);
+const { bricks, paths, graph } = await loadContent(lang);
+const entry = bricks.get(id)!;
+const brick = entry.data;
+const { Content } = await render(entry);
+
+const link = (brickId: string) => ({
+  titre: bricks.get(brickId)!.data.titre,
+  url: brickUrl(lang, brickId),
+});
+
+const prerequisites: Prerequisite[] = brick.requiert.map((brickId) => {
+  const { data } = bricks.get(brickId)!;
+  return {
+    id: brickId,
+    ...link(brickId),
+    resume: data.resume,
+    exercise: data.exercices.findLast(isQuickExercise) ?? null,
+  };
+});
+
+const inPaths = [...paths].filter(([pathId]) => pathRoute(graph, paths, pathId).includes(id));
+---
+
+<Base lang={lang} title={brick.titre} description={brick.resume}>
+  <article class="brick" data-brick={id}>
+    <header>
+      <p class="meta">
+        <span class={`level ${brick.niveau}`}>{t.level[brick.niveau]}</span>
+        {inPaths.map(([pathId, path]) => (
+          <a class="crumb" href={pathUrl(lang, pathId)}>
+            {t.brick.inPaths} : {path.titre}
+          </a>
+        ))}
+      </p>
+      <h1>{brick.titre}</h1>
+      <section class="goals">
+        <h2>{t.brick.goals}</h2>
+        <ul>
+          {brick.acquis.map((goal) => (
+            <li>{goal}</li>
+          ))}
+        </ul>
+      </section>
+    </header>
+
+    {prerequisites.length > 0 && (
+      <section>
+        <h2>{t.reminders.heading}</h2>
+        <Reminders client:load prerequisites={prerequisites} lang={lang} />
+      </section>
+    )}
+
+    {brick.manipulation && (
+      <section class="manipulation">
+        <h2>{t.brick.manipulate}</h2>
+        <p class="consigne">{brick.manipulation.consigne}</p>
+        <Widget
+          client:load
+          widget={brick.manipulation.widget}
+          params={brick.manipulation.params}
+          lang={lang}
+        />
+      </section>
+    )}
+
+    <section class="explanation">
+      <h2>{t.brick.understand}</h2>
+      <Content />
+    </section>
+
+    <section>
+      <h2>{t.brick.practice}</h2>
+      <Exercises
+        client:load
+        brickId={id}
+        exercises={brick.exercices}
+        lang={lang}
+        next={dependents(graph, id).map(link)}
+      />
+    </section>
+
+    {brick.repose_sur.length > 0 && (
+      <section class="links">
+        <h2>{t.brick.under}</h2>
+        <ul>
+          {brick.repose_sur.map(link).map((l) => (
+            <li>
+              <a href={l.url}>{l.titre}</a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+    {brick.voir_aussi.length > 0 && (
+      <section class="links">
+        <h2>{t.brick.seeAlso}</h2>
+        <ul>
+          {brick.voir_aussi.map(link).map((l) => (
+            <li>
+              <a href={l.url}>{l.titre}</a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+  </article>
+</Base>

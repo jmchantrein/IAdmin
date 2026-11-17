@@ -1,0 +1,18 @@
+---
+import Base from '../../layouts/Base.astro';
+import { ProgressTools } from '../../components/ProgressTools.tsx';
+import { LOCALES, dict, type Lang } from '../../i18n/index.ts';
+
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Lang;
+const t = dict(lang);
+---
+
+<Base lang={lang} title={t.progress.title} description={t.progress.intro}>
+  <h1>{t.progress.title}</h1>
+  <p>{t.progress.intro}</p>
+  <ProgressTools client:load lang={lang} />
+</Base>

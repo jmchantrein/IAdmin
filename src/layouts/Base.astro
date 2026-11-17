@@ -1,0 +1,41 @@
+---
+import '../styles/global.css';
+import { dict, type Lang } from '../i18n/index.ts';
+import { homeUrl, progressUrl } from '../lib/urls.ts';
+
+interface Props {
+  lang: Lang;
+  title?: string;
+  description?: string;
+}
+
+const { lang, title, description } = Astro.props;
+const t = dict(lang);
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description ?? t.site.tagline} />
+    <title>{title ? `${title} · ${t.site.title}` : t.site.title}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="site-name" href={homeUrl(lang)}>
+        {t.site.title}
+      </a>
+      <span class="site-tagline">{t.site.tagline}</span>
+      <a class="site-nav" href={progressUrl(lang)}>
+        {t.progress.title}
+      </a>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <p>{t.site.footer}</p>
+    </footer>
+  </body>
+</html>
