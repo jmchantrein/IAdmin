@@ -61,11 +61,20 @@ async function measureSteps(memoryMb, live) {
   // Boot timeline: the last console line every 30 s, to see where a slow boot spends its time.
   const lastLine = () => machine.learnerText().trimEnd().split('\n').at(-1)?.slice(-110) ?? '';
   const heartbeat = setInterval(() => console.log(`[${seconds(start)} s] ${lastLine()}`), 30_000);
+  // A kernel panic never recovers: fail at once instead of waiting for the boot timeout.
+  let panicWatch;
+  const panic = new Promise((_, reject) => {
+    panicWatch = setInterval(() => {
+      const reason = /Kernel panic - not syncing: ([^\r\n]*)/.exec(machine.learnerText());
+      if (reason) reject(new Error(`panique du noyau : ${reason[1]}`));
+    }, 1_000);
+  });
   try {
-    await machine.ready(BOOT_TIMEOUT_MS);
+    await Promise.race([machine.ready(BOOT_TIMEOUT_MS), panic]);
     await waitFor(() => atPrompt(machine.learnerText()), 120_000, 'invite du terminal');
   } finally {
     clearInterval(heartbeat);
+    clearInterval(panicWatch);
   }
   result.coldBootS = seconds(start);
 
