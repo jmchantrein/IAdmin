@@ -1,0 +1,5 @@
+#!/bin/sh
+# Shell driven by the host through the second serial port, invisible to the learner.
+stty -F /dev/ttyS1 raw -echo 115200
+cd /root
+exec /bin/bash --noprofile --norc </dev/ttyS1 >/dev/ttyS1 2>&1

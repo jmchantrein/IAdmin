@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Spike terminal</title>
+  </head>
+  <body>
+    <pre id="terminal"></pre>
+    <script type="module">
+      import { V86 } from '/v86/libv86.mjs';
+      import { drive, machineOptions } from '/spike/machine.mjs';
+
+      const params = new URLSearchParams(location.search);
+      const memoryMb = Number(params.get('mem'));
+      const files = {
+        wasm: '/v86/v86.wasm',
+        bios: '/bios/seabios.bin',
+        vgaBios: '/bios/vgabios.bin',
+        rootfs: '/out/rootfs-flat/',
+        fsJson: '/out/fs.json',
+      };
+
+      const start = performance.now();
+      const emulator = new V86(
+        machineOptions({
+          image: params.get('image'),
+          memoryMb,
+          files,
+          initialState: `/out/state-${memoryMb}.bin.zst`,
+        }),
+      );
+      const machine = drive(emulator);
+      window.machine = machine;
+      // Milliseconds from page start until the machine answers a command.
+      window.ready = machine.ready(120_000).then(() => Math.round(performance.now() - start));
+      setInterval(() => {
+        document.getElementById('terminal').textContent = machine.learnerText().slice(-2000);
+      }, 500);
+    </script>
+  </body>
+</html>

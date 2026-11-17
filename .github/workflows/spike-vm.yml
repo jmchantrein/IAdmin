@@ -1,0 +1,67 @@
+name: Spike VM
+
+# Throwaway measurements for milestone J2 (see spike/terminal/README.md).
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - spike/**
+      - .github/workflows/spike-vm.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: spike-vm-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  V86_ROOT: /tmp/v86
+  # Tools and BIOS files come from the v86 repository; the emulator itself from npm.
+  V86_COMMIT: 315b2b0b758703ef0e6cc7b4088d6068f83f3c20
+  V86_NPM: 0.5.473
+
+jobs:
+  mesurer:
+    strategy:
+      fail-fast: false
+      matrix:
+        image: [alpine, debian]
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - name: Outils
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq python3-zstandard zstd
+          git clone --quiet https://github.com/copy/v86 "$V86_ROOT"
+          git -C "$V86_ROOT" checkout --quiet "$V86_COMMIT"
+          npm ci
+          npm install --no-save "v86@$V86_NPM"
+      - name: Debian 13 propose-t-elle encore le 32 bits ?
+        if: matrix.image == 'debian'
+        continue-on-error: true
+        run: |
+          docker run --rm --platform linux/386 docker.io/i386/debian:trixie-slim sh -c \
+            'apt-get update -qq && apt-cache policy linux-image-686 linux-image-686-pae manpages-fr'
+      - name: Construire l'image
+        run: spike/terminal/build.sh ${{ matrix.image }}
+      - name: Mesurer sous Node
+        run: node spike/terminal/measure.mjs ${{ matrix.image }}
+      - name: Mesurer dans Chromium
+        if: always()
+        run: |
+          npx playwright install --with-deps chromium
+          node spike/terminal/browser.mjs ${{ matrix.image }}
+      - name: Résultats
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: spike-${{ matrix.image }}
+          path: spike/terminal/out/${{ matrix.image }}/results-*.json
+          if-no-files-found: ignore
