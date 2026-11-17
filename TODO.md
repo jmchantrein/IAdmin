@@ -6,11 +6,6 @@ est résumé ici au fil de l'eau.
 
 ## À faire
 
-### Mise en ligne (action du propriétaire)
-
-- [ ] Régler GitHub Pages sur la source « GitHub Actions » (Settings › Pages) ; le déploiement part de `main`.
-- [ ] Fusionner la branche de travail dans `main` pour obtenir la première mise en ligne.
-
 ### J4 — Parcours Fondements complet
 
 - [ ] Recadrage par le propriétaire sur le lot 1 (ton, niveau, besoins de widgets des lots suivants) avant d'enchaîner.
@@ -55,6 +50,13 @@ est résumé ici au fil de l'eau.
 - [ ] Zod est chargé dans le navigateur pour valider la progression et les paramètres de widget : mesurer son poids si les pages ralentissent.
 
 ## Fait
+
+### Mise en ligne (2026-11-17)
+
+- [x] Demande de fusion `jmchantrein/IAdmin#1` (J1 à J3 et première étape de J4) fusionnée dans `main`.
+- [x] Site publié sur https://jmchantrein.github.io/IAdmin/. Les deux premiers déploiements ont échoué (erreur 404) tant que GitHub Pages n'était pas réglé sur la source « GitHub Actions » ; le troisième a réussi.
+- [x] `npm run e2e:live` joue les mêmes scénarios contre le site en ligne : 19 sur 19 le jour de la mise en ligne.
+- [x] Environnement cloud « IAdmin » : il autorise `jmchantrein.github.io` et installe les dépendances au démarrage d'une session (script non éprouvé tant qu'aucune session neuve n'a démarré dessus).
 
 ### J4 — Parcours Fondements, première étape (2026-11-17)
 

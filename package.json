@@ -13,7 +13,8 @@
     "preview": "astro preview",
     "format": "prettier --write .",
     "verify": "prettier --check . && astro check && vitest run && astro build",
-    "e2e": "astro build && playwright test --trace off"
+    "e2e": "astro build && playwright test --trace off",
+    "e2e:live": "E2E_BASE_URL=https://jmchantrein.github.io/IAdmin/ playwright test --trace off"
   },
   "dependencies": {
     "@astrojs/preact": "^6.1.6",

@@ -29,6 +29,9 @@ npm run verify
 npm run e2e
 ```
 
+Le site est en ligne sur https://jmchantrein.github.io/IAdmin/ ; `npm run e2e:live` y joue
+les mêmes scénarios.
+
 `verify` contrôle le format, les types, les tests unitaires, le contenu (schéma, budgets,
 graphe sans boucle, solutions et contre-exemples) et construit le site. `e2e` joue les
 scénarios dans un navigateur et dépose des captures dans `test-results/captures`.
