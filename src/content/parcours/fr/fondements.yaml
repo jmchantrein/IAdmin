@@ -1,4 +1,5 @@
 titre: Fondements
-description: Comprendre ce qu'est une information et comment une machine la représente avec des bits.
+description: Comprendre ce qu'est une information, comment une machine la représente avec des bits, et ce qu'est un algorithme.
 cibles:
   - donnees/combinaisons
+  - algo/algorithme

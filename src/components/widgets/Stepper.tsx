@@ -1,0 +1,50 @@
+import { useEffect, useState } from 'preact/hooks';
+import type { WidgetProps } from './index.ts';
+
+/**
+ * Step-by-step animation declared in the brick. The learner sets the pace, forward and
+ * backward; each step changes one thing and its caption sits right under the cells.
+ * Value: the number of the current step, starting at 1.
+ */
+export function Stepper({ params, onChange, t }: WidgetProps<'pas-a-pas'>) {
+  const text = t.widgets.steps;
+  const [index, setIndex] = useState(0);
+  const total = params.etapes.length;
+  const step = params.etapes[index]!;
+
+  useEffect(() => onChange?.(String(index + 1)), [index]);
+
+  return (
+    <div class="widget steps">
+      <ol class="steps-cells" aria-hidden="true">
+        {step.cases.map((cell, i) => (
+          <li
+            class={`${step.actifs.includes(i) ? 'active' : ''} ${step.ecartes.includes(i) ? 'out' : ''}`}
+          >
+            <span class="cell">{cell}</span>
+            <span class="cell-label">{step.etiquettes[String(i)] ?? ''}</span>
+          </li>
+        ))}
+      </ol>
+      <p class="steps-caption" aria-live="polite" data-testid="steps-caption">
+        {step.legende}
+      </p>
+      <div class="steps-controls">
+        <button
+          type="button"
+          class="secondary"
+          disabled={index === 0}
+          onClick={() => setIndex(index - 1)}
+        >
+          {text.previous}
+        </button>
+        <span class="steps-position" data-testid="steps-position">
+          {text.position(index + 1, total)}
+        </span>
+        <button type="button" disabled={index === total - 1} onClick={() => setIndex(index + 1)}>
+          {text.next}
+        </button>
+      </div>
+    </div>
+  );
+}

@@ -11,18 +11,15 @@ est résumé ici au fil de l'eau.
 - [ ] Régler GitHub Pages sur la source « GitHub Actions » (Settings › Pages) ; le déploiement part de `main`.
 - [ ] Fusionner la branche de travail dans `main` pour obtenir la première mise en ligne.
 
-### J3 — Export/import, « pas à pas », fabrique
+### J3 — Reste à faire
 
-- [ ] Export de la progression en fichier JSON, import avec validation puis fusion (l'état le plus fort gagne).
-- [ ] Écran qui signale une progression illisible ou un navigateur sans stockage, au-delà du message actuel.
-- [ ] Widget générique « pas à pas » : anime une suite d'états déclarée dans le frontmatter, avance et recul par bouton.
-- [ ] Procédures `docs/fabrique/rediger-brique.md` et `relire-brique.md`, avec skills de renvoi.
+- [ ] Relecture adverse de `algo/algorithme` par un agent neuf selon `docs/fabrique/relire-brique.md` (en cours), puis correction des écarts.
 
 ### J4 — Parcours Fondements complet
 
 - [ ] Briques `donnees/` : binaire-lire, binaire-ecrire, addition-binaire, octet, texte-code, hash.
 - [ ] Briques `logique/` : vrai-faux, non-et-ou, table-de-verite, portes-logiques, additionneur.
-- [ ] Briques `algo/` : algorithme, variable, condition, boucle, recherche-lineaire, recherche-dichotomique.
+- [ ] Briques `algo/` : variable, condition, boucle, recherche-lineaire, recherche-dichotomique.
 - [ ] Un défi de synthèse (`genre: defi`).
 
 ### J5 à J9
@@ -45,15 +42,25 @@ est résumé ici au fil de l'eau.
 
 - [ ] Terminal : l'émulateur v86 ne sait émuler que le 32 bits, et Debian 13 ne fournit plus de noyau 32 bits (constaté le 2026-11-17). L'image reste donc sur Debian 12, maintenue jusqu'en 2028 environ (date non vérifiée). Alpine + outils GNU, mesurée et conforme, est le repli prêt à l'emploi.
 - [ ] Terminal : chaque machine ouverte réserve 256 Mo dans le navigateur de l'apprenant. Un disque de démarrage réduit (`MODULES=list`) permettrait peut-être 128 Mo : non essayé.
-- [ ] Terminal : la première consultation d'une page de manuel prend environ 6 s sous Debian (0,6 à 1 s sous Alpine).
+- [ ] Terminal : la première consultation d'une page de manuel prend 6 à 11 s sous Debian (0,6 à 1 s sous Alpine).
 - [ ] Terminal : `/etc/hosts` et `/etc/hostname` sont vides dans l'image Debian exportée depuis Docker ; le nom d'hôte vient de la ligne de commande du noyau.
 - [ ] Images 32 bits sous Docker : la résolution de noms échoue dans un conteneur Debian 32 bits avec le profil seccomp par défaut des runners GitHub (constaté) ; l'appel système bloqué n'est pas identifié. `spike/terminal/build.sh` lance donc le conteneur avec `seccomp=unconfined`.
 - [ ] Deuxième langue : décider comment partager la structure d'une brique (prérequis, exercices) entre langues.
 - [ ] Origine `jmchantrein.github.io` partagée avec les autres sites du compte (stockage du navigateur commun) : envisager un domaine dédié avant d'y stocker une clé d'API (J8).
 - [ ] La progression d'une brique en cours (exercices réussis) vit en mémoire : un rechargement la remet à zéro.
+- [ ] Le widget `pas-a-pas` montre une seule rangée de cases : un flux entre deux commandes ou un arbre demanderont une autre forme, à proposer ici avant de l'écrire.
+- [ ] L'import fusionne toujours ; remplacer sa progression par un fichier demande d'effacer d'abord.
 - [ ] Zod est chargé dans le navigateur pour valider la progression et les paramètres de widget : mesurer son poids si les pages ralentissent.
 
 ## Fait
+
+### J3 — Export/import, « pas à pas », fabrique (2026-11-17)
+
+- [x] Page « Ma progression » : export en fichier JSON, import avec validation puis fusion (l'état le plus fort gagne, la date départage, rien n'est perdu), effacement après confirmation.
+- [x] Une progression illisible est déplacée de côté une seule fois ; la page permet d'en télécharger la copie puis de la supprimer. Un navigateur sans stockage est signalé.
+- [x] Widget générique `pas-a-pas` : étapes déclarées dans la brique (cases, cases mises en avant ou écartées, étiquettes, légende), avance et recul par bouton.
+- [x] Brique `algo/algorithme`, première entrée de haut niveau et premier usage de `pas-a-pas`.
+- [x] Procédures `docs/fabrique/rediger-brique.md` et `relire-brique.md`, skills de renvoi ; `algo/algorithme` écrite en suivant la première.
 
 ### J2 — Spike terminal Linux (2026-11-17)
 
@@ -63,7 +70,7 @@ est résumé ici au fil de l'eau.
 - [x] Le même pilote fonctionne sous Node (pour rejouer les solutions en CI) et dans Chromium.
 - [x] **Décision : Debian 12 minimale, avec 256 Mo de mémoire.** Elle tient les trois seuils fixés et apporte un environnement courant et 222 pages de manuel en français. Alpine + outils GNU reste le repli.
 
-Mesures (run 3 du workflow, commit `67f6914`) :
+Mesures (run 3 du workflow, commit `67f6914` ; reproduites par les runs 4 et 5, ce dernier vert pour les deux images) :
 
 | Mesure                                    | Seuil   | Debian 12 (256 Mo)                | Alpine 3.21 + GNU (128 Mo)        |
 | ----------------------------------------- | ------- | --------------------------------- | --------------------------------- |

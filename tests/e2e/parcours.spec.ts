@@ -8,7 +8,7 @@ test("l'accueil mène au parcours", async ({ page }) => {
   await capture(page, 'accueil');
   await page.getByRole('link', { name: 'Fondements' }).click();
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Fondements');
-  await expect(page.locator('.path-list li')).toHaveCount(3);
+  await expect(page.locator('.path-list li')).toHaveCount(4);
 });
 
 test('valider une brique rend la suivante disponible, et la progression persiste', async ({
@@ -77,7 +77,7 @@ test('valider une brique rend la suivante disponible, et la progression persiste
     'data-status',
     'disponible',
   );
-  await expect(page.getByTestId('path-progress')).toHaveText('1 / 3 briques acquises');
+  await expect(page.getByTestId('path-progress')).toHaveText('1 / 4 briques acquises');
 });
 
 test('une notion acquise est rappelée, avec un exercice pour se tester', async ({ page }) => {
@@ -131,7 +131,7 @@ test.describe('progression illisible', () => {
       localStorage.setItem('iadmin:progression', '{"format":"autre"}'),
     );
     await page.goto('fr/parcours/fondements/');
-    await expect(page.getByTestId('path-progress')).toHaveText('0 / 3 briques acquises');
+    await expect(page.getByTestId('path-progress')).toHaveText('0 / 4 briques acquises');
     expect(await page.evaluate(() => localStorage.getItem('iadmin:progression:illisible'))).toBe(
       '{"format":"autre"}',
     );

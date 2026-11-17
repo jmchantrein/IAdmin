@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import { dict, type Lang } from '../i18n/index.ts';
-import { homeUrl } from '../lib/urls.ts';
+import { homeUrl, progressUrl } from '../lib/urls.ts';
 
 interface Props {
   lang: Lang;
@@ -27,6 +27,9 @@ const t = dict(lang);
         {t.site.title}
       </a>
       <span class="site-tagline">{t.site.tagline}</span>
+      <a class="site-nav" href={progressUrl(lang)}>
+        {t.progress.title}
+      </a>
     </header>
     <main>
       <slot />

@@ -4,6 +4,7 @@ import type { WIDGET_PARAMS, WidgetName } from '../../core/widgets.ts';
 import type { Dictionary } from '../../i18n/fr.ts';
 import { BitToggles } from './BitToggles.tsx';
 import { GuessNumber } from './GuessNumber.tsx';
+import { Stepper } from './Stepper.tsx';
 
 export interface WidgetProps<N extends WidgetName> {
   params: z.output<(typeof WIDGET_PARAMS)[N]>;
@@ -16,4 +17,5 @@ export interface WidgetProps<N extends WidgetName> {
 export const WIDGETS: { [N in WidgetName]: ComponentType<WidgetProps<N>> } = {
   'bascule-bits': BitToggles,
   devinette: GuessNumber,
+  'pas-a-pas': Stepper,
 };

@@ -15,6 +15,7 @@ humain. Ce fichier est la source unique des règles ; `README.md` décrit le pro
 
 - Une brique enseigne une seule notion, dans `src/content/briques/<langue>/<domaine>/<brique>.md`.
 - Pars de `src/content/briques/fr/donnees/bit.md` comme gabarit ; `src/core/schema.ts` définit le format.
+- Écris une brique en suivant `docs/fabrique/rediger-brique.md` ; fais-la relire selon `docs/fabrique/relire-brique.md` par un agent qui ne l'a pas écrite.
 - Applique les règles de `docs/pedagogie.md` et relis ta brique avec leurs critères « Relecture ».
 - Ouvre par une manipulation guidée par une question ; l'explication nomme ensuite ce que l'apprenant a observé.
 - Emploie uniquement les notions définies dans la brique ou acquises par ses `requiert`.

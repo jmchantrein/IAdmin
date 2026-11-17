@@ -57,7 +57,43 @@ export const fr = {
     storageError:
       'Ce navigateur refuse l’enregistrement : ta progression sera perdue à la fermeture de la page.',
   },
+  progress: {
+    title: 'Ma progression',
+    intro:
+      'Ta progression vit dans ce navigateur. Exporte-la dans un fichier pour la garder ou la reprendre sur un autre appareil.',
+    summary: (validated: number, presumed: number) =>
+      `${validated} brique${validated > 1 ? 's' : ''} validée${validated > 1 ? 's' : ''}, ${presumed} présumée${presumed > 1 ? 's' : ''} acquise${presumed > 1 ? 's' : ''}`,
+    empty: 'Aucune brique acquise pour l’instant.',
+    exportHeading: 'Exporter',
+    exportHelp: 'Télécharge un fichier qui contient les briques que tu as acquises.',
+    exportButton: 'Exporter ma progression',
+    importHeading: 'Importer',
+    importHelp:
+      'Choisis un fichier exporté depuis ce site. Il s’ajoute à ta progression actuelle : rien n’est perdu.',
+    importLabel: 'Fichier de progression',
+    imported: (added: number, upgraded: number, known: number) =>
+      `Import réussi : ${added} ajoutée${added > 1 ? 's' : ''}, ${upgraded} renforcée${upgraded > 1 ? 's' : ''}, ${known} déjà connue${known > 1 ? 's' : ''}.`,
+    notJson: 'Ce fichier n’est pas lisible : ce n’est pas du JSON. Ta progression est inchangée.',
+    notProgress:
+      'Ce fichier n’est pas un export de progression de ce site. Ta progression est inchangée.',
+    resetHeading: 'Effacer',
+    resetHelp:
+      'Efface la progression enregistrée dans ce navigateur. Exporte-la d’abord si tu veux la garder.',
+    resetButton: 'Effacer ma progression',
+    resetConfirm: 'Confirmer l’effacement',
+    resetCancel: 'Annuler',
+    resetDone: 'Progression effacée.',
+    unreadable:
+      'Une progression illisible a été trouvée dans ce navigateur et mise de côté. Tu peux en télécharger la copie.',
+    unreadableDownload: 'Télécharger la copie',
+    unreadableDiscard: 'Supprimer la copie',
+  },
   widgets: {
+    steps: {
+      previous: 'Précédent',
+      next: 'Suivant',
+      position: (step: number, total: number) => `Étape ${step} / ${total}`,
+    },
     bits: {
       toggle: (n: number) => `Bit ${n}`,
       value: 'Valeur',

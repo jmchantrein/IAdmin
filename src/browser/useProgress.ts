@@ -9,6 +9,8 @@ export interface ProgressHandle {
   /** True when the browser refuses storage: progress then lives in memory only. */
   storageFailed: boolean;
   validate: (brickId: string) => void;
+  /** Replaces the whole document (import, reset). */
+  replace: (next: Progress) => void;
 }
 
 export function useProgress(): ProgressHandle {
@@ -28,20 +30,21 @@ export function useProgress(): ProgressHandle {
 
   useEffect(() => setProgress(read()), [read]);
 
+  const replace = useCallback((next: Progress) => {
+    memory.current = next;
+    try {
+      saveProgress(next);
+    } catch {
+      setStorageFailed(true);
+    }
+    setProgress(next);
+  }, []);
+
+  // Re-read first: another tab may have recorded progress meanwhile.
   const validate = useCallback(
-    (brickId: string) => {
-      // Re-read first: another tab may have recorded progress meanwhile.
-      const next = markValidated(read(), brickId, new Date());
-      memory.current = next;
-      try {
-        saveProgress(next);
-      } catch {
-        setStorageFailed(true);
-      }
-      setProgress(next);
-    },
-    [read],
+    (brickId: string) => replace(markValidated(read(), brickId, new Date())),
+    [read, replace],
   );
 
-  return { progress, storageFailed, validate };
+  return { progress, storageFailed, validate, replace };
 }

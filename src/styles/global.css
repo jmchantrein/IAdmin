@@ -295,6 +295,7 @@ button.secondary {
 
 button:disabled {
   cursor: default;
+  opacity: 0.45;
 }
 
 button:focus-visible,
@@ -489,6 +490,7 @@ input[type='text'] {
 }
 
 .card.found {
+  opacity: 1;
   background: var(--ok-bg);
   border-color: var(--ok);
   color: var(--ok);
@@ -508,4 +510,123 @@ input[type='text'] {
 
 .reminders .exercise {
   margin-top: 0.8rem;
+}
+
+/* --- Header navigation --- */
+
+.site-nav {
+  margin-left: auto;
+  font-size: 0.95rem;
+}
+
+/* --- Progress page --- */
+
+.tool {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.tool h2 {
+  margin-top: 0;
+  font-size: 1.1rem;
+}
+
+.tool.warning {
+  border-color: var(--ko);
+}
+
+.tool label span {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+input[type='file'] {
+  font: inherit;
+  max-width: 100%;
+}
+
+button.danger {
+  background: var(--ko);
+  color: var(--bg);
+}
+
+/* --- Step-by-step widget --- */
+
+.steps-cells {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.steps-cells li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  min-width: 3.4rem;
+}
+
+.cell {
+  display: grid;
+  place-items: center;
+  min-width: 3rem;
+  height: 3.6rem;
+  padding: 0 0.6rem;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  font-size: 1.4rem;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  transition:
+    border-color 0.15s,
+    opacity 0.15s;
+}
+
+.steps-cells li.active .cell {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+.steps-cells li.out .cell {
+  opacity: 0.35;
+  text-decoration: line-through;
+}
+
+.cell-label {
+  min-height: 1.3em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.steps-caption {
+  min-height: 3.2em;
+  margin: 0.6rem 0;
+  font-weight: 600;
+}
+
+.steps-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.steps-position {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.tool .feedback {
+  margin-top: 0.8rem;
+}
+
+.tool .feedback:empty {
+  display: none;
 }

@@ -39,3 +39,46 @@ export function statusOf(progress: Progress, id: string, requires: readonly stri
     ? 'disponible'
     : 'prerequis-manquants';
 }
+
+const STRENGTH: Record<State, number> = { presumee: 1, validee: 2 };
+
+/** Adds the export date to a copy of the document. */
+export function exportProgress(progress: Progress, now: Date): Progress {
+  return { ...progress, exporte_le: now.toISOString() };
+}
+
+export interface MergeResult {
+  progress: Progress;
+  /** Bricks the local document did not know. */
+  added: number;
+  /** Bricks whose state got stronger (`presumee` → `validee`). */
+  upgraded: number;
+  /** Bricks already known with a state at least as strong. */
+  known: number;
+}
+
+/**
+ * Merges an imported document into the local one. Per brick, the strongest state wins and
+ * the most recent date breaks ties. Nothing is ever dropped: bricks this site does not know
+ * are kept, so a file can travel between versions of the site.
+ */
+export function mergeProgress(local: Progress, imported: Progress): MergeResult {
+  const briques = { ...local.briques };
+  const result = { added: 0, upgraded: 0, known: 0 };
+
+  for (const [id, incoming] of Object.entries(imported.briques)) {
+    const current = briques[id];
+    if (!current) {
+      result.added += 1;
+      briques[id] = incoming;
+    } else if (STRENGTH[incoming.etat] > STRENGTH[current.etat]) {
+      result.upgraded += 1;
+      briques[id] = incoming;
+    } else {
+      result.known += 1;
+      if (incoming.etat === current.etat && incoming.le > current.le) briques[id] = incoming;
+    }
+  }
+
+  return { progress: { format: local.format, version: local.version, briques }, ...result };
+}
