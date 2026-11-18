@@ -25,11 +25,20 @@ sur la même tâche.
 - Traite un compte rendu d'agent comme un témoignage : contrôle ce qu'il affirme avant de
   le rapporter.
 - Arbitre chaque écart du relecteur : corrigé, ou laissé avec sa raison dans `TODO.md`.
+- Commite en nommant les fichiers (`git commit -- <fichiers>`) et relis d'abord
+  `git status --short` : un agent a pu préparer une suppression dans l'index.
+- Quand plusieurs agents écrivent en même temps, vérifie une livraison dans une copie
+  isolée du dépôt (`git worktree`, ses propres `node_modules`, un autre port) : le
+  dossier de travail commun contient les fichiers à moitié écrits des autres.
+- Donne à un seul agent à la fois le droit de construire le site dans un même dossier.
 
 ## Implémenteur
 
 - Lis `AGENTS.md` et les fichiers cités par le brief avant d'écrire.
 - Touche seulement les fichiers du brief.
+- Écris et supprime des fichiers, sans toucher à l'index git : ni `git add`, ni
+  `git rm`, ni `git stash`. L'orchestrateur commite.
+- Supprime tout fichier temporaire avant de rendre la main.
 - Lance les vérifications demandées et corrige jusqu'au vert.
 - Rends un compte rendu court : fichiers touchés, résultats des vérifications, ce qui
   n'a pas pu être fait ou vérifié, choix à arbitrer.
