@@ -44,6 +44,9 @@ scénarios dans un navigateur et dépose des captures dans `test-results/capture
 | `src/content/parcours` | Les parcours                                                     |
 | `src/core`             | Logique pure : schéma, graphe, vérification, progression         |
 | `src/components`       | Interface : exercices, rappels, widgets                          |
+| `src/markdown`         | Liens de brique, notes de survol et schémas de l'explication     |
+| `scripts`              | Aperçu d'un schéma et calcul d'une empreinte, pour les auteurs   |
+| `docs/fabrique`        | Rédiger, dessiner, relire une brique ; répartir le travail       |
 | `docs/pedagogie.md`    | Les règles pédagogiques, avec leurs sources                      |
 | `AGENTS.md`            | Les consignes pour les agents qui écrivent le contenu et le code |
 | `TODO.md`              | Ce qui reste à faire et ce qui est fait                          |

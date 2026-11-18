@@ -45,6 +45,8 @@ humain. Ce fichier est la source unique des règles ; `README.md` décrit le pro
 ## Environnement
 
 - `astro dev` et `astro preview` passent en arrière-plan quand un agent est détecté ; arrête-les avec `npx astro preview stop` ou lance-les avec `--ignore-lock` pour les garder au premier plan.
+- Regarde un schéma sans construire le site avec `node scripts/apercu-schema.mjs <fichier.svg>` ; calcule une empreinte avec `node scripts/empreinte.mjs "texte"`.
+- Après une modification de `src/markdown`, supprime `node_modules/.astro/data-store.json` avant de construire : Astro garde le corps compilé des briques.
 - Playwright et Chromium sont préinstallés dans les sessions cloud : garde `@playwright/test` à la version installée.
 - Après une fusion dans `main`, contrôle le job `deployer` puis lance `npm run e2e:live` : il joue les mêmes scénarios contre le site en ligne. L'environnement cloud « IAdmin » autorise son hôte.
 - Développe sur la branche indiquée par la session ; ouvre une demande de fusion seulement sur demande.
