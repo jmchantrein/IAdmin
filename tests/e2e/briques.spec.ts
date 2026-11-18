@@ -18,7 +18,15 @@ for (const lang of locales()) {
     test(`${lang}/${id} se valide avec ses solutions`, async ({ page }) => {
       await page.goto(`${lang}/briques/${id}/`);
       await solveBrick(page, brick, { wrongFirst: true });
-      await capture(page, `brique-${id.replaceAll('/', '-')}`);
+      const name = `brique-${id.replaceAll('/', '-')}`;
+      await capture(page, name);
+      // Diagrams and notes, where they are hardest to read: a phone, in the dark theme.
+      await page.setViewportSize({ width: 360, height: 740 });
+      await page.emulateMedia({ colorScheme: 'dark' });
+      await page.locator('.explanation').screenshot({
+        path: `test-results/captures/${name}-telephone-sombre.png`,
+        animations: 'disabled',
+      });
     });
   }
 }

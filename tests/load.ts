@@ -13,6 +13,8 @@ export interface LoadedContent {
   bricks: Map<string, Brick & { body: string }>;
   paths: Map<string, Path>;
   graph: Graph;
+  /** Diagram sources by file, relative to the bricks of the language (`donnees/bit.etats.svg`). */
+  schemas: Map<string, string>;
   /** Human-readable schema errors, one per problem. */
   errors: string[];
 }
@@ -53,6 +55,10 @@ export function loadContent(lang: string): LoadedContent {
       bricks.set(relative(bricksDir, file).replace(/\.md$/, ''), { ...brick, body: match[2]! });
   }
 
+  const schemas = new Map(
+    files(bricksDir, '.svg').map((file) => [relative(bricksDir, file), readFileSync(file, 'utf8')]),
+  );
+
   const pathsDir = join(CONTENT, 'parcours', lang);
   for (const file of files(pathsDir, '.yaml')) {
     const path = validate(pathSchema, parse(readFileSync(file, 'utf8')), file, errors);
@@ -60,5 +66,5 @@ export function loadContent(lang: string): LoadedContent {
   }
 
   const graph = new Map([...bricks].map(([id, brick]) => [id, brick.requiert]));
-  return { bricks, paths, graph, errors };
+  return { bricks, paths, graph, schemas, errors };
 }

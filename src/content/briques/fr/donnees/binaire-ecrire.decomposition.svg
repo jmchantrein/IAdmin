@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 296">
+  <g font-size="22" class="texte-doux" text-anchor="end">
+    <text x="100" y="76">reste</text>
+    <text x="100" y="140">poids</text>
+    <text x="100" y="214">chiffre</text>
+  </g>
+  <g font-size="24" text-anchor="middle" class="texte-accent">
+    <text x="188" y="40">−8</text>
+    <text x="300" y="40">−4</text>
+    <text x="524" y="40">−1</text>
+  </g>
+  <g>
+    <line x1="156" y1="67" x2="216" y2="67" class="accent" />
+    <polygon points="214,60 226,67 214,74" class="accent-plein" />
+    <line x1="260" y1="67" x2="328" y2="67" class="accent" />
+    <polygon points="326,60 338,67 326,74" class="accent-plein" />
+    <line x1="372" y1="67" x2="440" y2="67" class="trait" />
+    <polygon points="438,60 450,67 438,74" class="plein" />
+    <line x1="484" y1="67" x2="552" y2="67" class="accent" />
+    <polygon points="550,60 562,67 550,74" class="accent-plein" />
+  </g>
+  <g font-size="26" text-anchor="middle" class="texte">
+    <text x="132" y="76">13</text>
+    <text x="244" y="76">5</text>
+    <text x="356" y="76">1</text>
+    <text x="468" y="76">1</text>
+    <text x="580" y="76">0</text>
+  </g>
+  <g>
+    <rect x="152" y="100" width="72" height="64" rx="8" class="accent fond" />
+    <rect x="264" y="100" width="72" height="64" rx="8" class="accent fond" />
+    <rect x="376" y="100" width="72" height="64" rx="8" class="doux fond" />
+    <rect x="488" y="100" width="72" height="64" rx="8" class="accent fond" />
+  </g>
+  <g font-size="28" text-anchor="middle">
+    <text x="188" y="142" class="texte-accent">8</text>
+    <text x="300" y="142" class="texte-accent">4</text>
+    <text x="412" y="142" class="texte-doux">2</text>
+    <text x="524" y="142" class="texte-accent">1</text>
+  </g>
+  <g font-size="32" text-anchor="middle" class="texte">
+    <text x="188" y="218">1</text>
+    <text x="300" y="218">1</text>
+    <text x="412" y="218">0</text>
+    <text x="524" y="218">1</text>
+  </g>
+  <text x="320" y="276" font-size="28" text-anchor="middle" class="texte">13 = 8 + 4 + 1</text>
+</svg>

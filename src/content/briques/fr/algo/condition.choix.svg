@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 392">
+  <rect x="152" y="16" width="336" height="88" rx="8" class="accent fond" />
+  <text x="320" y="52" font-size="24" text-anchor="middle" class="texte-accent">
+    <tspan x="320">carte plus grande</tspan>
+    <tspan x="320" dy="32">que « record » ?</tspan>
+  </text>
+  <line x1="184" y1="104" x2="184" y2="158" class="trait" />
+  <polygon points="177,156 191,156 184,168" class="plein" />
+  <line x1="456" y1="104" x2="456" y2="158" class="trait" />
+  <polygon points="449,156 463,156 456,168" class="plein" />
+  <g font-size="22" class="texte">
+    <text x="196" y="146">oui</text>
+    <text x="468" y="146">non</text>
+  </g>
+  <rect x="28" y="168" width="296" height="96" rx="8" class="trait fond" />
+  <rect x="340" y="168" width="272" height="96" rx="8" class="trait fond" />
+  <text x="176" y="208" font-size="24" text-anchor="middle" class="texte">
+    <tspan x="176">remplace « record »</tspan>
+    <tspan x="176" dy="32">par la carte</tspan>
+  </text>
+  <text x="476" y="224" font-size="24" text-anchor="middle" class="texte">écarte la carte</text>
+  <polyline points="176,264 176,288 476,288 476,264" class="trait" />
+  <line x1="320" y1="288" x2="320" y2="318" class="trait" />
+  <polygon points="313,316 327,316 320,328" class="plein" />
+  <text x="320" y="364" font-size="24" text-anchor="middle" class="texte-doux">étape suivante</text>
+</svg>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'preact/hooks';
+import { printableCharacter } from '../../core/characters.ts';
 import type { WidgetProps } from './index.ts';
 
 /** Row of switches, one per bit. Value: the bit string, e.g. "101". */
@@ -45,16 +46,17 @@ export function BitToggles({ params, onChange, t }: WidgetProps<'bascule-bits'>)
       </div>
       {params.poids && <p class="widget-hint">{t.widgets.bits.weightHint}</p>}
       <p class="widget-value">
-        {t.widgets.bits.value} : <output data-testid="bits-value">{value}</output>
+        {t.widgets.bits.value}&nbsp;: <output data-testid="bits-value">{value}</output>
       </p>
       {params.poids && (
         <p class="widget-value" aria-live="polite">
-          {t.widgets.bits.total} :{' '}
+          {t.widgets.bits.total}&nbsp;:{' '}
           <output data-testid="bits-total">
             {lit.length > 1 ? `${lit.join(' + ')} = ${sum}` : sum}
           </output>
         </p>
       )}
+      {params.caractere && <Character code={parseInt(value, 2)} t={t} />}
       {params.suivi && (
         // Only what has been found is listed: the total stays for the learner to discover.
         <div class="bits-tracker">
@@ -69,5 +71,25 @@ export function BitToggles({ params, onChange, t }: WidgetProps<'bascule-bits'>)
         </div>
       )}
     </div>
+  );
+}
+
+/** The character whose code the bits write, read in binary. */
+function Character({ code, t }: { code: number; t: WidgetProps<'bascule-bits'>['t'] }) {
+  const text = t.widgets.bits;
+  const character = printableCharacter(code);
+  return (
+    <p class="widget-value" aria-live="polite">
+      {character === null ? (
+        <output data-testid="bits-character">{text.noCharacter(code)}</output>
+      ) : (
+        <>
+          {text.character}&nbsp;:{' '}
+          <output data-testid="bits-character" class={character === ' ' ? '' : 'character'}>
+            {character === ' ' ? text.space : character}
+          </output>
+        </>
+      )}
+    </p>
   );
 }

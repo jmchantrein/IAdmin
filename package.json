@@ -13,9 +13,11 @@
     "preview": "astro preview",
     "format": "prettier --write .",
     "verify": "prettier --check . && astro check && vitest run && astro build",
-    "e2e": "astro build && playwright test --trace off"
+    "e2e": "astro build && playwright test --trace off",
+    "e2e:live": "E2E_BASE_URL=https://jmchantrein.github.io/IAdmin/ playwright test --trace off"
   },
   "dependencies": {
+    "@astrojs/markdown-satteri": "^0.4.10",
     "@astrojs/preact": "^6.1.6",
     "astro": "^7.4.12",
     "preact": "^11.2.0",

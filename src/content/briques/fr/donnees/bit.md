@@ -1,6 +1,6 @@
 ---
 titre: Le bit
-resume: Un bit est la plus petite unité d'information. C'est un choix entre deux possibilités, que l'on note 0 et 1.
+resume: Un bit est un choix entre deux possibilités, le choix le plus simple qui puisse apporter une information. Ses deux valeurs se notent 0 et 1.
 niveau: bas
 acquis:
   - Citer les deux valeurs d'un bit et noter avec elles une situation à deux possibilités.
@@ -45,18 +45,30 @@ exercices:
         retour: Les valeurs 0 et 1 ne sont que des notations. On leur fait désigner ce que l'on veut, par exemple éteint et allumé. Ce qui manque ici, c'est une troisième valeur.
       - texte: Parce qu'un bit ne peut noter que l'état d'un interrupteur.
         retour: Un bit note n'importe quelle information à deux possibilités, pas seulement un interrupteur. Ce qui bloque ici, c'est le nombre de possibilités.
+plus_loin:
+  - question: Pourquoi 0 et 1, et pas d'autres symboles ?
+    reponse: Ce sont de simples étiquettes pour désigner deux possibilités. On aurait pu choisir A et B. Le choix de 0 et 1 a un avantage, ces deux chiffres servent ensuite à écrire des nombres.
+  - question: Qui a inventé le mot « bit » ?
+    reponse: Le mot a été proposé par John W. Tukey. Claude Shannon l'a fait connaître en 1948, dans son article « A Mathematical Theory of Communication ».
+    source: https://en.wikipedia.org/wiki/A_Mathematical_Theory_of_Communication
 ---
 
 L'interrupteur n'a que deux positions : la lampe est **éteinte** ou **allumée**. On ne
 peut pas faire plus simple. Avec une seule position, il n'y aurait rien à apprendre en
 regardant la lampe.
 
-Ce choix entre deux possibilités est la plus petite unité d'information. On l'appelle
-un **bit**. Par convention, ses deux valeurs se notent `0` et `1`. Ici, `0` note la
-lampe éteinte et `1` la lampe allumée.
+Ce choix entre deux possibilités est le choix le plus simple qui puisse apporter une
+[information](brique:donnees/information). On l'appelle un
+[**bit**](note "Le mot vient de l'anglais « binary digit », chiffre binaire : un chiffre qui n'a que deux valeurs.").
+Par convention, ses deux valeurs se notent `0` et `1` :
+
+![Deux lampes : la lampe éteinte est notée 0, la lampe allumée est notée 1.](schema:etats)
+
+On aurait pu noter l'inverse : 1 pour éteinte, 0 pour allumée.
 
 Une information **tient sur un bit** quand elle n'a que deux possibilités, comme oui ou
 non. Dès qu'il y en a trois, un seul bit ne suffit plus.
 
-Dans une machine, toute information est notée avec des bits, parce qu'il est facile de
-fabriquer une pièce qui n'a que deux positions, comme un interrupteur.
+Dans un ordinateur, toute information est notée avec des bits, parce qu'une
+pièce à deux positions, comme un interrupteur, est simple à fabriquer et que ses deux
+états ne se confondent pas.

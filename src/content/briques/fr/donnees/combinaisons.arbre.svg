@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 432">
+  <g font-size="24" text-anchor="middle">
+    <text x="120" y="40" class="texte-doux">1 bit</text>
+    <text x="320" y="40" class="texte-doux">2 bits</text>
+    <text x="520" y="40" class="texte-doux">3 bits</text>
+    <text x="220" y="40" class="texte-doux">× 2</text>
+    <text x="420" y="40" class="texte-doux">× 2</text>
+  </g>
+  <line x1="40" y1="60" x2="600" y2="60" class="doux" />
+  <g class="trait">
+    <line x1="144" y1="166" x2="290" y2="122" />
+    <line x1="144" y1="166" x2="290" y2="210" />
+    <line x1="144" y1="342" x2="290" y2="298" />
+    <line x1="144" y1="342" x2="290" y2="386" />
+    <line x1="352" y1="122" x2="486" y2="100" />
+    <line x1="352" y1="122" x2="486" y2="144" />
+    <line x1="352" y1="210" x2="486" y2="188" />
+    <line x1="352" y1="210" x2="486" y2="232" />
+    <line x1="352" y1="298" x2="486" y2="276" />
+    <line x1="352" y1="298" x2="486" y2="320" />
+    <line x1="352" y1="386" x2="486" y2="364" />
+    <line x1="352" y1="386" x2="486" y2="408" />
+  </g>
+  <g font-size="26" font-family="monospace" text-anchor="middle">
+    <text x="120" y="175" class="texte">0</text>
+    <text x="120" y="351" class="texte">1</text>
+    <text x="320" y="131" class="texte">00</text>
+    <text x="320" y="219" class="texte">01</text>
+    <text x="320" y="307" class="texte">10</text>
+    <text x="320" y="395" class="texte">11</text>
+    <text x="520" y="109" class="texte-accent">000</text>
+    <text x="520" y="153" class="texte-accent">001</text>
+    <text x="520" y="197" class="texte-accent">010</text>
+    <text x="520" y="241" class="texte-accent">011</text>
+    <text x="520" y="285" class="texte-accent">100</text>
+    <text x="520" y="329" class="texte-accent">101</text>
+    <text x="520" y="373" class="texte-accent">110</text>
+    <text x="520" y="417" class="texte-accent">111</text>
+  </g>
+</svg>

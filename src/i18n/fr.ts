@@ -4,7 +4,7 @@ export const fr = {
     title: 'IAdmin',
     tagline: "Apprendre l'informatique en manipulant, depuis zéro.",
     intro:
-      "Chaque notion tient dans une brique : tu manipules, tu comprends, tu t'exerces. Tout se passe dans ton navigateur, sans inscription.",
+      "Chaque notion tient dans une brique\u00a0: tu manipules, tu comprends, tu t'exerces. Tout se passe dans ton navigateur, sans inscription.",
     footer: 'Ta progression est enregistrée dans ce navigateur uniquement.',
     home: 'Accueil',
   },
@@ -13,7 +13,7 @@ export const fr = {
     open: 'Ouvrir le parcours',
     bricks: (n: number) => (n > 1 ? `${n} briques` : `${n} brique`),
     next: 'Continuer ici',
-    done: 'Parcours terminé : toutes les briques sont acquises.',
+    done: 'Parcours terminé\u00a0: toutes les briques sont acquises.',
     progress: (done: number, total: number) => `${done} / ${total} briques acquises`,
   },
   status: {
@@ -36,6 +36,8 @@ export const fr = {
     inPaths: 'Parcours',
     under: 'Pour aller plus bas',
     seeAlso: 'Voir aussi',
+    further: 'Pour aller plus loin',
+    source: 'Source',
   },
   reminders: {
     heading: 'Ce que cette brique suppose',
@@ -57,7 +59,7 @@ export const fr = {
     alreadyValidated: 'Tu as déjà validé cette brique. Tu peux refaire les exercices.',
     continue: 'Pour continuer',
     storageError:
-      'Ce navigateur refuse l’enregistrement : ta progression sera perdue à la fermeture de la page.',
+      'Ce navigateur refuse l’enregistrement\u00a0: ta progression sera perdue à la fermeture de la page.',
   },
   progress: {
     title: 'Ma progression',
@@ -71,11 +73,12 @@ export const fr = {
     exportButton: 'Exporter ma progression',
     importHeading: 'Importer',
     importHelp:
-      'Choisis un fichier exporté depuis ce site. Il s’ajoute à ta progression actuelle : rien n’est perdu.',
+      'Choisis un fichier exporté depuis ce site. Il s’ajoute à ta progression actuelle\u00a0: rien n’est perdu.',
     importLabel: 'Fichier de progression',
     imported: (added: number, upgraded: number, known: number) =>
-      `Import réussi : ${added} ajoutée${added > 1 ? 's' : ''}, ${upgraded} renforcée${upgraded > 1 ? 's' : ''}, ${known} déjà connue${known > 1 ? 's' : ''}.`,
-    notJson: 'Ce fichier n’est pas lisible : ce n’est pas du JSON. Ta progression est inchangée.',
+      `Import réussi\u00a0: ${added} ajoutée${added > 1 ? 's' : ''}, ${upgraded} renforcée${upgraded > 1 ? 's' : ''}, ${known} déjà connue${known > 1 ? 's' : ''}.`,
+    notJson:
+      'Ce fichier n’est pas lisible\u00a0: ce n’est pas du JSON. Ta progression est inchangée.',
     notProgress:
       'Ce fichier n’est pas un export de progression de ce site. Ta progression est inchangée.',
     resetHeading: 'Effacer',
@@ -104,25 +107,48 @@ export const fr = {
       weightHint: 'Le nombre écrit sous chaque bit est son poids.',
       total: 'Total',
       value: 'Écriture',
+      character: 'Caractère',
+      space: 'espace',
+      noCharacter: (code: number) =>
+        `Dans la table ASCII, aucun caractère affichable ne porte le code ${code}.`,
       found: (done: number) =>
         done > 1 ? `${done} combinaisons trouvées` : `${done} combinaison trouvée`,
-      complete: (total: number) => `Tu les as toutes trouvées : il y en a ${total}.`,
+      complete: (total: number) => `Tu les as toutes trouvées\u00a0: il y en a ${total}.`,
     },
     guess: {
-      prompt: 'Clique sur un nombre pour demander : « Est-il plus grand que ce nombre ? »',
-      ask: (n: number) => `Est-il plus grand que ${n} ?`,
+      prompt:
+        'Clique sur un nombre pour demander\u00a0: «\u00a0Est-il plus grand que ce nombre\u00a0?\u00a0»',
+      ask: (n: number) => `Est-il plus grand que ${n}\u00a0?`,
       yes: (n: number) => `Oui, il est plus grand que ${n}.`,
       no: (n: number) => `Non, il n'est pas plus grand que ${n}.`,
       eliminated: (n: number) =>
         n > 1 ? `${n} possibilités éliminées.` : `${n} possibilité éliminée.`,
-      useless: 'Aucune possibilité éliminée : tu connaissais déjà la réponse.',
-      remaining: (n: number) => `Possibilités restantes : ${n}`,
-      questions: (n: number) => `Questions posées : ${n}`,
+      useless: 'Aucune possibilité éliminée\u00a0: tu connaissais déjà la réponse.',
+      remaining: (n: number) => `Possibilités restantes\u00a0: ${n}`,
+      questions: (n: number) => `Questions posées\u00a0: ${n}`,
       found: (secret: number, n: number) =>
         n > 1
-          ? `Trouvé : c'est ${secret}, en ${n} questions.`
-          : `Trouvé : c'est ${secret}, en ${n} question.`,
+          ? `Trouvé\u00a0: c'est ${secret}, en ${n} questions.`
+          : `Trouvé\u00a0: c'est ${secret}, en ${n} question.`,
       replay: 'Rejouer',
+    },
+    gate: {
+      /** Names of the inputs, in order. */
+      inputs: ['A', 'B'],
+      input: (name: string) => `Entrée ${name}`,
+      names: { non: 'NON', et: 'ET', ou: 'OU', 'ou-exclusif': 'OU exclusif' },
+      output: 'Sortie',
+      lampOn: 'lampe allumée',
+      lampOff: 'lampe éteinte',
+      tableCaption: 'Lignes trouvées',
+      found: (done: number) => (done > 1 ? `${done} lignes trouvées` : `${done} ligne trouvée`),
+      complete: (total: number) => `Tu as trouvé toutes les lignes : il y en a ${total}.`,
+    },
+    fingerprint: {
+      text: (n: number, total: number) => (total > 1 ? `Texte ${n}` : 'Texte'),
+      fingerprint: 'Empreinte',
+      same: 'Les deux empreintes sont égales.',
+      different: 'Les deux empreintes sont différentes.',
     },
   },
 };

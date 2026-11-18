@@ -1,5 +1,5 @@
 ---
-import { render } from 'astro:content';
+import { existsSync, readFileSync } from 'node:fs';
 import Base from '../../../layouts/Base.astro';
 import { Exercises } from '../../../components/Exercises.tsx';
 import { Reminders, type Prerequisite } from '../../../components/Reminders.tsx';
@@ -9,6 +9,8 @@ import { pathRoute } from '../../../core/paths.ts';
 import { isQuickExercise } from '../../../core/schema.ts';
 import { LOCALES, dict, type Lang } from '../../../i18n/index.ts';
 import { loadContent } from '../../../lib/content.ts';
+import { expandMechanisms } from '../../../markdown/mechanisms.ts';
+import { schemaFile } from '../../../markdown/svg.ts';
 import { brickUrl, pathUrl } from '../../../lib/urls.ts';
 
 export async function getStaticPaths() {
@@ -26,7 +28,16 @@ const t = dict(lang);
 const { bricks, paths, graph } = await loadContent(lang);
 const entry = bricks.get(id)!;
 const brick = entry.data;
-const { Content } = await render(entry);
+const file = entry.filePath ?? `src/content/briques/${lang}/${id}.md`;
+const body = expandMechanisms(entry.rendered?.html ?? '', {
+  file,
+  url: (target) => brickUrl(lang, target),
+  brick: (target) => bricks.get(target)?.data,
+  schema: (name) => {
+    const svg = schemaFile(file, name);
+    return existsSync(svg) ? { file: svg, source: readFileSync(svg, 'utf8') } : undefined;
+  },
+});
 
 const link = (brickId: string) => ({
   titre: bricks.get(brickId)!.data.titre,
@@ -53,7 +64,7 @@ const inPaths = [...paths].filter(([pathId]) => pathRoute(graph, paths, pathId).
         <span class={`level ${brick.niveau}`}>{t.level[brick.niveau]}</span>
         {inPaths.map(([pathId, path]) => (
           <a class="crumb" href={pathUrl(lang, pathId)}>
-            {t.brick.inPaths} : {path.titre}
+            {t.brick.inPaths}&nbsp;: {path.titre}
           </a>
         ))}
       </p>
@@ -90,7 +101,7 @@ const inPaths = [...paths].filter(([pathId]) => pathRoute(graph, paths, pathId).
 
     <section class="explanation">
       <h2>{t.brick.understand}</h2>
-      <Content />
+      <Fragment set:html={body} />
     </section>
 
     <section>
@@ -103,6 +114,25 @@ const inPaths = [...paths].filter(([pathId]) => pathRoute(graph, paths, pathId).
         next={dependents(graph, id).map(link)}
       />
     </section>
+
+    {brick.plus_loin.length > 0 && (
+      <section class="further">
+        <h2>{t.brick.further}</h2>
+        {brick.plus_loin.map((entry) => (
+          <details>
+            <summary>{entry.question}</summary>
+            <p>{entry.reponse}</p>
+            {entry.source && (
+              <p class="source">
+                <a href={entry.source} rel="noopener">
+                  {t.brick.source}
+                </a>
+              </p>
+            )}
+          </details>
+        ))}
+      </section>
+    )}
 
     {brick.repose_sur.length > 0 && (
       <section class="links">

@@ -106,6 +106,40 @@ describe('brickSchema', () => {
     expect(messages({ ...valid, acquis: ['a', 'b', 'c', 'd'] })).not.toEqual([]);
     expect(messages({ ...valid, requiert: ['Bit'] })).not.toEqual([]);
   });
+
+  describe('plus_loin', () => {
+    const entry = { question: 'Pourquoi 0 et 1 ?', reponse: 'Ce sont des étiquettes.' };
+
+    it('defaults to an empty list and accepts an entry with or without source', () => {
+      expect(brickSchema.parse(valid).plus_loin).toEqual([]);
+      const source = { ...entry, source: 'https://fr.wikipedia.org/wiki/Bit' };
+      expect(brickSchema.parse({ ...valid, plus_loin: [entry, source] }).plus_loin).toEqual([
+        entry,
+        source,
+      ]);
+    });
+
+    it('keeps at most 3 entries and 80 words per answer', () => {
+      expect(messages({ ...valid, plus_loin: [entry, entry, entry, entry] })).not.toEqual([]);
+      expect(
+        messages({ ...valid, plus_loin: [{ ...entry, reponse: 'mot '.repeat(81) }] }),
+      ).toContain('réponse « pour aller plus loin » de 80 mots au plus');
+      expect(messages({ ...valid, plus_loin: [{ ...entry, reponse: 'mot '.repeat(80) }] })).toEqual(
+        [],
+      );
+    });
+
+    it('requires a question, an answer and an https source', () => {
+      expect(messages({ ...valid, plus_loin: [{ question: 'q' }] })).not.toEqual([]);
+      expect(messages({ ...valid, plus_loin: [{ ...entry, question: '' }] })).not.toEqual([]);
+      for (const source of ['http://example.org', 'ftp://example.org', 'example.org']) {
+        expect(messages({ ...valid, plus_loin: [{ ...entry, source }] })).toContain(
+          'source attendue : une adresse https://…',
+        );
+      }
+      expect(messages({ ...valid, plus_loin: [{ ...entry, bonus: 1 }] })).not.toEqual([]);
+    });
+  });
 });
 
 describe('pathSchema', () => {

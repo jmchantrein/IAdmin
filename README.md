@@ -29,6 +29,9 @@ npm run verify
 npm run e2e
 ```
 
+Le site est en ligne sur https://jmchantrein.github.io/IAdmin/ ; `npm run e2e:live` y joue
+les mêmes scénarios.
+
 `verify` contrôle le format, les types, les tests unitaires, le contenu (schéma, budgets,
 graphe sans boucle, solutions et contre-exemples) et construit le site. `e2e` joue les
 scénarios dans un navigateur et dépose des captures dans `test-results/captures`.
@@ -41,6 +44,9 @@ scénarios dans un navigateur et dépose des captures dans `test-results/capture
 | `src/content/parcours` | Les parcours                                                     |
 | `src/core`             | Logique pure : schéma, graphe, vérification, progression         |
 | `src/components`       | Interface : exercices, rappels, widgets                          |
+| `src/markdown`         | Liens de brique, notes de survol et schémas de l'explication     |
+| `scripts`              | Aperçu de schéma, empreinte, vérification en copie isolée        |
+| `docs/fabrique`        | Rédiger, dessiner, relire une brique ; répartir le travail       |
 | `docs/pedagogie.md`    | Les règles pédagogiques, avec leurs sources                      |
 | `AGENTS.md`            | Les consignes pour les agents qui écrivent le contenu et le code |
 | `TODO.md`              | Ce qui reste à faire et ce qui est fait                          |

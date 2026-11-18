@@ -16,13 +16,21 @@ export function Stepper({ params, onChange, t }: WidgetProps<'pas-a-pas'>) {
 
   return (
     <div class="widget steps">
-      <ol class="steps-cells">
+      <ol
+        class={`steps-cells ${params.colonnes ? 'grid' : ''}`}
+        style={params.colonnes ? { '--colonnes': params.colonnes } : undefined}
+      >
         {step.cases.map((cell, i) => {
           const active = step.actifs.includes(i);
           const out = step.ecartes.includes(i);
           const label = step.etiquettes[String(i)];
+          // An empty cell only holds a place, to align rows of different lengths.
+          const empty = cell === '' && !label;
           return (
-            <li class={`${active ? 'active' : ''} ${out ? 'out' : ''}`}>
+            <li
+              class={`${active ? 'active' : ''} ${out ? 'out' : ''} ${cell === '' ? 'empty' : ''}`}
+              aria-hidden={empty || undefined}
+            >
               <span class="cell">{cell}</span>
               <span class="cell-label">{label ?? ''}</span>
               {/* What the colours show, for readers who do not see them. */}

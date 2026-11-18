@@ -50,16 +50,22 @@ exercices:
         retour: C'est ce qui se passe dans notre écriture habituelle, où chaque place vaut dix fois la précédente. En binaire, chaque place vaut seulement le double de la précédente.
 ---
 
-Pour obtenir 5, tu as allumé les interrupteurs de poids 4 et 1, et tu n'as trouvé
-aucune autre façon. Chaque combinaison de bits donne un total différent.
+Pour obtenir 5, tu as allumé les poids 4 et 1, sans trouver d'autre façon. Chaque
+[combinaison](brique:donnees/combinaisons) de bits donne un total différent.
 
-C'est ainsi qu'une machine écrit les nombres, en **binaire** : une suite de bits où
-chaque bit a un **poids**. Les poids se lisent de droite à gauche : 1, 2, 4, 8, et ainsi
-de suite. Chaque poids est le double du précédent.
+C'est ainsi qu'un ordinateur écrit les nombres entiers, en **binaire** : une suite de
+bits où chaque bit a un **poids**. Le bit de droite pèse 1, et chaque poids vers la
+gauche double. Pour lire un nombre, additionne les poids des bits à 1 :
 
-Pour lire un nombre binaire, additionne les poids des bits à 1. Par exemple, `1001`
-vaut 8 + 1, soit 9.
+![Le nombre 1011 dans quatre cases, avec sous chaque bit son poids : 8, 4, 2, 1. Les bits à 1 pèsent 8, 2 et 1, et 8 + 2 + 1 = 11.](schema:poids)
 
-Un bit à 0 n'ajoute rien, mais il garde sa place : `10` vaut 2 et `100` vaut 4. C'est
-la même idée que dans notre écriture habituelle, où le zéro de dix et les zéros de cent
-décalent le 1 vers une place plus lourde.
+Pourquoi doubler ? Les poids à droite d'un bit, réunis, font un de moins que le sien :
+1 + 2 = 3, un de moins que 4. Chaque total s'écrit ainsi d'une
+[seule façon](note "Avec un poids 3 à la place du 4, le total 3 s'écrirait de deux façons : 1 + 2, ou 3 seul. Avec un poids 5, le total 4 serait impossible à écrire."),
+sans total impossible.
+
+On part de la droite : le bit de droite pèse 1 quelle que soit la longueur du nombre.
+Le plus lourd est à gauche, comme nos milliers.
+
+Un bit à 0 n'ajoute rien, mais garde sa place, comme les zéros de cent : `10` vaut 2
+et `100` vaut 4.

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 288">
+  <g>
+    <circle cx="200" cy="100" r="56" class="trait fond" />
+    <rect x="176" y="156" width="48" height="24" rx="4" class="doux-plein" />
+    <text x="200" y="224" text-anchor="middle" font-size="26" class="texte-doux">éteinte</text>
+    <text x="200" y="270" text-anchor="middle" font-size="32" class="texte">0</text>
+  </g>
+  <g>
+    <g class="accent">
+      <line x1="508.0" y1="100.0" x2="524.0" y2="100.0" />
+      <line x1="488.1" y1="148.1" x2="499.4" y2="159.4" />
+      <line x1="391.9" y1="148.1" x2="380.6" y2="159.4" />
+      <line x1="372.0" y1="100.0" x2="356.0" y2="100.0" />
+      <line x1="391.9" y1="51.9" x2="380.6" y2="40.6" />
+      <line x1="440.0" y1="32.0" x2="440.0" y2="16.0" />
+      <line x1="488.1" y1="51.9" x2="499.4" y2="40.6" />
+    </g>
+    <circle cx="440" cy="100" r="56" class="trait accent-plein" />
+    <rect x="416" y="156" width="48" height="24" rx="4" class="doux-plein" />
+    <text x="440" y="224" text-anchor="middle" font-size="26" class="texte-accent">allumée</text>
+    <text x="440" y="270" text-anchor="middle" font-size="32" class="texte">1</text>
+  </g>
+</svg>

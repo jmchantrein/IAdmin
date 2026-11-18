@@ -41,6 +41,9 @@ Pour chaque point, cite la ligne en cause et dis ce qui cloche.
    exercice que l'on réussit sans exercer son `acquis`. Essaie en particulier de faire
    donner la réponse par le widget de la manipulation, qui reste sous les yeux, et
    vérifie qu'une erreur typique (ordre inversé) ne redonne pas la bonne réponse.
+   Cherche aussi une autre voie que la méthode enseignée (repasser par le décimal), une
+   règle fausse qui réussit dans tous les cas de la brique, et une réponse à deux
+   valeurs que le hasard donne une fois sur deux.
 9. **Retours.** Chaque `retour` nomme l'erreur et donne une raison. Signale un retour qui
    se contente de dire « faux », et un retour qui donne la réponse sans raison.
 10. **Distracteurs.** Chaque mauvaise option correspond à une erreur qu'un débutant
@@ -51,6 +54,21 @@ Pour chaque point, cite la ligne en cause et dis ce qui cloche.
 12. **Langue.** Tutoiement, phrases courtes, aucun terme d'expert non défini. Chaque mot
     garde un seul sens dans la brique et dans celles qu'elle requiert. Le `resume` se
     comprend hors de la page.
+13. **Liens.** La première mention de chaque notion requise porte un lien vers sa brique.
+    Signale un lien vers une notion que la phrase n'emploie pas, et un texte qui ne se
+    comprend plus si l'on ne survole pas le lien.
+14. **Pourquoi.** Relève chaque convention affirmée sans raison. Vérifie la raison donnée
+    et sa `source`, en ouvrant la page. Signale une raison circulaire, une raison qui
+    laisse croire à un minimum ou à une nécessité qui n'en est pas (refais le calcul que
+    l'apprenant sait faire), et une information indispensable à un exercice qui ne se
+    trouve que dans une note ou dans « Pour aller plus loin ».
+15. **Schémas.** Compare chaque schéma au texte : mêmes mots, mêmes valeurs, aucun
+    désaccord. Lis le dessin sans le texte : se comprend-il ? Signale un schéma
+    décoratif, une étiquette loin de ce qu'elle nomme, un texte alternatif qui ne dit pas
+    ce que le dessin montre, et une phrase que le schéma rend inutile. Regarde la capture
+    `…-telephone-sombre.png` : chaque mot se lit sans zoom. Vérifie que l'exemple dessiné
+    ne se lit pas pareil dans les deux sens quand l'ordre compte, et qu'un exercice ne se
+    résout pas en recopiant le schéma.
 
 ## Rapporter
 

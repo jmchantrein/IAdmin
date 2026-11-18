@@ -6,19 +6,9 @@ est résumé ici au fil de l'eau.
 
 ## À faire
 
-### Mise en ligne (action du propriétaire)
-
-- [ ] Régler GitHub Pages sur la source « GitHub Actions » (Settings › Pages) ; le déploiement part de `main`.
-- [ ] Fusionner la branche de travail dans `main` pour obtenir la première mise en ligne.
-
 ### J4 — Parcours Fondements complet
 
-- [ ] Recadrage par le propriétaire sur le lot 1 (ton, niveau, besoins de widgets des lots suivants) avant d'enchaîner.
-- [ ] Lot 2 : `donnees/addition-binaire`, `donnees/texte-code`, `donnees/hash`. Widgets pressentis, à proposer ici avant de les écrire : `pas-a-pas` à plusieurs rangées pour l'addition posée, un widget d'empreinte pour `hash`.
-- [ ] Lot 3 : `logique/vrai-faux`, `logique/non-et-ou`, `logique/table-de-verite`. Widget pressenti : une porte logique (interrupteurs, porte, lampe).
-- [ ] Lot 4 : `logique/portes-logiques`, `logique/additionneur`. Même widget, peut-être un petit circuit ; lot à réduire si le widget dépasse ce qu'il justifie.
-- [ ] Lot 5 : `algo/variable`, `algo/condition`, `algo/boucle`, avec `pas-a-pas`.
-- [ ] Lot 6 : `algo/recherche-lineaire`, `algo/recherche-dichotomique`, un défi de synthèse (`genre: defi`).
+- [ ] Fin de J4 : la demande de fusion est ouverte ; après fusion par le propriétaire, contrôler le job `deployer` puis lancer `npm run e2e:live`.
 
 ### J5 à J9
 
@@ -50,11 +40,66 @@ est résumé ici au fil de l'eau.
 - [ ] L'import fusionne toujours ; remplacer sa progression par un fichier demande d'effacer d'abord.
 - [ ] Un exercice `saisie` n'a qu'un seul `retour`, commun à toutes les mauvaises réponses : un retour par contre-exemple nommerait mieux chaque erreur (relevé par la relecture adverse).
 - [ ] Les distracteurs et contre-exemples sont jugés « typiques » par des LLM, sans essai par un débutant.
-- [ ] Le widget de la manipulation reste utilisable pendant les exercices : dans `donnees/octet`, il permet encore de lire la réponse de l'exercice sur 5 bits. Accepté pour l'instant ; le masquer ou le replier après la manipulation serait une réponse générale.
+- [ ] Aucune étude trouvée sur l'effet d'une infobulle qui rappelle un prérequis, ni sur la fréquence d'ouverture des notes et des sections repliées : à observer avec de vrais apprenants.
+- [ ] Le widget de la manipulation reste utilisable pendant les exercices : dans `donnees/octet`, il permet encore de lire la réponse de l'exercice sur 5 bits. Accepté pour l'instant ; le masquer ou le replier après la manipulation serait une réponse générale. Le cas se répète : dans `texte-code`, `bascule-bits` avec `caractere` lit n'importe quel code de 32 à 126 ; dans `hash`, `empreinte` calcule toute empreinte. Les exercices sont écrits pour ne pas en dépendre (table fictive, question qui se raisonne).
 - [ ] Écarts mineurs laissés après relecture du lot 1 : deux acquis d'`octet` contiennent un « et » ; trois exercices de `binaire-ecrire` donnent encore la liste des poids ; la première étape de son animation ne suit pas le même découpage que les suivantes.
+- [ ] Typographie française : le site pose l'espace insécable dans le contenu (`src/core/typography.ts`), mais les textes d'interface de `src/i18n/fr.ts` la portent à la main, et le texte des schémas SVG n'est pas traité.
+- [ ] L'ordre des options d'un exercice `choix` est tiré de sa consigne : toute retouche de la consigne, même typographique, change l'ordre affiché.
+- [ ] Après une modification du plugin Markdown, supprimer `node_modules/.astro/data-store.json` en local : Astro garde le corps compilé d'une brique tant que son fichier ne change pas. La CI part d'un dossier propre.
+- [ ] Les paramètres `colonnes` (`pas-a-pas`) et `caractere` (`bascule-bits`) n'ont que des tests unitaires : ajouter leur scénario de bout en bout avec la première brique qui les emploie.
+- [ ] Sur une brique qui a un prérequis, le bloc « Ce que cette brique suppose » et l'infobulle du lien affichent le même résumé : rappel doublé, accepté pour l'instant.
+- [ ] La lampe allumée est bleue dans le schéma de `bit` et jaune dans le widget : la charte des schémas n'a pas de jaune.
+- [ ] `tenir` a deux sens dans le parcours : « tient sur un bit, sur un octet » (suffit pour noter) et « le poids tient dans ce qui reste » (`binaire-ecrire`).
+- [ ] `combinaisons`, exercice 3 : les sept combinaisons données se comparent à l'arbre du schéma. Gardé : comparer à une liste ordonnée est la méthode enseignée.
+- [ ] Dans `variable`, le widget `pas-a-pas` montre la variable comme une case de plus dans la rangée des cartes : une seule rangée ne sait pas séparer les données de la variable.
+- [ ] L'article original de Shannon (1948) n'a pas été ouvert : ses affirmations reposent sur Wikipédia, source secondaire.
+- [ ] Écarts mineurs laissés après relecture du lot 5 : `condition`, exercice 4, refuse « frais. » avec un point ; les mots écrits par un algorithme (« écris le mot chaud ») n'ont pas de marque propre.
+- [ ] Widget `empreinte` : les empreintes publiées sont figées par un test ; changer la fonction de `src/core/fingerprint.ts` casserait les solutions des briques. Le texte n'est pas normalisé (un « é » composé et un « é » décomposé n'ont pas la même empreinte). `node scripts/empreinte.mjs "texte"` donne l'empreinte d'un texte aux auteurs.
+- [ ] Widget `porte` : 2 entrées et 2 portes au plus, branchées sur les mêmes entrées. Un additionneur complet demandera un vrai circuit.
+- [ ] `pas-a-pas` en grille ne distingue pas une retenue d'un chiffre, et encadre un signe « + » comme une valeur. Proposition : un paramètre par étape (par exemple `discrets`) qui affiche des cases en petit ou en couleur douce.
+- [ ] Le widget `porte` ne combine pas NON avec ET et OU, n'enchaîne pas deux opérations (NON (A ET B)) et liste les lignes de sa table dans l'ordre où l'apprenant les trouve, pas dans l'ordre 00, 01, 10, 11.
+- [ ] Écarts mineurs laissés après relecture du lot 6 : dans les deux recherches, la boucle sort aussi quand la valeur est trouvée, alors que `boucle` n'enseigne que la sortie par sa question ; `recherche-lineaire`, exercice 3, applique presque telle quelle une phrase de l'explication.
+- [ ] Widget `empreinte` : sa valeur `texte=empreinte`, séparée par une espace, est ambiguë quand un texte contient « = » ou une espace, et rien ne verrouille un champ. Un exercice se contourne en modifiant le premier champ (cas artificiel).
+- [ ] Widget `porte` : chaque interrupteur d'entrée porte aussi une lampe ; les consignes disent donc « la lampe NON », « la lampe ET ».
+- [ ] `logique/vrai-faux` dit qu'une question n'est pas une affirmation, `algo/condition` définit une condition comme une question à réponse oui ou non. Une demi-phrase fait le pont ; harmoniser le vocabulaire si un apprenant s'y perd.
+- [ ] Une suite de valeurs (`0100`) se vérifie par une `regex` écrite à la main pour tolérer les virgules (`0,?1,?0,?0`). Proposition : un filtre de la chaîne `verif` qui retire virgules et espaces.
+- [ ] Un assemblage de portes ne se manipule pas : `porte` ne branche pas une sortie sur une entrée, et le `pas-a-pas` qui le déroule dans `portes-logiques` ne montre aucun branchement entre ses cases (l'apprenant suit un calcul, il n'assemble pas). Ses 12 étapes ne laissent place qu'à deux lignes de la table sur quatre. Pistes : des flèches entre cases, un schéma fixe au-dessus de la grille, ou un widget de circuit.
+- [ ] Dans `additionneur`, le widget `porte` calcule toute colonne de deux bits : aucun exercice sur ET et OU exclusif ne sort de sa portée, seul un circuit à plusieurs colonnes le permettrait.
+- [ ] `scripts/verifier-isole.sh` suppose bash et les outils GNU ; trois de ses refus n'ont pas d'essai (création de la copie en échec, port déjà occupé, copie d'un autre dépôt).
 - [ ] Zod est chargé dans le navigateur pour valider la progression et les paramètres de widget : mesurer son poids si les pages ralentissent.
+- [ ] Infobulles et schémas sont remplis au rendu de la page (`expandMechanisms`), pas par le plugin Markdown : Astro garde en cache le corps compilé d'une brique tant que son fichier ne change pas, et un résumé ou un schéma modifié ailleurs resterait périmé en local. La page lit donc `entry.rendered.html` au lieu de `<Content />`.
+- [ ] Infobulles en CSS seul : la touche Échap ne les ferme pas (WCAG 1.4.13) ; une infobulle ouverte couvre les lignes du dessous ; un lien de brique touché sur téléphone ouvre la brique sans montrer le rappel ; le toucher d'une note n'est testé que sous Chromium.
 
 ## Fait
+
+### Recadrage du propriétaire sur le lot 1 (2026-11-18)
+
+- [x] Le fond du lot 1 convient. Quatre demandes : orchestration et implémentation séparées ; lien et rappel au survol pour chaque notion requise ; raison de chaque convention (dans le texte, en note ou dans « Pour aller plus loin ») ; schémas et dessins à la place du texte verbeux.
+- [x] Décisions : schémas en SVG écrits selon une charte ; une seule demande de fusion à la fin de J4 ; lots 5 et 6 avant les lots à widgets.
+- [x] `docs/fabrique/orchestrer.md` (rôles), `docs/fabrique/dessiner.md` (charte des schémas), procédures de rédaction et de relecture complétées.
+- [x] `docs/pedagogie.md` amendé, toujours 15 règles : « montrer, avec le texte sur le dessin » (preuve robuste pour le schéma explicatif, mince pour la bande dessinée), « dire pourquoi » (modérée), rappel d'un prérequis par lien (débattue : la recherche sur l'hypertexte montre aussi des liens qui distraient, d'où un seul lien par notion, à sa première mention). Références contrôlées sur notices et résumés, sans lecture du texte intégral.
+- [x] Mécanismes de contenu (`src/markdown/`) : lien `[bit](brique:donnees/bit)` avec infobulle « titre + résumé », note de survol `[mot](note "…")` (40 mots), champ `plus_loin` (3 entrées de 80 mots, `source` en https), schémas `![alt](schema:nom)` intégrés à la page et contrôlés selon la charte. Démonstration dans `donnees/bit`. Notes et textes alternatifs hors du budget de 150 mots.
+- [x] Reprise des 7 briques existantes : première mention de chaque notion requise liée, raison de chaque convention (dans le texte, en note ou dans « Pour aller plus loin »), un schéma par brique là où il remplace du texte. Deux relectures adverses : aucun écart bloquant, corrections appliquées (entre autres : « la plus petite unité d'information » retiré de `bit`, raison des 8 bits réécrite dans `octet`, étape de résultat ajoutée à `algorithme`).
+- [x] Schémas lisibles sur téléphone : corps 22 à 32 (le cadre de 640 s'y affiche à moitié taille), largeur plafonnée à 520 px sur grand écran, les 10 schémas redessinés. `scripts/apercu-schema.mjs` rend un schéma sans construire le site ; `tests/e2e/briques.spec.ts` capture chaque explication à 360 px en thème sombre.
+- [x] Leçons des relectures inscrites dans `rediger-brique.md`, `relire-brique.md` et `dessiner.md` : raison non circulaire et qui ne fait pas croire à un minimum faux, mot défini avant son emploi, exemple dessiné dont l'ordre compte, mots du widget dans le schéma, source ouverte et non simple extrait.
+- [x] Lot 5 : `algo/variable`, `algo/condition`, `algo/boucle`, avec `pas-a-pas`. Relecture adverse : 3 écarts bloquants levés (condition proposée sous forme d'affirmation, exercice de boucle recopiable depuis la manipulation, raison circulaire). Conventions fixées pour la suite : un nom de variable entre guillemets, « vaut moins de », « les étapes du oui ».
+- [x] Sources ouvertes et confirmées sur les pages (Académie française, Wikipédia anglophone, IBM) ; l'adresse de l'article de Shannon, qui redirigeait ailleurs, est remplacée ; une phrase attribuée à Shannon, confirmée nulle part, est retirée. L'environnement cloud « IAdmin » autorise désormais ces hôtes.
+- [x] Captures des 10 briques envoyées au propriétaire.
+- [x] Espaces insécables posées par le site avant « : ; ? ! » » et après « « », dans l'explication et dans les textes du frontmatter ; `pas-a-pas` range ses cases en grille (`colonnes`) ; `bascule-bits` affiche le caractère du code écrit (`caractere`).
+- [x] Widgets `porte` (une ou deux portes logiques, table de vérité à remplir) et `empreinte` (texte et empreinte de 5 chiffres), avec leur logique pure dans `src/core` et leurs pilotes de test.
+- [x] Lot 6 : `algo/recherche-lineaire`, `algo/recherche-dichotomique`, `algo/defi-compter` (premier `genre: defi`). Relecture adverse sans écart bloquant ; corrections appliquées (la boucle nomme sa question, le schéma reprend le codage du widget, le prix du tri est dit).
+- [x] Lot 4 : `logique/portes-logiques`, `logique/additionneur`. Deux relectures adverses, sans écart bloquant. `portes-logiques` recentrée sur une notion (une porte est un composant, on assemble des portes), avec un `pas-a-pas` qui déroule l'assemblage ; le OU exclusif n'en est que l'exemple. L'additionneur complet (trois entrées) reste hors du parcours : il demanderait un vrai circuit.
+- [x] Parcours « Fondements » complet : 22 briques (9 `donnees`, 6 `logique`, 7 `algo`), chacune relue par un agent qui ne l'a pas écrite. Captures de chaque lot envoyées au propriétaire.
+- [x] `scripts/verifier-isole.sh` : vérifier une livraison dans une copie isolée du dépôt, après un incident où une commande de vérification avait tourné dans le dossier de travail et effacé des corrections non commitées (restituées depuis).
+- [x] Lot 2 : `donnees/addition-binaire` (grille de `pas-a-pas`), `donnees/texte-code` (`bascule-bits` avec `caractere`), `donnees/hash` (widget `empreinte`). Relectures adverses sans écart bloquant ; corrections appliquées (un octet par caractère borné à l'ASCII, règle de la dernière retenue écrite, une empreinte évite de garder une copie).
+- [x] Lot 3 : `logique/vrai-faux`, `logique/non`, `logique/et-ou`, `logique/table-de-verite` (widget `porte`). Première relecture : `non-et-ou` scindée en `non` et `et-ou`, l'enchaînement d'opérations renvoyé au lot 4. Seconde relecture des deux briques nouvelles : le contraire logique est défini, les suites de valeurs acceptent les virgules.
+
+### Mise en ligne (2026-11-17)
+
+- [x] Demande de fusion `jmchantrein/IAdmin#1` (J1 à J3 et première étape de J4) fusionnée dans `main`.
+- [x] Site publié sur https://jmchantrein.github.io/IAdmin/. Les deux premiers déploiements ont échoué (erreur 404) tant que GitHub Pages n'était pas réglé sur la source « GitHub Actions » ; le troisième a réussi.
+- [x] `npm run e2e:live` joue les mêmes scénarios contre le site en ligne : 19 sur 19 le jour de la mise en ligne.
+- [x] Environnement cloud « IAdmin » : il autorise `jmchantrein.github.io` et installe les dépendances au démarrage d'une session (script non éprouvé tant qu'aucune session neuve n'a démarré dessus).
 
 ### J4 — Parcours Fondements, première étape (2026-11-17)
 

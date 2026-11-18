@@ -26,7 +26,7 @@ exercices:
     contre_exemples: ['12', '36', '32', '128']
     retour: Un bit donne 2 combinaisons, et chaque bit ajouté double ce nombre. Double donc cinq fois de suite en partant de 2.
   - type: widget
-    consigne: Avec trois bits, les combinaisons 110, 001, 111, 000, 100, 011 et 010 sont déjà affichées. Affiche celle qui manque.
+    consigne: Avec trois bits, tu as déjà trouvé les combinaisons 110, 001, 111, 000, 100, 011 et 010. Affiche celle qui manque.
     widget: bascule-bits
     params: { bits: 3 }
     verif: [{ egal: '101' }]
@@ -43,25 +43,21 @@ exercices:
 
 Avec trois interrupteurs, tu as trouvé **huit** combinaisons, de `000` à `111`.
 
-Pourquoi huit ? Un bit donne 2 combinaisons. Ajoute un deuxième bit : chacune se
-décline en deux, selon que le nouveau bit vaut `0` ou `1`. Cela fait 2 × 2 = 4. Un
-troisième bit double encore : 4 × 2 = 8.
+Pourquoi huit ? Un [bit](brique:donnees/bit) donne 2 combinaisons. Chaque nouveau bit
+décline chaque combinaison en deux, selon qu'il vaut `0` ou `1` :
+
+![Un arbre. Le premier bit donne 0 et 1, le deuxième double en 4 combinaisons, le troisième en 8, de 000 à 111.](schema:arbre)
 
 **Chaque bit ajouté double le nombre de combinaisons.**
 
-| Bits | Combinaisons |
-| ---- | ------------ |
-| 1    | 2            |
-| 2    | 4            |
-| 3    | 8            |
-| 4    | 16           |
-
-Pour n'en oublier aucune, fais varier le bit de droite en premier : `000`, `001`,
-`010`, `011`, et ainsi de suite.
+Pour n'en oublier aucune, fais varier le
+[bit de droite en premier](note "En faisant varier le bit de droite en premier, comme lorsqu'on compte (08, 09, 10), tu passes par toutes les combinaisons, une seule fois chacune.") :
+`000`, `001`, `010`, `011`, et ainsi de suite.
 
 Les combinaisons servent à distinguer des cas : on donne à chaque cas sa propre
 combinaison. Pour 5 cas, 2 bits ne suffisent pas, car ils ne donnent que 4
 combinaisons. Il en faut 3.
 
-Tu retrouves le jeu du nombre secret : 3 réponses par oui ou non, ce sont 3 bits, qui
-distinguent 8 possibilités.
+Tu retrouves le [jeu du nombre secret](brique:donnees/information) : chaque réponse par
+oui ou non se note sur un bit. Les 3 réponses se notent donc sur 3 bits, et 3 bits
+distinguent 8 possibilités : les 8 nombres du jeu.

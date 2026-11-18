@@ -3,7 +3,9 @@ import type { z } from 'zod';
 import type { WIDGET_PARAMS, WidgetName } from '../../core/widgets.ts';
 import type { Dictionary } from '../../i18n/fr.ts';
 import { BitToggles } from './BitToggles.tsx';
+import { Fingerprint } from './Fingerprint.tsx';
 import { GuessNumber } from './GuessNumber.tsx';
+import { LogicGates } from './LogicGates.tsx';
 import { Stepper } from './Stepper.tsx';
 
 export interface WidgetProps<N extends WidgetName> {
@@ -17,5 +19,7 @@ export interface WidgetProps<N extends WidgetName> {
 export const WIDGETS: { [N in WidgetName]: ComponentType<WidgetProps<N>> } = {
   'bascule-bits': BitToggles,
   devinette: GuessNumber,
+  empreinte: Fingerprint,
   'pas-a-pas': Stepper,
+  porte: LogicGates,
 };
