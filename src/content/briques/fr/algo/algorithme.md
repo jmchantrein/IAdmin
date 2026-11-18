@@ -86,25 +86,33 @@ exercices:
     solution: '5'
     contre_exemples: ['6', '3', '15']
     retour: La première carte est retenue sans comparaison. Chacune des autres cartes est comparée une seule fois à la carte retenue, jamais aux cartes écartées. Compte les cartes qui suivent la première.
+plus_loin:
+  - question: D'où vient le mot « algorithme » ?
+    reponse: Il apparaît en français au XIIIe siècle, sous la forme « augorisme ». Il vient de l'arabe Al-Khuwarizmi, le surnom d'un mathématicien. Sa forme actuelle a été modifiée sous l'influence du mot grec « arithmos », qui veut dire « nombre ».
+    source: https://dictionnaire-academie.fr/article/A9A1163
 ---
 
-Tu viens de suivre un procédé qui trouve la plus grande carte en trois comparaisons, en
-répétant toujours le même geste. Ce procédé est un **algorithme** : une suite d'étapes
-précises, à suivre dans l'ordre.
+Tu viens de trouver la plus grande carte en trois comparaisons, en répétant le
+même geste. Ce procédé est un **algorithme** : une suite d'étapes précises, à suivre dans
+l'ordre.
 
 Le voici en entier :
 
 1. Retiens la première carte.
 2. Compare la carte suivante à la carte retenue, et retiens la plus grande des deux. Si
-   elles sont égales, garde la carte retenue.
+   elles sont égales,
+   [garde la carte retenue](note "Les deux cartes ont la même valeur : garder l'une ou l'autre donne le même résultat. L'étape choisit quand même, pour que personne n'ait à hésiter.").
 3. Recommence l'étape 2 tant qu'il reste une carte.
 
-Trois choses le distinguent d'un simple conseil :
+![Une rangée de 4 cartes et une de 6 cartes passent par les trois mêmes étapes. Chacune en sort avec sa plus grande carte : 9 et 8.](schema:rangees)
 
-- chaque étape dit **comment faire**, pas seulement quoi obtenir, sans rien laisser à
-  l'appréciation ;
-- il vaut pour n'importe quelle rangée, courte ou longue ;
-- il **se termine** : quand il ne reste plus de carte, il y a eu une comparaison par
+Écrit une fois, il sert pour toute rangée. Trois règles le définissent :
+
+- chaque étape dit **comment faire**, pas seulement quoi obtenir : deux personnes qui le
+  suivent font la même chose ;
+- l'ordre est fixé, car chaque étape se sert de la précédente : tu ne compares rien avant
+  d'avoir retenu une carte ;
+- il **se termine**, sinon tu n'aurais jamais de résultat : une comparaison par
   carte, sauf pour la première.
 
-Un ordinateur ne devine rien : il lui faut des étapes aussi précises que celles-ci.
+Un ordinateur ne devine rien : il lui faut des étapes aussi précises.

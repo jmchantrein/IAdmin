@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 272">
+  <g font-size="18">
+    <text x="144" y="46" text-anchor="end" class="texte">départ</text>
+    <rect x="160" y="22" width="36" height="36" rx="4" class="trait accent-plein" />
+    <rect x="204" y="22" width="36" height="36" rx="4" class="trait accent-plein" />
+    <rect x="248" y="22" width="36" height="36" rx="4" class="trait accent-plein" />
+    <rect x="292" y="22" width="36" height="36" rx="4" class="trait accent-plein" />
+    <rect x="336" y="22" width="36" height="36" rx="4" class="trait accent-plein" />
+    <rect x="380" y="22" width="36" height="36" rx="4" class="trait accent-plein" />
+    <rect x="424" y="22" width="36" height="36" rx="4" class="trait accent-plein" />
+    <rect x="468" y="22" width="36" height="36" rx="4" class="trait accent-plein" />
+    <text x="520" y="46" class="texte-accent">8 restent</text>
+    <text x="144" y="110" text-anchor="end" class="texte">réponse 1</text>
+    <rect x="160" y="86" width="36" height="36" rx="4" class="doux" />
+    <rect x="204" y="86" width="36" height="36" rx="4" class="doux" />
+    <rect x="248" y="86" width="36" height="36" rx="4" class="doux" />
+    <rect x="292" y="86" width="36" height="36" rx="4" class="doux" />
+    <rect x="336" y="86" width="36" height="36" rx="4" class="trait accent-plein" />
+    <rect x="380" y="86" width="36" height="36" rx="4" class="trait accent-plein" />
+    <rect x="424" y="86" width="36" height="36" rx="4" class="trait accent-plein" />
+    <rect x="468" y="86" width="36" height="36" rx="4" class="trait accent-plein" />
+    <text x="520" y="110" class="texte-accent">4 restent</text>
+    <text x="144" y="174" text-anchor="end" class="texte">réponse 2</text>
+    <rect x="160" y="150" width="36" height="36" rx="4" class="doux" />
+    <rect x="204" y="150" width="36" height="36" rx="4" class="doux" />
+    <rect x="248" y="150" width="36" height="36" rx="4" class="doux" />
+    <rect x="292" y="150" width="36" height="36" rx="4" class="doux" />
+    <rect x="336" y="150" width="36" height="36" rx="4" class="trait accent-plein" />
+    <rect x="380" y="150" width="36" height="36" rx="4" class="trait accent-plein" />
+    <rect x="424" y="150" width="36" height="36" rx="4" class="doux" />
+    <rect x="468" y="150" width="36" height="36" rx="4" class="doux" />
+    <text x="520" y="174" class="texte-accent">2 restent</text>
+    <text x="144" y="238" text-anchor="end" class="texte">réponse 3</text>
+    <rect x="160" y="214" width="36" height="36" rx="4" class="doux" />
+    <rect x="204" y="214" width="36" height="36" rx="4" class="doux" />
+    <rect x="248" y="214" width="36" height="36" rx="4" class="doux" />
+    <rect x="292" y="214" width="36" height="36" rx="4" class="doux" />
+    <rect x="336" y="214" width="36" height="36" rx="4" class="doux" />
+    <rect x="380" y="214" width="36" height="36" rx="4" class="trait accent-plein" />
+    <rect x="424" y="214" width="36" height="36" rx="4" class="doux" />
+    <rect x="468" y="214" width="36" height="36" rx="4" class="doux" />
+    <text x="520" y="238" class="texte-accent">1 reste</text>
+  </g>
+</svg>

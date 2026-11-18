@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 248">
+  <g font-size="16" text-anchor="middle" class="texte-doux">
+    <text x="132" y="32">entrée</text>
+    <text x="412" y="32">algorithme</text>
+    <text x="584" y="32">résultat</text>
+  </g>
+  <g>
+    <rect x="16" y="56" width="32" height="48" rx="4" class="trait fond" />
+    <rect x="56" y="56" width="32" height="48" rx="4" class="trait fond" />
+    <rect x="96" y="56" width="32" height="48" rx="4" class="trait fond" />
+    <rect x="136" y="56" width="32" height="48" rx="4" class="trait fond" />
+    <g font-size="20" text-anchor="middle" class="texte">
+      <text x="32" y="87">4</text>
+      <text x="72" y="87">9</text>
+      <text x="112" y="87">2</text>
+      <text x="152" y="87">7</text>
+    </g>
+  </g>
+  <g>
+    <rect x="16" y="184" width="32" height="48" rx="4" class="trait fond" />
+    <rect x="56" y="184" width="32" height="48" rx="4" class="trait fond" />
+    <rect x="96" y="184" width="32" height="48" rx="4" class="trait fond" />
+    <rect x="136" y="184" width="32" height="48" rx="4" class="trait fond" />
+    <rect x="176" y="184" width="32" height="48" rx="4" class="trait fond" />
+    <rect x="216" y="184" width="32" height="48" rx="4" class="trait fond" />
+    <g font-size="20" text-anchor="middle" class="texte">
+      <text x="32" y="215">3</text>
+      <text x="72" y="215">8</text>
+      <text x="112" y="215">5</text>
+      <text x="152" y="215">6</text>
+      <text x="192" y="215">1</text>
+      <text x="232" y="215">2</text>
+    </g>
+  </g>
+  <g>
+    <line x1="184" y1="80" x2="322" y2="80" class="trait" />
+    <polygon points="320,73 332,80 320,87" class="plein" />
+    <line x1="264" y1="208" x2="322" y2="208" class="trait" />
+    <polygon points="320,201 332,208 320,215" class="plein" />
+  </g>
+  <rect x="336" y="56" width="152" height="176" rx="8" class="accent fond" />
+  <g font-size="18" class="texte-accent">
+    <text x="356" y="104">1 retiens</text>
+    <text x="356" y="150">2 compare</text>
+    <text x="356" y="196">3 recommence</text>
+  </g>
+  <g>
+    <line x1="496" y1="80" x2="546" y2="80" class="trait" />
+    <polygon points="544,73 556,80 544,87" class="plein" />
+    <line x1="496" y1="208" x2="546" y2="208" class="trait" />
+    <polygon points="544,201 556,208 544,215" class="plein" />
+  </g>
+  <rect x="564" y="56" width="40" height="48" rx="4" class="trait fond" />
+  <rect x="564" y="184" width="40" height="48" rx="4" class="trait fond" />
+  <g font-size="20" text-anchor="middle" class="texte">
+    <text x="584" y="87">9</text>
+    <text x="584" y="215">8</text>
+  </g>
+</svg>

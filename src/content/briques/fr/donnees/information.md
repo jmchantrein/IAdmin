@@ -35,6 +35,10 @@ exercices:
     solution: '4'
     contre_exemples: ['16', '29', '8', '2']
     retour: Avance une question à la fois. La première élimine la moitié des 32 cartes, il en reste 16. Chaque question suivante élimine la moitié de ce qui reste.
+plus_loin:
+  - question: D'où vient ce sens du mot « information » ?
+    reponse: Du chercheur Claude Shannon. En 1948, dans l'article « A Mathematical Theory of Communication », il ne s'occupe pas du sens d'un message. Il regarde seulement parmi combien de messages possibles il a été choisi. Plus ce nombre est grand, plus le message choisi apporte d'information.
+    source: https://www.stat.berkeley.edu/~binyu/212A/papers/shannon48.pdf
 ---
 
 Au départ, le nombre secret pouvait être n'importe lequel des huit. Les réponses ont
@@ -47,6 +51,9 @@ Deux conséquences :
 
 - une réponse que tu connaissais d'avance n'élimine rien, elle n'apporte aucune
   information. C'est ce qui arrive si tu demandes « est-il plus grand que 8 ? » ;
-- une question qui coupe les possibilités en deux parts égales en élimine la moitié,
-  que la réponse soit oui ou non. Avec de telles questions, 3 suffisent toujours ici :
-  il reste 4 possibilités, puis 2, puis 1.
+- une question qui coupe les possibilités en deux
+  [parts égales](note "Avec deux parts inégales, l'une des deux réponses laisse la grande part. Deux parts égales garantissent d'éliminer la moitié, quelle que soit la réponse.")
+  en élimine la moitié, que la réponse soit oui ou non. Avec de telles questions, 3
+  suffisent toujours ici.
+
+![Huit cases en quatre rangées. À chaque réponse, la moitié des cases encore possibles s'éteint : il en reste 8, puis 4, puis 2, puis 1.](schema:moities)

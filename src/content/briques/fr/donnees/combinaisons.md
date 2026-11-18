@@ -43,9 +43,10 @@ exercices:
 
 Avec trois interrupteurs, tu as trouvé **huit** combinaisons, de `000` à `111`.
 
-Pourquoi huit ? Un bit donne 2 combinaisons. Ajoute un deuxième bit : chacune se
-décline en deux, selon que le nouveau bit vaut `0` ou `1`. Cela fait 2 × 2 = 4. Un
-troisième bit double encore : 4 × 2 = 8.
+Pourquoi huit ? Un [bit](brique:donnees/bit) donne 2 combinaisons. Chaque nouveau bit
+décline chaque combinaison en deux, selon qu'il vaut `0` ou `1` :
+
+![Un arbre. Le premier bit donne 0 et 1, le deuxième double en 4 combinaisons, le troisième en 8, de 000 à 111.](schema:arbre)
 
 **Chaque bit ajouté double le nombre de combinaisons.**
 
@@ -56,12 +57,14 @@ troisième bit double encore : 4 × 2 = 8.
 | 3    | 8            |
 | 4    | 16           |
 
-Pour n'en oublier aucune, fais varier le bit de droite en premier : `000`, `001`,
-`010`, `011`, et ainsi de suite.
+Pour n'en oublier aucune, fais varier le
+[bit de droite en premier](note "Un ordre fixe suffit à n'en oublier aucune. On part de la droite comme pour compter : 08, 09, 10, le chiffre de droite change le plus souvent.") :
+`000`, `001`, `010`, `011`, et ainsi de suite.
 
 Les combinaisons servent à distinguer des cas : on donne à chaque cas sa propre
 combinaison. Pour 5 cas, 2 bits ne suffisent pas, car ils ne donnent que 4
 combinaisons. Il en faut 3.
 
-Tu retrouves le jeu du nombre secret : 3 réponses par oui ou non, ce sont 3 bits, qui
-distinguent 8 possibilités.
+Tu retrouves le jeu du nombre secret : chaque réponse par oui ou non est un choix entre
+deux possibilités, donc un bit. Les 3 réponses forment 3 bits, qui distinguent 8
+possibilités.
