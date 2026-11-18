@@ -24,7 +24,7 @@ exercices:
       - texte: 'Il écrit 1 et retient 1 : il trouve 11 au lieu de 10.'
         retour: 'Le OU exclusif vaut 1 quand une seule entrée vaut 1 : sur 11, il donne 0, à la différence de OU. Tom écrit la sortie ET, 1, et retient la sortie OU exclusif, 0 : il trouve 1 au lieu de 10.'
   - type: choix
-    consigne: "Léo garde la porte OU exclusif pour le chiffre de la somme, mais il fabrique la retenue avec une porte OU au lieu d'une porte ET. Pour quelles colonnes de deux bits, A et B, son assemblage se trompe-t-il ?"
+    consigne: "Léo garde la porte OU exclusif pour le chiffre de la somme, mais il fabrique la retenue avec une porte OU au lieu d'une porte ET. Pour quelles colonnes de deux bits, A et B, ses deux portes donnent-elles une somme fausse ?"
     options:
       - texte: "01 et 10 : OU y donne 1, alors que la colonne n'atteint pas 2."
         correct: true
@@ -33,7 +33,7 @@ exercices:
       - texte: 'Aucune : OU et ET donnent tous deux 1 sur 11, seule retenue.'
         retour: "Vérifie toutes les colonnes, pas seulement celle qui retient. Sur 01 et 10, la colonne n'atteint pas 2 : ET donne 0, mais OU donne 1. Léo retiendrait 1 à tort, et 1 + 0 donnerait 11, soit 3, au lieu de 1."
   - type: saisie
-    consigne: 'Pour additionner 1010 et 0110, une machine envoie les deux bits de chaque colonne dans une porte ET et dans une porte OU exclusif. Chaque porte reçoit seulement les deux bits de sa colonne, sans la retenue venue de droite. Prédis les sorties des portes ET, colonne par colonne de gauche à droite, puis celles des portes OU exclusif : écris les huit chiffres à la suite, comme 11000101.'
+    consigne: 'Pour additionner 1010 et 0110, une machine envoie les deux bits de chaque colonne dans une porte ET et dans une porte OU exclusif. Chaque porte reçoit seulement les deux bits de sa colonne, sans la retenue venue de droite. Prédis les sorties des portes ET, colonne par colonne de gauche à droite, puis celles des portes OU exclusif, dans le même ordre des colonnes : écris les huit chiffres à la suite, comme 11000101.'
     verif: [rogner, sans_espaces, { regex: '0,?0,?1,?0,?1,?1,?0,?0' }]
     solution: '00101100'
     contre_exemples: ['11100000', '11000010', '00101110', '0010', '1,1,1,0,0,0,0,0']
@@ -53,9 +53,9 @@ plus_loin:
     source: https://en.wikipedia.org/wiki/Model_K_(calculator)
 ---
 
-Le nombre lu sur les lampes [ET](brique:logique/et-ou) puis
-[OU exclusif](brique:logique/portes-logiques) compte les interrupteurs à `1` :
-`00`, `01`, `01`, et `10` pour `11`. Ces deux portes additionnent A et B,
+Le nombre lu sur les lampes [ET](brique:logique/et-ou) puis OU exclusif compte les
+interrupteurs à `1` : pour `00`, `01`, `10`, `11`, il vaut `00`, `01`, `01`, `10`. Ces
+deux [portes](brique:logique/portes-logiques) additionnent A et B,
 comme une colonne d'une [addition binaire](brique:donnees/addition-binaire).
 
 ![A = 1, B = 1 : ET donne la retenue 1, OU exclusif le chiffre de la somme 0. À côté, 1 + 1 = 10 : la retenue à gauche, le chiffre à droite.](schema:colonne)
@@ -65,8 +65,7 @@ comme une colonne d'une [addition binaire](brique:donnees/addition-binaire).
 - Le ET donne la retenue. Pour une colonne de deux [bits](brique:donnees/bit), elle vaut
   `1` seulement si la colonne atteint 2, donc si les deux bits valent `1`.
 
-Cet assemblage est un **demi-additionneur** : il ne fait qu'une partie du travail d'une
-colonne, car il ne reçoit pas la retenue venue de droite. D'autres portes, qui ajoutent
+Ces deux portes forment un **demi-additionneur** : il ne fait qu'une partie du travail
+d'une colonne qui reçoit une retenue, car il n'a pas d'entrée pour la retenue de droite. D'autres portes, qui ajoutent
 cette retenue, en font un **additionneur complet**. Avec un par colonne, chacun passant sa
-retenue à gauche, on additionne des nombres de plusieurs chiffres : additionner en
-binaire revient à calculer des opérations logiques.
+retenue à gauche, on additionne des nombres de plusieurs chiffres.
