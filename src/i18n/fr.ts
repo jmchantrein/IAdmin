@@ -109,7 +109,8 @@ export const fr = {
       value: 'Écriture',
       character: 'Caractère',
       space: 'espace',
-      noCharacter: (code: number) => `Aucun caractère affichable ne porte le code ${code}.`,
+      noCharacter: (code: number) =>
+        `Dans la table ASCII, aucun caractère affichable ne porte le code ${code}.`,
       found: (done: number) =>
         done > 1 ? `${done} combinaisons trouvées` : `${done} combinaison trouvée`,
       complete: (total: number) => `Tu les as toutes trouvées\u00a0: il y en a ${total}.`,
