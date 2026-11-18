@@ -9,7 +9,7 @@ est résumé ici au fil de l'eau.
 ### J4 — Parcours Fondements complet
 
 - [ ] Envoyer au propriétaire les captures de chaque lot terminé (il ne voit le rendu qu'après fusion).
-- [ ] Lot 4 : `logique/portes-logiques`, `logique/additionneur`. Écrites ; relecture en cours. L'additionneur complet (trois entrées) reste hors du parcours : il demanderait un vrai circuit.
+- [ ] Lot 4 : `logique/portes-logiques`, `logique/additionneur`. Relu, sans écart bloquant. Décision : `portes-logiques` est recentrée sur la porte et l'assemblage (le OU exclusif, déjà défini dans `et-ou`, n'y est plus qu'un exemple), avec un `pas-a-pas` qui déroule l'assemblage porte après porte. Corrections en cours. L'additionneur complet (trois entrées) reste hors du parcours.
 - [ ] Fin de J4 : une seule demande de fusion, puis contrôle du job `deployer` et `npm run e2e:live`.
 
 ### J5 à J9
@@ -64,6 +64,8 @@ est résumé ici au fil de l'eau.
 - [ ] Widget `empreinte` : sa valeur `texte=empreinte`, séparée par une espace, est ambiguë quand un texte contient « = » ou une espace, et rien ne verrouille un champ. Un exercice se contourne en modifiant le premier champ (cas artificiel).
 - [ ] Widget `porte` : chaque interrupteur d'entrée porte aussi une lampe ; les consignes disent donc « la lampe NON », « la lampe ET ».
 - [ ] `logique/vrai-faux` dit qu'une question n'est pas une affirmation, `algo/condition` définit une condition comme une question à réponse oui ou non. Une demi-phrase fait le pont ; harmoniser le vocabulaire si un apprenant s'y perd.
+- [ ] Une suite de valeurs (`0100`) se vérifie par une `regex` écrite à la main pour tolérer les virgules (`0,?1,?0,?0`). Proposition : un filtre de la chaîne `verif` qui retire virgules et espaces.
+- [ ] Un assemblage de portes ne se manipule pas : `porte` ne branche pas une sortie sur une entrée, `portes-logiques` le déroule donc avec `pas-a-pas`.
 - [ ] Zod est chargé dans le navigateur pour valider la progression et les paramètres de widget : mesurer son poids si les pages ralentissent.
 - [ ] Infobulles et schémas sont remplis au rendu de la page (`expandMechanisms`), pas par le plugin Markdown : Astro garde en cache le corps compilé d'une brique tant que son fichier ne change pas, et un résumé ou un schéma modifié ailleurs resterait périmé en local. La page lit donc `entry.rendered.html` au lieu de `<Content />`.
 - [ ] Infobulles en CSS seul : la touche Échap ne les ferme pas (WCAG 1.4.13) ; une infobulle ouverte couvre les lignes du dessous ; un lien de brique touché sur téléphone ouvre la brique sans montrer le rappel ; le toucher d'une note n'est testé que sous Chromium.
