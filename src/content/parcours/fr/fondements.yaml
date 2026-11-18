@@ -3,7 +3,7 @@ description: Comprendre ce qu'est une information, comment une machine la repré
 cibles:
   - donnees/addition-binaire
   - donnees/hash
-  - logique/table-de-verite
+  - logique/additionneur
   - algo/algorithme
   - algo/recherche-dichotomique
   - algo/defi-compter

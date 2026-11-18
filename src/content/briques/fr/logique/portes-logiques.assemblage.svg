@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 336">
+  <g font-size="26" class="texte">
+    <text x="8" y="89">A = <tspan class="texte-accent">1</tspan></text>
+    <text x="8" y="297">B = <tspan class="texte-accent">1</tspan></text>
+  </g>
+  <g class="trait" fill="none">
+    <line x1="80" y1="80" x2="176" y2="80" />
+    <line x1="96" y1="80" x2="96" y2="232" />
+    <path d="M96 232 H120 A8 8 0 0 1 136 232 H176" />
+    <line x1="80" y1="288" x2="176" y2="288" />
+    <line x1="128" y1="288" x2="128" y2="136" />
+    <line x1="128" y1="136" x2="176" y2="136" />
+    <line x1="272" y1="108" x2="440" y2="108" />
+    <line x1="272" y1="260" x2="320" y2="260" />
+    <line x1="400" y1="260" x2="440" y2="260" />
+    <line x1="520" y1="184" x2="632" y2="184" />
+  </g>
+  <g class="plein">
+    <circle cx="96" cy="80" r="5" />
+    <circle cx="128" cy="288" r="5" />
+  </g>
+  <g class="trait fond">
+    <rect x="176" y="56" width="96" height="104" rx="8" />
+    <rect x="176" y="208" width="96" height="104" rx="8" />
+    <rect x="320" y="232" width="80" height="56" rx="8" />
+    <rect x="440" y="80" width="80" height="208" rx="8" />
+  </g>
+  <g font-size="26" text-anchor="middle" class="texte">
+    <text x="224" y="117">OU</text>
+    <text x="224" y="269">ET</text>
+    <text x="360" y="269">NON</text>
+    <text x="480" y="193">ET</text>
+  </g>
+  <g font-size="24" text-anchor="middle" class="texte-accent">
+    <text x="356" y="96">1</text>
+    <text x="296" y="248">1</text>
+    <text x="420" y="248">0</text>
+    <text x="584" y="220">0</text>
+  </g>
+  <g font-size="22" text-anchor="middle" class="texte-accent">
+    <text x="580" y="136">OU</text>
+    <text x="580" y="164">exclusif</text>
+  </g>
+</svg>
