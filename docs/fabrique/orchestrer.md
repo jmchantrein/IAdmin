@@ -27,9 +27,8 @@ sur la même tâche.
 - Arbitre chaque écart du relecteur : corrigé, ou laissé avec sa raison dans `TODO.md`.
 - Commite en nommant les fichiers (`git commit -- <fichiers>`) et relis d'abord
   `git status --short` : un agent a pu préparer une suppression dans l'index.
-- Quand plusieurs agents écrivent en même temps, vérifie une livraison dans une copie
-  isolée du dépôt (`git worktree`, ses propres `node_modules`, un autre port) : le
-  dossier de travail commun contient les fichiers à moitié écrits des autres.
+- Quand plusieurs agents écrivent en même temps, vérifie une livraison avec
+  `scripts/verifier-isole.sh <chemins>` : il la joue dans une copie isolée du dépôt.
 - Donne à un seul agent à la fois le droit de construire le site dans un même dossier.
 
 ## Implémenteur
@@ -38,6 +37,7 @@ sur la même tâche.
 - Touche seulement les fichiers du brief.
 - Écris et supprime des fichiers, sans toucher à l'index git : ni `git add`, ni
   `git rm`, ni `git stash`. L'orchestrateur commite.
+- Ne supprime aucun fichier que tu n'as pas créé toi-même.
 - Supprime tout fichier temporaire avant de rendre la main.
 - Lance les vérifications demandées et corrige jusqu'au vert.
 - Rends un compte rendu court : fichiers touchés, résultats des vérifications, ce qui
