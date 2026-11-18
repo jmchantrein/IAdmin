@@ -37,7 +37,10 @@ règles pédagogiques par `docs/pedagogie.md`, le gabarit par
 - Définis chaque mot avant son premier emploi, légendes de la manipulation comprises : la
   manipulation fait observer la notion, l'explication la nomme.
 - Écris les textes imposés par une correction dans le budget : coupe ailleurs une phrase
-  entière plutôt que d'abréger toutes les autres.
+  entière plutôt que d'abréger toutes les autres. Une raison ne se coupe pas : elle passe
+  en note de survol.
+- Borne chaque affirmation à ce qui la rend vraie (« un texte noté en ASCII occupe un
+  octet par caractère », pas « un texte occupe un octet par caractère »).
 - Écris le `resume` en 40 mots au plus, lisible sans la page : il sert de rappel ailleurs.
 
 ### Relier, justifier, montrer
@@ -82,6 +85,13 @@ règles pédagogiques par `docs/pedagogie.md`, le gabarit par
   palindromes (`101`, `1001`) dès que l'ordre des chiffres compte.
 - Prends des valeurs hors de portée du widget de la manipulation, qui reste sous les
   yeux pendant les exercices, et différentes des exemples résolus des briques requises.
+  Quand le widget sait tout calculer (un code, une empreinte, une sortie), pose une
+  situation à traduire, une table fictive donnée par l'énoncé ou un cas hors de sa portée.
+- Demande au moins une fois ce que seule la méthode enseignée produit (la rangée des
+  retenues, la carte comparée ensuite), quand une autre voie mène à la même réponse.
+- Une réponse qui vaut 0 ou 1 se devine une fois sur deux : préfère un `choix` dont
+  chaque option porte une raison, ou une suite de plusieurs valeurs.
+- Nomme l'élément du widget sans ambiguïté (« la lampe NON », pas « la lampe »).
 - Écris les options d'un `choix` dans l'ordre que tu veux : l'interface les mélange.
 - `choix` : trois options ; chaque mauvaise option vient d'une erreur typique de débutant,
   et son `retour` nomme cette erreur et donne la raison de la bonne réponse.
