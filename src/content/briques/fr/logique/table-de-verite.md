@@ -31,11 +31,11 @@ exercices:
     contre_exemples: ['3', '4', '6', '9']
     retour: 'Chaque affirmation est une entrée qui vaut 0 ou 1. Deux entrées donnent 2 × 2 = 4 lignes. La troisième double ce nombre, car chaque ligne se décline avec 0 puis avec 1 : 2 × 2 × 2 = 8.'
   - type: saisie
-    consigne: "Dresse la table de vérité de OU, qui vaut 1 dès qu'une entrée vaut 1. Écris ses quatre sorties dans l'ordre des lignes 00, 01, 10, 11 (A puis B), sans espace."
-    verif: [rogner, sans_espaces, { egal: '0111' }]
-    solution: '0111'
-    contre_exemples: ['0110', '0001', '1110', '111']
-    retour: "Seule la ligne 00 n'a aucune entrée à 1 : OU y vaut 0, et 1 partout ailleurs, y compris sur 11. Avec 0110, tu as lu le « ou » qui exclut le cas « les deux » ; 0001 est la table de ET."
+    consigne: "Une opération vaut 1 seulement quand A vaut 1 pendant que B vaut 0. Dresse sa table de vérité : écris ses quatre sorties dans l'ordre des lignes 00, 01, 10, 11 (A puis B), les quatre chiffres à la suite, comme 1100."
+    verif: [rogner, sans_espaces, { regex: '0,?0,?1,?0' }]
+    solution: '0010'
+    contre_exemples: ['0100', '0001', '001', '1101', '0,1,0,0']
+    retour: 'Une seule ligne a A à 1 pendant que B vaut 0 : la ligne 10, la troisième. La sortie y vaut 1, et 0 sur les trois autres : 0010. Avec 0100, tu as inversé A et B ; 0001 est la table de ET ; avec trois chiffres, une ligne est oubliée.'
 plus_loin:
   - question: Qui a inventé la table de vérité ?
     reponse: On l'attribue souvent à Ludwig Wittgenstein, qui la présente dans le Tractatus logico-philosophicus, publié en 1921. Emil Post l'a proposée de son côté la même année. Selon les recherches d'Irving Anellis, Charles Sanders Peirce en aurait tracé une dès 1883.

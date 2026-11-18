@@ -15,41 +15,50 @@ exercices:
   - type: choix
     consigne: "« Le magasin est ouvert » vaut 0. Que vaut l'affirmation « le magasin est fermé » ?"
     options:
-      - texte: 1, car elle dit le contraire de l'autre, et NON inverse 0 en 1.
+      - texte: 1, car un magasin fermé n'est pas ouvert, et NON 0 vaut 1.
         correct: true
-      - texte: 0, car NON donne toujours 0.
-        retour: "NON ne donne pas toujours 0 : il inverse son entrée. « Le magasin est fermé » dit le contraire de « le magasin est ouvert », c'est NON de cette affirmation. Son entrée vaut 0, sa sortie vaut donc 1."
-      - texte: 0, car les deux phrases parlent du même magasin, elles ont la même valeur.
-        retour: "Elles parlent du même magasin, mais l'une dit le contraire de l'autre : « le magasin est fermé » est NON « le magasin est ouvert ». NON inverse la valeur de son entrée, 0, et donne 1."
+      - texte: 0, car elle parle du même magasin que l'autre phrase.
+        retour: "Elles parlent du même magasin, mais un magasin fermé n'est pas ouvert : « le magasin est fermé » a pour valeur NON celle de « le magasin est ouvert ». NON inverse 0 et donne 1."
+      - texte: On ne sait pas, car l'énoncé ne donne que l'autre phrase.
+        retour: "Un magasin est soit ouvert, soit fermé : « le magasin est fermé » est vraie exactement quand l'autre est fausse. Sa valeur est donc NON 0, qui vaut 1."
   - type: choix
-    consigne: "« 9 est plus petit que 4 » vaut 0. Applique NON à cette affirmation : tu obtiens « 9 n'est pas plus petit que 4 ». Applique encore NON à cette nouvelle affirmation. Que vaut le résultat ?"
+    consigne: "Quelle affirmation a toujours pour valeur NON celle de « le train est à l'heure », quel que soit l'horaire du train ?"
     options:
-      - texte: 0, car le premier NON inverse 0 en 1, puis le second inverse ce 1 en 0.
+      - texte: « Le train n'est pas à l'heure ».
         correct: true
-      - texte: 1, car deux NON disent le contraire encore plus fort qu'un seul.
-        retour: 'Chaque NON inverse une fois. Le premier change 0 en 1, le second change ce 1 en 0 : tu retrouves la valeur de départ. Dire deux fois le contraire revient à redire « 9 est plus petit que 4 ».'
-      - texte: 0, car NON donne toujours 0.
-        retour: "La valeur est juste, mais pas la raison. NON inverse son entrée : le premier NON a donné 1, puisque son entrée valait 0. C'est le second qui inverse ce 1 en 0."
+      - texte: « Le train est en retard ».
+        retour: "Pense au train en avance : il n'est pas à l'heure, ni en retard. Les deux affirmations valent alors 0, et NON 0 vaut 1. Seule « le train n'est pas à l'heure » vaut 1 dans ce cas."
+      - texte: « Le train est en avance ».
+        retour: "Pense au train en retard : il n'est pas à l'heure, ni en avance. Les deux affirmations valent alors 0, et NON 0 vaut 1. Seule « le train n'est pas à l'heure » vaut 1 dans ce cas."
+  - type: choix
+    consigne: '« 9 est plus petit que 4 » vaut 0. Calcule NON de cette valeur, puis NON du résultat. Que trouves-tu ?'
+    options:
+      - texte: 0, car NON 0 vaut 1, puis NON 1 vaut 0.
+        correct: true
+      - texte: 1, car deux NON inversent plus fort qu'un seul.
+        retour: 'Chaque NON inverse une fois. Le premier change 0 en 1, le second change ce 1 en 0 : tu retrouves la valeur de départ.'
+      - texte: 1, car NON donne 1 à partir de 0.
+        retour: 'Tu as calculé un seul NON. NON 0 vaut bien 1, mais il reste à calculer NON de ce résultat : NON 1 vaut 0.'
   - type: saisie
-    consigne: "Un capteur note si une salle est occupée : 1 pour oui, 0 pour non. Sur cinq heures, il note 1, 1, 0, 1, 0. Une lampe « libre » montre NON « la salle est occupée ». Prédis ses cinq valeurs, dans l'ordre, sans espace."
-    verif: [rogner, sans_espaces, { egal: '00101' }]
+    consigne: "Un capteur note si une salle est occupée : 1 pour oui, 0 pour non. Sur cinq heures, il note 1, 1, 0, 1, 0. Une lampe « libre » montre NON « la salle est occupée ». Prédis ses cinq valeurs, dans l'ordre : écris les cinq chiffres à la suite, comme 10110."
+    verif: [rogner, sans_espaces, { regex: '0,?0,?1,?0,?1' }]
     solution: '00101'
-    contre_exemples: ['11010', '00000', '10100', '0010']
-    retour: 'NON inverse chaque valeur : 1 devient 0, 0 devient 1. Les notes 1, 1, 0, 1, 0 donnent donc 0, 0, 1, 0, 1. NON ne donne pas toujours 0, et il faut une valeur par heure, cinq en tout.'
+    contre_exemples: ['11010', '00000', '10100', '0010', '1,1,0,1,0']
+    retour: 'NON inverse chaque valeur : 1 devient 0, 0 devient 1. Les notes 1, 1, 0, 1, 0 donnent donc 0, 0, 1, 0, 1. Il faut une valeur par heure, cinq en tout.'
 ---
 
-La lampe NON s'est éteinte quand tu as allumé A, et rallumée quand tu l'as éteint : elle
-fait toujours le contraire de A.
+La lampe NON s'est éteinte quand tu as allumé A, et rallumée quand tu l'as éteint.
 
-L'interrupteur A donne une [valeur de vérité](brique:logique/vrai-faux), `0` ou `1`. Une
-**opération** logique calcule une valeur de vérité, sa **sortie**, à partir d'autres, ses
-**entrées**. Une entrée peut venir d'un interrupteur, comme A, ou d'une affirmation. La
-lampe NON montre la sortie de l'opération **NON**.
+L'interrupteur A donne un bit, `0` ou `1`, qui note une
+[valeur de vérité](brique:logique/vrai-faux). Une **opération** logique calcule une valeur
+de vérité, sa **sortie**, à partir d'autres, ses **entrées**. Une entrée peut venir d'un
+interrupteur, comme A, ou d'une affirmation. La lampe NON montre la sortie de l'opération
+**NON**.
 
 NON est la plus simple : elle a une seule entrée et l'**inverse**, c'est-à-dire qu'elle
-donne l'autre valeur. NON `0` vaut `1`, NON `1` vaut `0`. Sa sortie dépend donc de son
-entrée : NON ne donne pas toujours `0`.
+donne l'autre valeur. NON `0` vaut `1`, NON `1` vaut `0`.
 
-Inverser sert à dire le contraire d'une affirmation. NON « il pleut », c'est « il ne pleut
-pas » : si « il pleut » vaut `1`, « il ne pleut pas » vaut `0`. Une seule entrée suffit,
-car pour dire le contraire d'une affirmation, il ne faut qu'elle.
+Le **contraire** d'une affirmation est vrai exactement quand elle est fausse. Il ne
+dépend que d'elle : NON a donc une seule entrée. « Il ne pleut pas » a pour valeur NON
+celle de « il pleut ». « Ne… pas » forme sûrement le contraire. « Le verre est vide »
+n'est pas le contraire de « le verre est plein » : à moitié rempli, les deux sont fausses.

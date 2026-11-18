@@ -13,28 +13,28 @@ manipulation:
   params: { portes: [et, ou] }
 exercices:
   - type: choix
-    consigne: "Un coffre s'ouvre si « Ana tourne sa clé » ET « Ben tourne sa clé ». Ana tourne sa clé, Ben ne tourne pas la sienne. Le coffre s'ouvre-t-il ?"
+    consigne: "Un coffre ne s'ouvre que si « Ana tourne sa clé » ET « Ben tourne sa clé » vaut 1. Ana tourne sa clé, Ben ne tourne pas la sienne. Le coffre s'ouvre-t-il ?"
     options:
-      - texte: 'Non : ET vaut 1 seulement si ses deux entrées valent 1 ; ici Ben donne 0.'
+      - texte: Non, car une entrée à 0 suffit pour que ET donne 0.
         correct: true
-      - texte: Oui, car une clé tournée suffit.
+      - texte: Oui, car une clé tournée suffit pour que ET donne 1.
         retour: 'Une entrée à 1 suffit pour OU, pas pour ET. ET vaut 1 seulement si ses deux entrées valent 1. Ici « Ben tourne sa clé » vaut 0, donc ET vaut 0 : le coffre reste fermé.'
-      - texte: Oui, car 1 + 0 vaut 1.
+      - texte: Oui, car 1 + 0 font 1, et ET additionne ses entrées.
         retour: "ET n'est pas une addition : sa sortie est une valeur de vérité, qui vaut 1 seulement si ses deux entrées valent 1. Ici une entrée vaut 0, donc ET vaut 0 : le coffre reste fermé."
   - type: choix
-    consigne: "La médiathèque prête une liseuse si « tu as une carte d'abonné ou une pièce d'identité ». Tu as les deux papiers ; elle te prête la liseuse. Quel « ou » sa règle emploie-t-elle ?"
+    consigne: "La médiathèque prête une liseuse à qui a « une carte d'abonné ou une pièce d'identité ». Hier, Tom avait sa carte seule, Léa avait les deux papiers : tous deux ont eu une liseuse. Zoé n'avait aucun papier : elle a été refusée. Quelle opération la règle suit-elle ?"
     options:
-      - texte: Le OU logique, qui vaut 1 dès qu'une entrée vaut 1, même quand les deux valent 1.
+      - texte: 'Le OU logique : un seul papier suffit, deux aussi.'
         correct: true
-      - texte: Le « ou » du menu, qui exclut le cas « les deux ».
-        retour: "Avec ce « ou », avoir les deux papiers donnerait 0, et la médiathèque refuserait. Elle prête : sa règle emploie donc le OU logique, qui dit « au moins un ». Un second papier n'annule pas le premier."
-      - texte: ET, puisque tu as les deux papiers.
-        retour: "Avec ET, une carte d'abonné seule ne suffirait pas. Or la règle dit qu'un seul papier suffit. Elle emploie le OU logique, qui vaut 1 dès qu'une entrée vaut 1, y compris quand les deux valent 1."
+      - texte: 'Le OU exclusif : un seul papier suffit, pas deux.'
+        retour: "Le OU exclusif vaut 0 quand ses deux entrées valent 1 : Léa, avec ses deux papiers, aurait été refusée. C'est son cas qui départage. Elle a eu sa liseuse : la règle suit le OU logique."
+      - texte: 'ET : il faut avoir les deux papiers à la fois.'
+        retour: "La règle dit « ou », pas « et » : elle ne demande pas les deux papiers. Avec ET, Tom, qui n'avait que sa carte, aurait été refusé. Il a eu sa liseuse : la règle suit le OU logique."
   - type: saisie
-    consigne: "Le bus s'arrête si « quelqu'un appuie sur le bouton » OU « quelqu'un attend à l'arrêt ». À quatre arrêts : au premier, quelqu'un appuie mais personne n'attend ; au deuxième, personne n'appuie ni n'attend ; au troisième, quelqu'un appuie, une autre personne attend ; au quatrième, personne n'appuie mais quelqu'un attend. Prédis la sortie de OU à chaque arrêt, dans l'ordre, sans espace."
-    verif: [rogner, sans_espaces, { egal: '1011' }]
+    consigne: "Le bus s'arrête si « quelqu'un appuie sur le bouton » OU « quelqu'un attend à l'arrêt ». À quatre arrêts : au premier, quelqu'un appuie mais personne n'attend ; au deuxième, personne n'appuie ni n'attend ; au troisième, quelqu'un appuie, une autre personne attend ; au quatrième, personne n'appuie mais quelqu'un attend. Prédis la sortie de OU à chaque arrêt, dans l'ordre : écris les quatre chiffres à la suite, comme 1100."
+    verif: [rogner, sans_espaces, { regex: '1,?0,?1,?1' }]
     solution: '1011'
-    contre_exemples: ['1001', '1021', '0010', '101']
+    contre_exemples: ['1001', '1021', '0010', '101', '1,0,0,1']
     retour: "OU vaut 1 dès qu'une entrée vaut 1, y compris quand les deux valent 1. Seul le deuxième arrêt, sans personne, donne 0 : la suite est 1, 0, 1, 1. Un 0 au troisième arrêt viendrait du « ou » qui exclut les deux ; un 2, d'une addition."
 plus_loin:
   - question: Le OU logique a-t-il toujours inclus le cas « les deux » ?
@@ -42,8 +42,8 @@ plus_loin:
     source: https://en.wikipedia.org/wiki/Logical_disjunction
 ---
 
-La lampe ET ne s'est allumée que pour un réglage : les deux interrupteurs à `1`. La lampe
-OU, pour trois : dès qu'un interrupteur était à `1`.
+La lampe ET ne s'est allumée que pour un **réglage**, soit une position par interrupteur : les deux à `1`. La lampe OU, pour trois : dès qu'un interrupteur était à
+`1`.
 
 ET et OU sont deux [opérations](brique:logique/non) à deux entrées, A et B.
 
@@ -51,10 +51,9 @@ ET et OU sont deux [opérations](brique:logique/non) à deux entrées, A et B.
   sortie est une valeur de vérité.
 - **OU** vaut `1` dès qu'une entrée vaut `1`, y compris quand les deux valent `1`.
 
-Ce dernier cas est un choix des logiciens : OU dit « au moins une ». Il convient quand une
-raison suffit et que deux ne gênent pas : une étudiante de 20 ans paie le « tarif réduit
-étudiant OU moins de 26 ans ».
+Ce dernier cas est un choix des logiciens : OU vaut `1` quand au moins une entrée vaut
+`1`. Il convient quand une raison suffit et que deux ne gênent pas. Une étudiante de moins de 26 ans a deux raisons d'avoir le « tarif réduit étudiant OU moins de 26 ans » : elle y a droit.
 
-![Menu « fromage ou dessert » : le « ou » du menu vaut 0, 1, 1, 0 pour aucun, fromage seul, dessert seul, les deux. Le OU logique vaut 0, 1, 1, 1.](schema:ou)
+![« Je prends fromage ou dessert » : le « ou » du menu vaut 0, 1, 1, 0 pour aucun, fromage seul, dessert seul, les deux. Le OU logique vaut 0, 1, 1, 1.](schema:ou)
 
-Le « ou » du menu exclut le cas « les deux ». Il porte un autre nom, vu plus tard.
+Le « ou » du menu, qui exclut le cas « les deux », s'appelle le **OU exclusif**.

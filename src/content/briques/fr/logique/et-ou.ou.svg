@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320">
-  <text x="320" y="36" font-size="26" text-anchor="middle" class="texte">Menu « fromage ou dessert »</text>
+  <text x="320" y="36" font-size="26" text-anchor="middle" class="texte">« Je prends fromage ou dessert »</text>
   <rect x="520" y="56" width="112" height="256" rx="8" class="accent" />
-  <g font-size="22" text-anchor="middle" class="texte-doux">
+  <g font-size="22" text-anchor="middle" class="texte">
     <text x="240" y="100">aucun</text>
     <text x="352" y="86">
       <tspan x="352">fromage</tspan>
