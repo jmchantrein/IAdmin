@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 224">
+  <text x="244" y="32" font-size="20" text-anchor="middle" class="texte-accent">8 bits</text>
+  <polyline points="24,64 24,48 464,48 464,64" class="accent" />
+  <g class="accent fond">
+    <rect x="24" y="72" width="48" height="56" rx="6" />
+    <rect x="80" y="72" width="48" height="56" rx="6" />
+    <rect x="136" y="72" width="48" height="56" rx="6" />
+    <rect x="192" y="72" width="48" height="56" rx="6" />
+    <rect x="248" y="72" width="48" height="56" rx="6" />
+    <rect x="304" y="72" width="48" height="56" rx="6" />
+    <rect x="360" y="72" width="48" height="56" rx="6" />
+    <rect x="416" y="72" width="48" height="56" rx="6" />
+  </g>
+  <g font-size="24" text-anchor="middle" class="texte">
+    <text x="48" y="176">2</text>
+    <text x="104" y="176">2</text>
+    <text x="160" y="176">2</text>
+    <text x="216" y="176">2</text>
+    <text x="272" y="176">2</text>
+    <text x="328" y="176">2</text>
+    <text x="384" y="176">2</text>
+    <text x="440" y="176">2</text>
+  </g>
+  <g font-size="20" text-anchor="middle" class="texte-doux">
+    <text x="76" y="175">×</text>
+    <text x="132" y="175">×</text>
+    <text x="188" y="175">×</text>
+    <text x="244" y="175">×</text>
+    <text x="300" y="175">×</text>
+    <text x="356" y="175">×</text>
+    <text x="412" y="175">×</text>
+  </g>
+  <text x="488" y="176" font-size="24" class="texte-accent">= 256</text>
+  <text x="488" y="204" font-size="16" class="texte-doux">combinaisons</text>
+</svg>

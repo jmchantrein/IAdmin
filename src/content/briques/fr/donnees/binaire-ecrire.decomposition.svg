@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 304">
+  <g font-size="18" class="texte-doux" text-anchor="end">
+    <text x="88" y="46">reste</text>
+    <text x="88" y="114">poids</text>
+    <text x="88" y="200">chiffre</text>
+  </g>
+  <g font-size="22" text-anchor="middle" class="texte-doux">
+    <text x="152" y="46">13</text>
+    <text x="264" y="46">5</text>
+    <text x="376" y="46">1</text>
+    <text x="488" y="46">1</text>
+  </g>
+  <g>
+    <rect x="104" y="72" width="96" height="64" rx="8" class="accent fond" />
+    <rect x="216" y="72" width="96" height="64" rx="8" class="accent fond" />
+    <rect x="328" y="72" width="96" height="64" rx="8" class="doux fond" />
+    <rect x="440" y="72" width="96" height="64" rx="8" class="accent fond" />
+  </g>
+  <g font-size="24" text-anchor="middle">
+    <text x="152" y="113" class="texte-accent">8</text>
+    <text x="264" y="113" class="texte-accent">4</text>
+    <text x="376" y="113" class="texte-doux">2</text>
+    <text x="488" y="113" class="texte-accent">1</text>
+  </g>
+  <g font-size="28" text-anchor="middle" class="texte">
+    <text x="152" y="200">1</text>
+    <text x="264" y="200">1</text>
+    <text x="376" y="200">0</text>
+    <text x="488" y="200">1</text>
+  </g>
+  <text x="320" y="272" font-size="24" text-anchor="middle" class="texte">13 = 8 + 4 + 1</text>
+</svg>
