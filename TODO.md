@@ -9,9 +9,7 @@ est résumé ici au fil de l'eau.
 ### J4 — Parcours Fondements complet
 
 - [ ] Envoyer au propriétaire les captures de chaque lot terminé (il ne voit le rendu qu'après fusion).
-- [ ] Lot 2 : `donnees/addition-binaire` et `donnees/texte-code` sont relues et corrigées ; `donnees/hash` est relue, corrections en cours.
-- [ ] Lot 3 : `logique/vrai-faux`, `logique/non`, `logique/et-ou`, `logique/table-de-verite`. Relu et corrigé ; `non-et-ou` a été scindée en `non` et `et-ou` (NON n'y était pas manipulé avant d'être expliqué) et l'enchaînement d'opérations passe au lot 4. Reste la seconde relecture des deux briques issues de la scission.
-- [ ] Lot 4 : `logique/portes-logiques` (une porte est un composant qui réalise une opération ; la sortie d'une porte peut servir d'entrée à une autre ; OU exclusif) et `logique/additionneur`. Le widget `porte` avec deux portes sur les mêmes entrées (`ou-exclusif` pour la somme, `et` pour la retenue) montre le demi-additionneur sans éditeur de circuit ; l'enchaînement se dessine en schéma. L'additionneur complet est reporté s'il demande un vrai circuit.
+- [ ] Lot 4 : `logique/portes-logiques`, `logique/additionneur`. Écrites ; relecture en cours. L'additionneur complet (trois entrées) reste hors du parcours : il demanderait un vrai circuit.
 - [ ] Fin de J4 : une seule demande de fusion, puis contrôle du job `deployer` et `npm run e2e:live`.
 
 ### J5 à J9
@@ -88,6 +86,8 @@ est résumé ici au fil de l'eau.
 - [x] Espaces insécables posées par le site avant « : ; ? ! » » et après « « », dans l'explication et dans les textes du frontmatter ; `pas-a-pas` range ses cases en grille (`colonnes`) ; `bascule-bits` affiche le caractère du code écrit (`caractere`).
 - [x] Widgets `porte` (une ou deux portes logiques, table de vérité à remplir) et `empreinte` (texte et empreinte de 5 chiffres), avec leur logique pure dans `src/core` et leurs pilotes de test.
 - [x] Lot 6 : `algo/recherche-lineaire`, `algo/recherche-dichotomique`, `algo/defi-compter` (premier `genre: defi`). Relecture adverse sans écart bloquant ; corrections appliquées (la boucle nomme sa question, le schéma reprend le codage du widget, le prix du tri est dit).
+- [x] Lot 2 : `donnees/addition-binaire` (grille de `pas-a-pas`), `donnees/texte-code` (`bascule-bits` avec `caractere`), `donnees/hash` (widget `empreinte`). Relectures adverses sans écart bloquant ; corrections appliquées (un octet par caractère borné à l'ASCII, règle de la dernière retenue écrite, une empreinte évite de garder une copie).
+- [x] Lot 3 : `logique/vrai-faux`, `logique/non`, `logique/et-ou`, `logique/table-de-verite` (widget `porte`). Première relecture : `non-et-ou` scindée en `non` et `et-ou`, l'enchaînement d'opérations renvoyé au lot 4. Seconde relecture des deux briques nouvelles : le contraire logique est défini, les suites de valeurs acceptent les virgules.
 
 ### Mise en ligne (2026-11-17)
 
