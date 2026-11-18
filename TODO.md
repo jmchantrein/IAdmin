@@ -8,12 +8,16 @@ est résumé ici au fil de l'eau.
 
 ### J4 — Parcours Fondements complet
 
-- [ ] Recadrage par le propriétaire sur le lot 1 (ton, niveau, besoins de widgets des lots suivants) avant d'enchaîner.
+- [ ] Mécanismes demandés par le propriétaire (en cours) : lien vers une brique avec infobulle, note de survol, section « Pour aller plus loin », schémas SVG intégrés avec leur charte.
+- [ ] `docs/pedagogie.md` : sourcer « montrer plutôt que dire », « dire pourquoi » et « relier », en restant à 15 règles (en cours).
+- [ ] Reprendre les 7 briques existantes avec ces mécanismes : liens vers les notions requises, raison de chaque convention, schémas à la place du texte ; deux relectures.
+- [ ] Envoyer au propriétaire les captures des briques reprises (il ne voit le rendu qu'après fusion).
+- [ ] Lot 5 : `algo/variable`, `algo/condition`, `algo/boucle`, avec `pas-a-pas`.
+- [ ] Lot 6 : `algo/recherche-lineaire`, `algo/recherche-dichotomique`, un défi de synthèse (`genre: defi`).
 - [ ] Lot 2 : `donnees/addition-binaire`, `donnees/texte-code`, `donnees/hash`. Widgets pressentis, à proposer ici avant de les écrire : `pas-a-pas` à plusieurs rangées pour l'addition posée, un widget d'empreinte pour `hash`.
 - [ ] Lot 3 : `logique/vrai-faux`, `logique/non-et-ou`, `logique/table-de-verite`. Widget pressenti : une porte logique (interrupteurs, porte, lampe).
 - [ ] Lot 4 : `logique/portes-logiques`, `logique/additionneur`. Même widget, peut-être un petit circuit ; lot à réduire si le widget dépasse ce qu'il justifie.
-- [ ] Lot 5 : `algo/variable`, `algo/condition`, `algo/boucle`, avec `pas-a-pas`.
-- [ ] Lot 6 : `algo/recherche-lineaire`, `algo/recherche-dichotomique`, un défi de synthèse (`genre: defi`).
+- [ ] Fin de J4 : une seule demande de fusion, puis contrôle du job `deployer` et `npm run e2e:live`.
 
 ### J5 à J9
 
@@ -50,6 +54,12 @@ est résumé ici au fil de l'eau.
 - [ ] Zod est chargé dans le navigateur pour valider la progression et les paramètres de widget : mesurer son poids si les pages ralentissent.
 
 ## Fait
+
+### Recadrage du propriétaire sur le lot 1 (2026-11-18)
+
+- [x] Le fond du lot 1 convient. Quatre demandes : orchestration et implémentation séparées ; lien et rappel au survol pour chaque notion requise ; raison de chaque convention (dans le texte, en note ou dans « Pour aller plus loin ») ; schémas et dessins à la place du texte verbeux.
+- [x] Décisions : schémas en SVG écrits selon une charte ; une seule demande de fusion à la fin de J4 ; lots 5 et 6 avant les lots à widgets.
+- [x] `docs/fabrique/orchestrer.md` (rôles), `docs/fabrique/dessiner.md` (charte des schémas), procédures de rédaction et de relecture complétées.
 
 ### Mise en ligne (2026-11-17)
 

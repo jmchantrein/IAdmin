@@ -36,6 +36,22 @@ règles pédagogiques par `docs/pedagogie.md`, le gabarit par
   qu'elle requiert (valeur, cas, tenir, place).
 - Écris le `resume` en 40 mots au plus, lisible sans la page : il sert de rappel ailleurs.
 
+### Relier, justifier, montrer
+
+- Lie la première mention de chaque notion vue dans une brique requise :
+  `[bit](brique:donnees/bit)`. L'apprenant y lit le rappel au survol.
+- Donne la raison de chaque convention (« un octet compte 8 bits »). Si elle tient en une
+  phrase simple, écris-la dans l'explication.
+- Si la raison alourdit l'explication, place-la dans une note de survol,
+  `[8 bits](note "…")`, en 40 mots au plus, ou dans une entrée `plus_loin` (une question,
+  une réponse de 80 mots au plus).
+- Garde dans l'explication tout ce qu'un exercice demande : une note ou une entrée
+  `plus_loin` complète, elle ne porte rien d'indispensable.
+- Vérifie par une recherche chaque affirmation historique ou chiffrée, et donne l'adresse
+  de sa `source` dans l'entrée `plus_loin`.
+- Remplace par un schéma toute phrase qu'un dessin dit mieux, en suivant
+  `docs/fabrique/dessiner.md`, puis supprime cette phrase.
+
 ## 4. Écrire les exercices
 
 - Écris 2 à 5 exercices, du plus guidé au plus autonome.

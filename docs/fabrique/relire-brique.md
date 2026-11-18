@@ -51,6 +51,16 @@ Pour chaque point, cite la ligne en cause et dis ce qui cloche.
 12. **Langue.** Tutoiement, phrases courtes, aucun terme d'expert non défini. Chaque mot
     garde un seul sens dans la brique et dans celles qu'elle requiert. Le `resume` se
     comprend hors de la page.
+13. **Liens.** La première mention de chaque notion requise porte un lien vers sa brique.
+    Signale un lien vers une notion que la phrase n'emploie pas, et un texte qui ne se
+    comprend plus si l'on ne survole pas le lien.
+14. **Pourquoi.** Relève chaque convention affirmée sans raison. Vérifie la raison donnée
+    et sa `source`. Signale une information indispensable à un exercice qui ne se trouve
+    que dans une note ou dans « Pour aller plus loin ».
+15. **Schémas.** Compare chaque schéma au texte : mêmes mots, mêmes valeurs, aucun
+    désaccord. Lis le dessin sans le texte : se comprend-il ? Signale un schéma
+    décoratif, une étiquette loin de ce qu'elle nomme, un texte alternatif qui ne dit pas
+    ce que le dessin montre, et une phrase que le schéma rend inutile.
 
 ## Rapporter
 
