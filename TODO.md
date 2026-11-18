@@ -9,7 +9,6 @@ est résumé ici au fil de l'eau.
 ### J4 — Parcours Fondements complet
 
 - [ ] Mécanismes demandés par le propriétaire (en cours) : lien vers une brique avec infobulle, note de survol, section « Pour aller plus loin », schémas SVG intégrés avec leur charte.
-- [ ] `docs/pedagogie.md` : sourcer « montrer plutôt que dire », « dire pourquoi » et « relier », en restant à 15 règles (en cours).
 - [ ] Reprendre les 7 briques existantes avec ces mécanismes : liens vers les notions requises, raison de chaque convention, schémas à la place du texte ; deux relectures.
 - [ ] Envoyer au propriétaire les captures des briques reprises (il ne voit le rendu qu'après fusion).
 - [ ] Lot 5 : `algo/variable`, `algo/condition`, `algo/boucle`, avec `pas-a-pas`.
@@ -49,6 +48,7 @@ est résumé ici au fil de l'eau.
 - [ ] L'import fusionne toujours ; remplacer sa progression par un fichier demande d'effacer d'abord.
 - [ ] Un exercice `saisie` n'a qu'un seul `retour`, commun à toutes les mauvaises réponses : un retour par contre-exemple nommerait mieux chaque erreur (relevé par la relecture adverse).
 - [ ] Les distracteurs et contre-exemples sont jugés « typiques » par des LLM, sans essai par un débutant.
+- [ ] Aucune étude trouvée sur l'effet d'une infobulle qui rappelle un prérequis, ni sur la fréquence d'ouverture des notes et des sections repliées : à observer avec de vrais apprenants.
 - [ ] Le widget de la manipulation reste utilisable pendant les exercices : dans `donnees/octet`, il permet encore de lire la réponse de l'exercice sur 5 bits. Accepté pour l'instant ; le masquer ou le replier après la manipulation serait une réponse générale.
 - [ ] Écarts mineurs laissés après relecture du lot 1 : deux acquis d'`octet` contiennent un « et » ; trois exercices de `binaire-ecrire` donnent encore la liste des poids ; la première étape de son animation ne suit pas le même découpage que les suivantes.
 - [ ] Zod est chargé dans le navigateur pour valider la progression et les paramètres de widget : mesurer son poids si les pages ralentissent.
@@ -60,6 +60,7 @@ est résumé ici au fil de l'eau.
 - [x] Le fond du lot 1 convient. Quatre demandes : orchestration et implémentation séparées ; lien et rappel au survol pour chaque notion requise ; raison de chaque convention (dans le texte, en note ou dans « Pour aller plus loin ») ; schémas et dessins à la place du texte verbeux.
 - [x] Décisions : schémas en SVG écrits selon une charte ; une seule demande de fusion à la fin de J4 ; lots 5 et 6 avant les lots à widgets.
 - [x] `docs/fabrique/orchestrer.md` (rôles), `docs/fabrique/dessiner.md` (charte des schémas), procédures de rédaction et de relecture complétées.
+- [x] `docs/pedagogie.md` amendé, toujours 15 règles : « montrer, avec le texte sur le dessin » (preuve robuste pour le schéma explicatif, mince pour la bande dessinée), « dire pourquoi » (modérée), rappel d'un prérequis par lien (débattue : la recherche sur l'hypertexte montre aussi des liens qui distraient, d'où un seul lien par notion, à sa première mention). Références contrôlées sur notices et résumés, sans lecture du texte intégral.
 
 ### Mise en ligne (2026-11-17)
 
