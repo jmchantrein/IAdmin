@@ -92,6 +92,11 @@ règles pédagogiques par `docs/pedagogie.md`, le gabarit par
 - Une réponse qui vaut 0 ou 1 se devine une fois sur deux : préfère un `choix` dont
   chaque option porte une raison, ou une suite de plusieurs valeurs.
 - Nomme l'élément du widget sans ambiguïté (« la lampe NON », pas « la lampe »).
+- Pour une suite de valeurs, montre le format par un exemple (« comme 10110 ») et accepte
+  les séparateurs que l'énoncé emploie lui-même (une virgule entre les chiffres).
+- Donne aux options d'un `choix` la même longueur et la même forme : la bonne ne se
+  repère ni à son détail ni à une phrase reprise de l'explication.
+- Écris « ne… que si » quand l'énoncé doit permettre de conclure que la chose n'arrive pas.
 - Écris les options d'un `choix` dans l'ordre que tu veux : l'interface les mélange.
 - `choix` : trois options ; chaque mauvaise option vient d'une erreur typique de débutant,
   et son `retour` nomme cette erreur et donne la raison de la bonne réponse.
