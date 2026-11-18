@@ -28,13 +28,13 @@
     <text x="536" y="138">105</text>
   </g>
   <g>
-    <rect x="160" y="184" width="144" height="44" rx="8" class="trait fond" />
-    <rect x="312" y="184" width="144" height="44" rx="8" class="trait fond" />
-    <rect x="464" y="184" width="144" height="44" rx="8" class="trait fond" />
+    <rect x="168" y="184" width="128" height="44" rx="8" class="trait fond" />
+    <rect x="320" y="184" width="128" height="44" rx="8" class="trait fond" />
+    <rect x="472" y="184" width="128" height="44" rx="8" class="trait fond" />
   </g>
-  <g font-size="26" text-anchor="middle" class="texte">
-    <text x="232" y="215">01001111</text>
-    <text x="384" y="215">01110101</text>
-    <text x="536" y="215">01101001</text>
+  <g font-size="24" text-anchor="middle" class="texte">
+    <text x="232" y="214">01001111</text>
+    <text x="384" y="214">01110101</text>
+    <text x="536" y="214">01101001</text>
   </g>
 </svg>

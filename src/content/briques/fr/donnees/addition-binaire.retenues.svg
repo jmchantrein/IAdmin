@@ -12,17 +12,17 @@
   </g>
   <g font-size="32" text-anchor="middle" class="texte">
     <text x="344" y="120">1</text>
-    <text x="408" y="120">1</text>
+    <text x="408" y="120">0</text>
     <text x="472" y="120">1</text>
     <text x="224" y="176">+</text>
-    <text x="344" y="176">1</text>
-    <text x="408" y="176">0</text>
+    <text x="344" y="176">0</text>
+    <text x="408" y="176">1</text>
     <text x="472" y="176">1</text>
   </g>
   <line x1="200" y1="196" x2="504" y2="196" class="trait" />
   <g font-size="32" text-anchor="middle">
     <text x="280" y="248" class="texte-accent">1</text>
-    <text x="344" y="248" class="texte">1</text>
+    <text x="344" y="248" class="texte">0</text>
     <text x="408" y="248" class="texte">0</text>
     <text x="472" y="248" class="texte">0</text>
   </g>

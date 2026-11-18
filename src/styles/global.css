@@ -830,6 +830,8 @@ button.danger {
 
 /* A note is not a link: plain text with a dotted underline, focusable but going nowhere. */
 button.note {
+  /* Inline, not the inline-block of a button: no line break between « l’ » and the word. */
+  display: inline;
   font-weight: inherit;
   color: inherit;
   background: none;
