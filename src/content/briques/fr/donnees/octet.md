@@ -56,6 +56,9 @@ plus_loin:
   - question: Quelle machine a ouvert la voie à l'octet de 8 bits ?
     reponse: "Le System/360 d'IBM, annoncé en 1964 : IBM le présente comme ayant ouvert la voie à l'octet de 8 bits encore utilisé aujourd'hui."
     source: https://www.ibm.com/history/system-360
+  - question: Quel avantage avait 8 sur 7 ?
+    reponse: Un groupe de 8 bits se coupe en deux moitiés de 4 bits. Or 4 bits donnent 16 combinaisons, assez pour noter un chiffre de 0 à 9. Un octet range donc deux chiffres, sans place perdue. Le comité qui a défini le code de caractères ASCII, dans les années 1960, a relevé cet avantage, avant de retenir tout de même 7 bits.
+    source: https://en.wikipedia.org/wiki/ASCII
 ---
 
 En allumant les huit bits, tu as atteint 255 : impossible d'aller plus haut.
@@ -72,8 +75,8 @@ Lues en [binaire](brique:donnees/binaire-lire), elles écrivent les nombres de *
 
 Pourquoi grouper les bits par 8 ? Avec 6 bits, 64 combinaisons ne suffisent pas pour 52
 lettres (26 majuscules, 26 minuscules), 10 chiffres et la ponctuation. 7 bits
-suffiraient. Les constructeurs ont retenu 8, qui laisse de la marge : elle a servi
-ensuite aux lettres accentuées.
+suffiraient. Les constructeurs ont retenu 8 : la marge a servi ensuite aux lettres
+accentuées.
 
 Un octet suffit ainsi à noter une lettre ou un chiffre : d'où l'habitude de compter les
 tailles en octets.

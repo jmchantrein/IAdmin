@@ -49,8 +49,8 @@ plus_loin:
   - question: Pourquoi 0 et 1, et pas d'autres symboles ?
     reponse: Ce sont de simples étiquettes pour désigner deux possibilités. On aurait pu choisir A et B. Le choix de 0 et 1 a un avantage, ces deux chiffres servent ensuite à écrire des nombres.
   - question: Qui a inventé le mot « bit » ?
-    reponse: Le mot a été proposé par John W. Tukey. Claude Shannon l'a fait connaître en 1948, dans son article « A Mathematical Theory of Communication ». Il y note aussi qu'une pièce à deux positions stables garde un bit.
-    source: https://www.stat.berkeley.edu/~binyu/212A/papers/shannon48.pdf
+    reponse: Le mot a été proposé par John W. Tukey. Claude Shannon l'a fait connaître en 1948, dans son article « A Mathematical Theory of Communication ».
+    source: https://en.wikipedia.org/wiki/A_Mathematical_Theory_of_Communication
 ---
 
 L'interrupteur n'a que deux positions : la lampe est **éteinte** ou **allumée**. On ne

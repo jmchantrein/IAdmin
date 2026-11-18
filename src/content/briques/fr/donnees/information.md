@@ -37,8 +37,8 @@ exercices:
     retour: Avance une question à la fois. La première élimine la moitié des 32 cartes, il en reste 16. Chaque question suivante élimine la moitié de ce qui reste.
 plus_loin:
   - question: D'où vient ce sens du mot « information » ?
-    reponse: Le chercheur Claude Shannon l'a formulé en 1948, dans l'article « A Mathematical Theory of Communication », en s'appuyant sur des travaux antérieurs. Il ne s'occupe pas du sens d'un message. Il regarde seulement parmi combien de messages possibles il a été choisi. Quand tous sont aussi probables, plus ce nombre est grand, plus le message choisi apporte d'information.
-    source: https://www.stat.berkeley.edu/~binyu/212A/papers/shannon48.pdf
+    reponse: Le chercheur Claude Shannon l'a précisé en 1948, dans l'article « A Mathematical Theory of Communication », après des travaux des années 1920 qui mesuraient déjà l'information. Il ne s'occupe pas du sens d'un message. Il regarde seulement parmi combien de messages possibles il a été choisi. Quand tous sont aussi probables, plus ce nombre est grand, plus le message choisi apporte d'information.
+    source: https://en.wikipedia.org/wiki/Information_theory
 ---
 
 Au départ, le nombre secret pouvait être n'importe lequel des huit. Les réponses ont
