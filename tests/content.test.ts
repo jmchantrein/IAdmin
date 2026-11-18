@@ -2,6 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { findCycle, findDangling, formatCycle } from '../src/core/graph.ts';
 import { pathRoute } from '../src/core/paths.ts';
 import { BUDGETS, countWords } from '../src/core/schema.ts';
+import { brickRefs, readingText, schemaIssues, schemaRefs } from '../src/markdown/mechanisms.ts';
+import { schemaFile, svgIssues } from '../src/markdown/svg.ts';
 import { loadContent, locales } from './load.ts';
 
 /**
@@ -9,7 +11,7 @@ import { loadContent, locales } from './load.ts';
  * The schema itself already checks that each solution passes and each counter-example fails.
  */
 describe.each(locales())('contenu « %s »', (lang) => {
-  const { bricks, paths, graph, errors } = loadContent(lang);
+  const { bricks, paths, graph, schemas, errors } = loadContent(lang);
 
   it('respecte le schéma', () => {
     // Joined so that a failure prints every file and rule in full.
@@ -27,15 +29,42 @@ describe.each(locales())('contenu « %s »', (lang) => {
 
   it(`garde une explication de ${BUDGETS.bodyWords} mots au plus`, () => {
     const tooLong = [...bricks]
-      .map(([id, brick]) => ({ id, words: countWords(brick.body) }))
+      .map(([id, brick]) => ({ id, words: countWords(readingText(brick.body)) }))
       .filter(({ words }) => words > BUDGETS.bodyWords)
       .map(({ id, words }) => `${id} : ${words} mots`);
     expect(tooLong).toEqual([]);
   });
 
+  it('dessine chaque schéma selon la charte', () => {
+    const broken = [...schemas].flatMap(([file, source]) =>
+      svgIssues(source).map((issue) => `${file} : ${issue}`),
+    );
+    expect(broken.join('\n')).toBe('');
+  });
+
+  it('appelle chaque schéma depuis sa brique, et seulement des schémas existants', () => {
+    const called = new Set<string>();
+    const problems: string[] = [];
+    for (const [id, brick] of bricks) {
+      schemaRefs(brick.body).forEach(({ name, alt }, i) => {
+        const file = schemaFile(`${id}.md`, name);
+        called.add(file);
+        problems.push(...schemaIssues(name, alt, i + 1).map((issue) => `${id} : ${issue}`));
+        if (!schemas.has(file)) problems.push(`${id} : schéma « ${name} » sans fichier ${file}`);
+      });
+    }
+    for (const file of schemas.keys()) {
+      if (!called.has(file)) problems.push(`${file} : schéma jamais appelé par sa brique`);
+    }
+    expect(problems.join('\n')).toBe('');
+  });
+
   graphIt('ne pointe que vers des briques existantes', () => {
     const links = new Map(
-      [...bricks].map(([id, b]) => [id, [...b.requiert, ...b.repose_sur, ...b.voir_aussi]]),
+      [...bricks].map(([id, b]) => [
+        id,
+        [...b.requiert, ...b.repose_sur, ...b.voir_aussi, ...brickRefs(b.body)],
+      ]),
     );
     expect(findDangling(links).map(({ from, to }) => `${from} → ${to}`)).toEqual([]);
   });

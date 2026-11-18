@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 240">
+  <g>
+    <circle cx="200" cy="90" r="48" class="trait fond" />
+    <rect x="182" y="138" width="36" height="22" rx="4" class="doux-plein" />
+    <text x="200" y="196" text-anchor="middle" font-size="20" class="texte-doux">éteinte</text>
+    <text x="200" y="232" text-anchor="middle" font-size="28" class="texte">0</text>
+  </g>
+  <g>
+    <g class="accent">
+      <line x1="500" y1="90" x2="516" y2="90" />
+      <line x1="380" y1="90" x2="364" y2="90" />
+      <line x1="440" y1="30" x2="440" y2="14" />
+      <line x1="482.4" y1="47.6" x2="493.7" y2="36.3" />
+      <line x1="397.6" y1="47.6" x2="386.3" y2="36.3" />
+      <line x1="482.4" y1="132.4" x2="493.7" y2="143.7" />
+      <line x1="397.6" y1="132.4" x2="386.3" y2="143.7" />
+    </g>
+    <circle cx="440" cy="90" r="48" class="trait accent-plein" />
+    <rect x="422" y="138" width="36" height="22" rx="4" class="doux-plein" />
+    <text x="440" y="196" text-anchor="middle" font-size="20" class="texte-accent">allumée</text>
+    <text x="440" y="232" text-anchor="middle" font-size="28" class="texte">1</text>
+  </g>
+</svg>

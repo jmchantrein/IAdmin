@@ -8,7 +8,6 @@ est résumé ici au fil de l'eau.
 
 ### J4 — Parcours Fondements complet
 
-- [ ] Mécanismes demandés par le propriétaire (en cours) : lien vers une brique avec infobulle, note de survol, section « Pour aller plus loin », schémas SVG intégrés avec leur charte.
 - [ ] Reprendre les 7 briques existantes avec ces mécanismes : liens vers les notions requises, raison de chaque convention, schémas à la place du texte ; deux relectures.
 - [ ] Envoyer au propriétaire les captures des briques reprises (il ne voit le rendu qu'après fusion).
 - [ ] Lot 5 : `algo/variable`, `algo/condition`, `algo/boucle`, avec `pas-a-pas`.
@@ -52,6 +51,8 @@ est résumé ici au fil de l'eau.
 - [ ] Le widget de la manipulation reste utilisable pendant les exercices : dans `donnees/octet`, il permet encore de lire la réponse de l'exercice sur 5 bits. Accepté pour l'instant ; le masquer ou le replier après la manipulation serait une réponse générale.
 - [ ] Écarts mineurs laissés après relecture du lot 1 : deux acquis d'`octet` contiennent un « et » ; trois exercices de `binaire-ecrire` donnent encore la liste des poids ; la première étape de son animation ne suit pas le même découpage que les suivantes.
 - [ ] Zod est chargé dans le navigateur pour valider la progression et les paramètres de widget : mesurer son poids si les pages ralentissent.
+- [ ] Infobulles et schémas sont remplis au rendu de la page (`expandMechanisms`), pas par le plugin Markdown : Astro garde en cache le corps compilé d'une brique tant que son fichier ne change pas, et un résumé ou un schéma modifié ailleurs resterait périmé en local. La page lit donc `entry.rendered.html` au lieu de `<Content />`.
+- [ ] Infobulles en CSS seul : la touche Échap ne les ferme pas (WCAG 1.4.13) ; une infobulle ouverte couvre les lignes du dessous ; un lien de brique touché sur téléphone ouvre la brique sans montrer le rappel ; le toucher d'une note n'est testé que sous Chromium.
 
 ## Fait
 
@@ -61,6 +62,7 @@ est résumé ici au fil de l'eau.
 - [x] Décisions : schémas en SVG écrits selon une charte ; une seule demande de fusion à la fin de J4 ; lots 5 et 6 avant les lots à widgets.
 - [x] `docs/fabrique/orchestrer.md` (rôles), `docs/fabrique/dessiner.md` (charte des schémas), procédures de rédaction et de relecture complétées.
 - [x] `docs/pedagogie.md` amendé, toujours 15 règles : « montrer, avec le texte sur le dessin » (preuve robuste pour le schéma explicatif, mince pour la bande dessinée), « dire pourquoi » (modérée), rappel d'un prérequis par lien (débattue : la recherche sur l'hypertexte montre aussi des liens qui distraient, d'où un seul lien par notion, à sa première mention). Références contrôlées sur notices et résumés, sans lecture du texte intégral.
+- [x] Mécanismes de contenu (`src/markdown/`) : lien `[bit](brique:donnees/bit)` avec infobulle « titre + résumé », note de survol `[mot](note "…")` (40 mots), champ `plus_loin` (3 entrées de 80 mots, `source` en https), schémas `![alt](schema:nom)` intégrés à la page et contrôlés selon la charte. Démonstration dans `donnees/bit`. Notes et textes alternatifs hors du budget de 150 mots.
 
 ### Mise en ligne (2026-11-17)
 

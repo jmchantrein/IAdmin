@@ -651,3 +651,139 @@ button.danger {
   font-weight: 600;
   color: var(--accent);
 }
+
+/* --- Brick body mechanisms (src/markdown/mechanisms.ts) --- */
+
+/* Tooltips span the width of the text column, under the line that opens them: they never
+   overflow a narrow screen, whatever the position of the word in the line. */
+.explanation {
+  position: relative;
+}
+
+.bulle-texte {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  padding: 0.6rem 0.9rem;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 14px rgb(0 0 0 / 0.15);
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.bulle:hover .bulle-texte,
+.bulle:focus-within .bulle-texte {
+  display: block;
+}
+
+.bulle-titre {
+  display: block;
+  font-weight: 700;
+}
+
+.bulle-note .bulle-texte {
+  border-left-color: var(--muted);
+}
+
+/* A note is not a link: plain text with a dotted underline, focusable but going nowhere. */
+button.note {
+  font-weight: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  border-radius: 2px;
+  padding: 0;
+  cursor: help;
+  text-decoration: underline dotted var(--muted);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+}
+
+/* Diagrams: inline SVG coloured by classes only, so they follow the light or dark theme. */
+.schema {
+  margin: 1.5rem 0;
+}
+
+.schema svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  color: var(--text);
+  fill: var(--text);
+}
+
+/* Strokes first, fills after: `fond trait` draws a contour on a surface fill. */
+.schema .trait,
+.schema .accent,
+.schema .ok,
+.schema .ko,
+.schema .doux {
+  fill: none;
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.schema .trait {
+  stroke: var(--text);
+}
+.schema .accent {
+  stroke: var(--accent);
+}
+.schema .ok {
+  stroke: var(--ok);
+}
+.schema .ko {
+  stroke: var(--ko);
+}
+.schema .doux {
+  stroke: var(--muted);
+}
+
+.schema .plein,
+.schema .texte {
+  fill: var(--text);
+}
+.schema .fond {
+  fill: var(--surface);
+}
+.schema .accent-plein,
+.schema .texte-accent {
+  fill: var(--accent);
+}
+.schema .ok-plein {
+  fill: var(--ok);
+}
+.schema .ko-plein {
+  fill: var(--ko);
+}
+.schema .doux-plein,
+.schema .texte-doux {
+  fill: var(--muted);
+}
+
+/* --- Going further --- */
+
+.further details {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 0.6rem 1rem;
+  margin-bottom: 0.6rem;
+}
+
+.further summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.further details p {
+  margin: 0.6rem 0 0;
+}

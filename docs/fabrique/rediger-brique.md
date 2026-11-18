@@ -45,6 +45,8 @@ règles pédagogiques par `docs/pedagogie.md`, le gabarit par
 - Si la raison alourdit l'explication, place-la dans une note de survol,
   `[8 bits](note "…")`, en 40 mots au plus, ou dans une entrée `plus_loin` (une question,
   une réponse de 80 mots au plus).
+- Le budget de 150 mots compte le texte lu d'emblée : les notes et les textes alternatifs
+  ont leur propre budget.
 - Garde dans l'explication tout ce qu'un exercice demande : une note ou une entrée
   `plus_loin` complète, elle ne porte rien d'indispensable.
 - Vérifie par une recherche chaque affirmation historique ou chiffrée, et donne l'adresse

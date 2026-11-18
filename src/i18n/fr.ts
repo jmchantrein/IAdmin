@@ -36,6 +36,8 @@ export const fr = {
     inPaths: 'Parcours',
     under: 'Pour aller plus bas',
     seeAlso: 'Voir aussi',
+    further: 'Pour aller plus loin',
+    source: 'Source',
   },
   reminders: {
     heading: 'Ce que cette brique suppose',

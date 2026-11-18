@@ -46,6 +46,9 @@ defs marker`.
   `doux-plein`, `texte`, `texte-doux`, `texte-accent`. Le schéma suit ainsi le thème clair
   ou sombre.
 - Laisse la racine sans `width` ni `height` : le schéma prend la largeur du texte.
+- Donne un `font-size` à chaque `<text>`, sur lui ou sur un `<g>` parent.
+- Compte un trait de 2 unités du cadre : il s'épaissit et s'affine avec le dessin.
+- Vise seulement un `id` du même fichier dans une référence `url(#…)`.
 
 ## Vérifier
 

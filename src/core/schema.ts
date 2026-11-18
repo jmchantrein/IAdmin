@@ -13,6 +13,15 @@ export const BUDGETS = {
   exercisesMax: 5,
   summaryWords: 40,
   bodyWords: 150,
+  /** Hover note `[mot](note "…")`. */
+  noteWords: 40,
+  /** "Pour aller plus loin" entries. */
+  furtherMax: 3,
+  furtherWords: 80,
+  /** Inline SVG diagrams `![…](schema:nom)`. */
+  schemasMax: 2,
+  schemaAltWords: 30,
+  schemaWords: 25,
 } as const;
 
 /** Counts words; pure punctuation (Markdown table bars, bullets) does not count. */
@@ -114,6 +123,21 @@ export function isQuickExercise(e: Exercise): e is ChoiceExercise | InputExercis
   return e.type === 'choix' || e.type === 'saisie';
 }
 
+// --- "Pour aller plus loin": optional questions, folded under the exercises ---
+
+const furtherSchema = z.strictObject({
+  question: z.string().min(1),
+  reponse: z
+    .string()
+    .min(1)
+    .refine((s) => countWords(s) <= BUDGETS.furtherWords, {
+      message: `réponse « pour aller plus loin » de ${BUDGETS.furtherWords} mots au plus`,
+    }),
+  source: z
+    .url({ protocol: /^https$/, error: 'source attendue : une adresse https://…' })
+    .optional(),
+});
+
 // --- Brick ---
 
 type Issue = { path: PropertyKey[]; message: string };
@@ -186,6 +210,7 @@ export const brickSchema = z
       .strictObject({ consigne: z.string().min(1), ...widgetUseSchema.shape })
       .optional(),
     exercices: z.array(exerciseSchema).min(BUDGETS.exercisesMin).max(BUDGETS.exercisesMax),
+    plus_loin: z.array(furtherSchema).max(BUDGETS.furtherMax).default([]),
   })
   .superRefine((brick, ctx) => {
     const issues: Issue[] = [];
