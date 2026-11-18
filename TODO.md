@@ -9,7 +9,7 @@ est résumé ici au fil de l'eau.
 ### J4 — Parcours Fondements complet
 
 - [ ] Envoyer au propriétaire les captures de chaque lot terminé (il ne voit le rendu qu'après fusion).
-- [ ] Lot 4 : `logique/portes-logiques`, `logique/additionneur`. Relu, sans écart bloquant. Décision : `portes-logiques` est recentrée sur la porte et l'assemblage (le OU exclusif, déjà défini dans `et-ou`, n'y est plus qu'un exemple), avec un `pas-a-pas` qui déroule l'assemblage porte après porte. Corrections en cours. L'additionneur complet (trois entrées) reste hors du parcours.
+- [ ] Lot 4 : `logique/portes-logiques`, `logique/additionneur`. Relu deux fois, sans écart bloquant ; `portes-logiques` recentrée sur la porte et l'assemblage. Dernières corrections en cours. L'additionneur complet (trois entrées) reste hors du parcours.
 - [ ] Fin de J4 : une seule demande de fusion, puis contrôle du job `deployer` et `npm run e2e:live`.
 
 ### J5 à J9
@@ -65,7 +65,9 @@ est résumé ici au fil de l'eau.
 - [ ] Widget `porte` : chaque interrupteur d'entrée porte aussi une lampe ; les consignes disent donc « la lampe NON », « la lampe ET ».
 - [ ] `logique/vrai-faux` dit qu'une question n'est pas une affirmation, `algo/condition` définit une condition comme une question à réponse oui ou non. Une demi-phrase fait le pont ; harmoniser le vocabulaire si un apprenant s'y perd.
 - [ ] Une suite de valeurs (`0100`) se vérifie par une `regex` écrite à la main pour tolérer les virgules (`0,?1,?0,?0`). Proposition : un filtre de la chaîne `verif` qui retire virgules et espaces.
-- [ ] Un assemblage de portes ne se manipule pas : `porte` ne branche pas une sortie sur une entrée, `portes-logiques` le déroule donc avec `pas-a-pas`.
+- [ ] Un assemblage de portes ne se manipule pas : `porte` ne branche pas une sortie sur une entrée, et le `pas-a-pas` qui le déroule dans `portes-logiques` ne montre aucun branchement entre ses cases (l'apprenant suit un calcul, il n'assemble pas). Ses 12 étapes ne laissent place qu'à deux lignes de la table sur quatre. Pistes : des flèches entre cases, un schéma fixe au-dessus de la grille, ou un widget de circuit.
+- [ ] Dans `additionneur`, le widget `porte` calcule toute colonne de deux bits : aucun exercice sur ET et OU exclusif ne sort de sa portée, seul un circuit à plusieurs colonnes le permettrait.
+- [ ] `scripts/verifier-isole.sh` suppose bash et les outils GNU ; trois de ses refus n'ont pas d'essai (création de la copie en échec, port déjà occupé, copie d'un autre dépôt).
 - [ ] Zod est chargé dans le navigateur pour valider la progression et les paramètres de widget : mesurer son poids si les pages ralentissent.
 - [ ] Infobulles et schémas sont remplis au rendu de la page (`expandMechanisms`), pas par le plugin Markdown : Astro garde en cache le corps compilé d'une brique tant que son fichier ne change pas, et un résumé ou un schéma modifié ailleurs resterait périmé en local. La page lit donc `entry.rendered.html` au lieu de `<Content />`.
 - [ ] Infobulles en CSS seul : la touche Échap ne les ferme pas (WCAG 1.4.13) ; une infobulle ouverte couvre les lignes du dessous ; un lien de brique touché sur téléphone ouvre la brique sans montrer le rappel ; le toucher d'une note n'est testé que sous Chromium.
