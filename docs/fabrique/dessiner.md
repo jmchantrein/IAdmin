@@ -19,7 +19,10 @@ relecteur et l'orchestrateur vérifient le reste sur capture d'écran.
 - Travaille dans un cadre de 640 de large (`viewBox="0 0 640 H"`, `H` de 480 au plus),
   sur une grille de 8.
 - Pose chaque étiquette sur l'élément qu'elle nomme, ou reliée à lui par un trait court.
-- Écris 25 mots au plus dans le dessin, en corps 14 à 28.
+- Écris 25 mots au plus dans le dessin, en corps 22 à 32 : un téléphone affiche le cadre à
+  moitié taille, un corps 22 y fait 11 pixels.
+- Empile plutôt qu'étaler : une étiquette longue passe sur deux lignes ou au-dessus de sa
+  forme, une suite de plus de quatre blocs se plie en deux rangées.
 - Emploie les mots de l'explication, dans le même sens.
 - Fais lire de gauche à droite et de haut en bas ; indique un ordre par des numéros.
 - Réserve la couleur d'accent à l'élément dont parle la brique ; laisse le reste en trait.
@@ -53,6 +56,9 @@ defs marker`.
 ## Vérifier
 
 - Lance `npm run verify` : il contrôle la charte technique.
-- Regarde la capture en thème clair et en thème sombre : rien ne se chevauche, tout se
-  lit à la largeur d'un téléphone.
+- Lance `node scripts/apercu-schema.mjs <fichier.svg>` : il rend le schéma avec les styles
+  du site, sans construire le site, en téléphone sombre et en bureau clair
+  (`test-results/apercus/`). Regarde les deux images.
+- Regarde la capture de la page et la capture `…-telephone-sombre.png` (360 px, thème
+  sombre) : rien ne se chevauche, chaque mot se lit sans zoom.
 - Cache le texte de l'explication : le schéma se comprend-il avec ses seules étiquettes ?

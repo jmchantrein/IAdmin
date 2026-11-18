@@ -9,7 +9,11 @@ import { escapeHtml } from './html.ts';
 
 export const SCHEMA_WIDTH = 640;
 export const SCHEMA_MAX_HEIGHT = 480;
-export const SCHEMA_FONT_SIZE = { min: 14, max: 28 } as const;
+/**
+ * Sizes in units of the 640-wide frame. A phone shows the frame at about half size and a
+ * desktop at about 0.8 (`max-width` in `global.css`): 22 to 32 stays readable on both.
+ */
+export const SCHEMA_FONT_SIZE = { min: 22, max: 32 } as const;
 
 export const SCHEMA_CLASSES = [
   'trait',
@@ -195,7 +199,10 @@ export function svgIssues(source: string): string[] {
     issues.push(...attributeIssues(tag));
     if (tag.name === 'text') {
       const inherited = [...open, tag].some((t) => t.attributes.has('font-size'));
-      if (!inherited) issues.push('<text> sans font-size (entre 14 et 28)');
+      if (!inherited)
+        issues.push(
+          `<text> sans font-size (entre ${SCHEMA_FONT_SIZE.min} et ${SCHEMA_FONT_SIZE.max})`,
+        );
     }
     if (!tag.selfClosing) open.push(tag);
   }

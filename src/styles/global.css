@@ -711,9 +711,12 @@ button.note {
   margin: 1.5rem 0;
 }
 
+/* Capped width: text sized for a phone (see SCHEMA_FONT_SIZE) stays moderate on a desktop. */
 .schema svg {
   display: block;
   width: 100%;
+  max-width: 520px;
+  margin-inline: auto;
   height: auto;
   color: var(--text);
   fill: var(--text);

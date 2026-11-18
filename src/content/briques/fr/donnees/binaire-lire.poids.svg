@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 248">
-  <g font-size="18" class="texte-doux" text-anchor="end">
-    <text x="88" y="70">bits</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 264">
+  <g font-size="24" class="texte-doux" text-anchor="end">
+    <text x="88" y="68">bits</text>
     <text x="88" y="158">poids</text>
   </g>
   <g>
@@ -9,13 +9,13 @@
     <rect x="328" y="16" width="96" height="88" rx="8" class="accent fond" />
     <rect x="440" y="16" width="96" height="88" rx="8" class="accent fond" />
   </g>
-  <g font-size="28" text-anchor="middle">
-    <text x="152" y="70" class="texte-accent">1</text>
-    <text x="264" y="70" class="texte-doux">0</text>
-    <text x="376" y="70" class="texte-accent">1</text>
-    <text x="488" y="70" class="texte-accent">1</text>
+  <g font-size="32" text-anchor="middle">
+    <text x="152" y="71" class="texte-accent">1</text>
+    <text x="264" y="71" class="texte-doux">0</text>
+    <text x="376" y="71" class="texte-accent">1</text>
+    <text x="488" y="71" class="texte-accent">1</text>
   </g>
-  <g font-size="24" text-anchor="middle">
+  <g font-size="28" text-anchor="middle">
     <text x="152" y="160" class="texte-accent">8</text>
     <text x="264" y="160" class="texte-doux">4</text>
     <text x="376" y="160" class="texte-accent">2</text>
@@ -25,6 +25,6 @@
   <line x1="376" y1="176" x2="376" y2="192" class="accent" />
   <line x1="488" y1="176" x2="488" y2="192" class="accent" />
   <polyline points="152,192 152,200 488,200 488,192" class="accent" />
-  <line x1="320" y1="200" x2="320" y2="208" class="accent" />
-  <text x="320" y="236" font-size="24" text-anchor="middle" class="texte">8 + 2 + 1 = 11</text>
+  <line x1="320" y1="200" x2="320" y2="210" class="accent" />
+  <text x="320" y="244" font-size="28" text-anchor="middle" class="texte">8 + 2 + 1 = 11</text>
 </svg>

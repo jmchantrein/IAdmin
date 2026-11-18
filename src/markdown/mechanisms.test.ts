@@ -14,7 +14,7 @@ import {
 import { mechanismsPlugin } from './plugin.ts';
 
 const FILE = 'src/content/briques/fr/donnees/bit.md';
-const SVG = '<svg viewBox="0 0 640 100"><text font-size="20" class="texte">0</text></svg>';
+const SVG = '<svg viewBox="0 0 640 100"><text font-size="24" class="texte">0</text></svg>';
 
 const context: ExpandContext = {
   file: FILE,

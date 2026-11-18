@@ -11,7 +11,7 @@ const valid = svg(`
     <line x1="120" y1="35" x2="200" y2="35" marker-end="url(#fleche)" />
     <circle cx="300" cy="35" r="20" fill="none" stroke="currentColor" />
   </g>
-  <text x="20" y="100" font-size="20" class="texte">éteinte <tspan class="texte-accent" font-size="14px">0</tspan></text>
+  <text x="20" y="100" font-size="24" class="texte">éteinte <tspan class="texte-accent" font-size="22px">0</tspan></text>
 `);
 
 describe('svgIssues', () => {
@@ -74,19 +74,19 @@ describe('svgIssues', () => {
     );
   });
 
-  it('keeps text between 14 and 28, and at most 25 words', () => {
+  it('keeps text between 22 and 32, and at most 25 words', () => {
     expect(svgIssues(svg('<text font-size="12">a</text>'))).toContain(
-      'font-size="12" dans <text> : entre 14 et 28',
+      'font-size="12" dans <text> : entre 22 et 32',
     );
-    expect(svgIssues(svg('<text font-size="30">a</text>'))).toContain(
-      'font-size="30" dans <text> : entre 14 et 28',
+    expect(svgIssues(svg('<text font-size="40">a</text>'))).toContain(
+      'font-size="40" dans <text> : entre 22 et 32',
     );
-    expect(svgIssues(svg('<text>a</text>'))).toContain('<text> sans font-size (entre 14 et 28)');
-    expect(svgIssues(svg('<g font-size="16"><text>a</text></g>'))).toEqual([]);
-    expect(svgIssues(svg(`<text font-size="16">${'mot '.repeat(26)}</text>`))).toContain(
+    expect(svgIssues(svg('<text>a</text>'))).toContain('<text> sans font-size (entre 22 et 32)');
+    expect(svgIssues(svg('<g font-size="24"><text>a</text></g>'))).toEqual([]);
+    expect(svgIssues(svg(`<text font-size="24">${'mot '.repeat(26)}</text>`))).toContain(
       '26 mots dans le dessin : 25 au plus',
     );
-    expect(svgIssues(svg(`<text font-size="16">${'mot '.repeat(25)}</text>`))).toEqual([]);
+    expect(svgIssues(svg(`<text font-size="24">${'mot '.repeat(25)}</text>`))).toEqual([]);
   });
 
   it('rejects malformed files', () => {

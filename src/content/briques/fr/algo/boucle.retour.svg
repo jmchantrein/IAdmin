@@ -1,17 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 232">
-  <rect x="144" y="32" width="352" height="56" rx="8" class="accent fond" />
-  <text x="320" y="66" font-size="18" text-anchor="middle" class="texte-accent">« épargne » plus petite que 10 ?</text>
-  <line x1="320" y1="88" x2="320" y2="142" class="trait" />
-  <polygon points="313,140 327,140 320,152" class="plein" />
-  <text x="332" y="126" font-size="18" class="texte">oui</text>
-  <rect x="176" y="152" width="288" height="56" rx="8" class="trait fond" />
-  <text x="320" y="186" font-size="18" text-anchor="middle" class="texte">ajoute 3 à « épargne »</text>
-  <polyline points="176,180 120,180 120,60 134,60" class="accent" />
-  <polygon points="132,53 144,60 132,67" class="accent-plein" />
-  <text x="108" y="126" font-size="16" text-anchor="end" class="texte-accent">un tour</text>
-  <line x1="496" y1="60" x2="554" y2="60" class="trait" />
-  <polygon points="552,53 564,60 552,67" class="plein" />
-  <text x="526" y="48" font-size="18" text-anchor="middle" class="texte">non</text>
-  <rect x="564" y="36" width="56" height="48" rx="8" class="trait fond" />
-  <text x="592" y="66" font-size="18" text-anchor="middle" class="texte">fin</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 288">
+  <rect x="168" y="16" width="304" height="88" rx="8" class="accent fond" />
+  <text x="320" y="52" font-size="24" text-anchor="middle" class="texte-accent">
+    <tspan x="320">« épargne »</tspan>
+    <tspan x="320" dy="32">plus petite que 10 ?</tspan>
+  </text>
+  <line x1="320" y1="104" x2="320" y2="170" class="trait" />
+  <polygon points="313,168 327,168 320,180" class="plein" />
+  <text x="332" y="150" font-size="22" class="texte">oui</text>
+  <rect x="200" y="180" width="240" height="88" rx="8" class="trait fond" />
+  <text x="320" y="216" font-size="24" text-anchor="middle" class="texte">
+    <tspan x="320">ajoute 3</tspan>
+    <tspan x="320" dy="32">à « épargne »</tspan>
+  </text>
+  <polyline points="200,224 136,224 136,60 156,60" class="accent" />
+  <polygon points="154,53 166,60 154,67" class="accent-plein" />
+  <text x="124" y="150" font-size="22" text-anchor="end" class="texte-accent">un tour</text>
+  <line x1="472" y1="60" x2="534" y2="60" class="trait" />
+  <polygon points="532,53 544,60 532,67" class="plein" />
+  <text x="506" y="46" font-size="22" text-anchor="middle" class="texte">non</text>
+  <rect x="548" y="32" width="72" height="56" rx="8" class="trait fond" />
+  <text x="584" y="68" font-size="24" text-anchor="middle" class="texte">fin</text>
 </svg>
