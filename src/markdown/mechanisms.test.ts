@@ -98,7 +98,7 @@ describe('note', () => {
   it('renders a focusable trigger that is not a link, with its tooltip', async () => {
     const html = await render('Un octet compte [8 bits](note "Huit, c\'est « un octet ».").');
     expect(html).toContain(
-      '<span class="bulle bulle-note"><button type="button" class="note" aria-describedby="bulle-1">8 bits</button><span class="bulle-texte" role="tooltip" id="bulle-1">Huit, c&#39;est « un octet ».</span></span>',
+      '<span class="bulle bulle-note"><button type="button" class="note" aria-describedby="bulle-1">8 bits</button><span class="bulle-texte" role="tooltip" id="bulle-1">Huit, c&#39;est «\u00a0un octet\u00a0».</span></span>',
     );
     expect(html).not.toContain('<a ');
   });
@@ -120,7 +120,7 @@ describe('diagram', () => {
   it('inlines the SVG in a figure, with role img and the alternative text as its name', async () => {
     const html = await render('Avant.\n\n![Deux lampes : 0 et 1.](schema:etats)\n\nAprès.');
     expect(html).toContain(
-      '<figure class="schema"><svg role="img" aria-label="Deux lampes : 0 et 1." viewBox="0 0 640 100">',
+      '<figure class="schema"><svg role="img" aria-label="Deux lampes\u00a0: 0 et 1." viewBox="0 0 640 100">',
     );
     expect(html).not.toContain('<img');
     expect(html).not.toMatch(/<p>\s*<figure/);
@@ -139,6 +139,26 @@ describe('diagram', () => {
     await expect(
       render('![A](schema:etats)\n\n![B](schema:etats)\n\n![C](schema:etats)'),
     ).rejects.toThrow('3 schémas : 2 au plus par brique');
+  });
+});
+
+describe('typographie', () => {
+  it('puts a no-break space in the text of the language, not in code', async () => {
+    const html = await render(
+      'Vrai ? Oui : « **huit** » et [8 bits](note "Un octet !"). Lis `a : b`.\n\n```\nx ? y : z\n```',
+    );
+    expect(html).toContain('Vrai ? Oui : « <strong>huit</strong> »');
+    expect(html).toContain('8 bits</button>');
+    expect(html).toContain('Un octet !</span>');
+    expect(html).toContain('<code>a : b</code>');
+    expect(html).toContain('x ? y : z');
+  });
+
+  it('applies the rules of the language found in the path of the brick', async () => {
+    const renderer = await createSatteriMarkdownProcessor({ mdastPlugins: [mechanismsPlugin] });
+    const fileURL = new URL(`file://${process.cwd()}/src/content/briques/en/data/bit.md`);
+    const { code } = await renderer.render('Why ? Because !', { fileURL });
+    expect(code).toContain('Why ? Because !');
   });
 });
 

@@ -61,7 +61,7 @@ export function Exercises({ brickId, exercises, lang, next }: Props) {
           </p>
           {next.length > 0 && (
             <>
-              <p>{t.continue} :</p>
+              <p>{t.continue}&nbsp;:</p>
               <ul>
                 {next.map((link) => (
                   <li>

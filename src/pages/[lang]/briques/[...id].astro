@@ -64,7 +64,7 @@ const inPaths = [...paths].filter(([pathId]) => pathRoute(graph, paths, pathId).
         <span class={`level ${brick.niveau}`}>{t.level[brick.niveau]}</span>
         {inPaths.map(([pathId, path]) => (
           <a class="crumb" href={pathUrl(lang, pathId)}>
-            {t.brick.inPaths} : {path.titre}
+            {t.brick.inPaths}&nbsp;: {path.titre}
           </a>
         ))}
       </p>

@@ -14,6 +14,8 @@ export const WIDGET_PARAMS = {
     suivi: z.boolean().default(false),
     /** Show the weight of each bit (…, 4, 2, 1) and the sum of the weights switched on. */
     poids: z.boolean().default(false),
+    /** Show the character whose code is the number written by the bits (binary reading). */
+    caractere: z.boolean().default(false),
   }),
   /** Guess a secret number with yes/no questions. Value: number of questions once found. */
   devinette: z.strictObject({
@@ -24,13 +26,20 @@ export const WIDGET_PARAMS = {
    * learner. Value: the number of the current step, starting at 1.
    */
   'pas-a-pas': z.strictObject({
+    /**
+     * Lays the cells of every step out in a grid of this many columns (an addition posed in
+     * rows, a variable apart from the row of cards). Indices still run left to right, then
+     * top to bottom; a row may stay incomplete.
+     */
+    colonnes: z.number().int().min(1).max(8).optional(),
     etapes: z
       .array(
         z
           .strictObject({
             /** What changes at this step, in one sentence. */
             legende: z.string().min(1),
-            cases: z.array(z.string()).min(1).max(12),
+            /** An empty text is an empty slot, without a frame, to align rows. */
+            cases: z.array(z.string()).min(1).max(24),
             /** Indices of the cells in focus. */
             actifs: z.array(z.number().int().min(0)).default([]),
             /** Indices of the cells set aside. */

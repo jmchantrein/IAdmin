@@ -453,6 +453,14 @@ input[type='text'] {
   font-size: 1.3rem;
 }
 
+/* The character written by the bits: monospace, so that `l`, `I` and `1` stay apart. */
+.character {
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
 .bits-tracker ul {
   list-style: none;
   padding: 0;
@@ -593,6 +601,35 @@ button.danger {
   transition:
     border-color 0.15s,
     opacity 0.15s;
+}
+
+/* `colonnes`: a grid whose columns shrink to fit the width (5 columns hold in 328 px). */
+.steps-cells.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--colonnes), minmax(0, 3.6rem));
+  gap: 0.6rem 0.4rem;
+}
+
+.steps-cells.grid li {
+  min-width: 0;
+}
+
+.steps-cells.grid .cell {
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+}
+
+.steps-cells.grid .cell-label {
+  max-width: 100%;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+/* An empty cell keeps its place in the grid, without a frame. */
+.steps-cells li.empty .cell {
+  border-color: transparent;
+  background: transparent;
 }
 
 .steps-cells li.active .cell {

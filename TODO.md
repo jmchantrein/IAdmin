@@ -48,7 +48,10 @@ est résumé ici au fil de l'eau.
 - [ ] Aucune étude trouvée sur l'effet d'une infobulle qui rappelle un prérequis, ni sur la fréquence d'ouverture des notes et des sections repliées : à observer avec de vrais apprenants.
 - [ ] Le widget de la manipulation reste utilisable pendant les exercices : dans `donnees/octet`, il permet encore de lire la réponse de l'exercice sur 5 bits. Accepté pour l'instant ; le masquer ou le replier après la manipulation serait une réponse générale.
 - [ ] Écarts mineurs laissés après relecture du lot 1 : deux acquis d'`octet` contiennent un « et » ; trois exercices de `binaire-ecrire` donnent encore la liste des poids ; la première étape de son animation ne suit pas le même découpage que les suivantes.
-- [ ] Typographie française : une espace ordinaire précède « : », « ; », « ? », « ! » et suit « « », donc le signe peut passer seul à la ligne sur téléphone (constaté dans `octet` et `boucle`). Une espace insécable posée par le site, dans l'explication comme dans les consignes, réglerait le cas partout.
+- [ ] Typographie française : le site pose l'espace insécable dans le contenu (`src/core/typography.ts`), mais les textes d'interface de `src/i18n/fr.ts` la portent à la main, et le texte des schémas SVG n'est pas traité.
+- [ ] L'ordre des options d'un exercice `choix` est tiré de sa consigne : toute retouche de la consigne, même typographique, change l'ordre affiché.
+- [ ] Après une modification du plugin Markdown, supprimer `node_modules/.astro/data-store.json` en local : Astro garde le corps compilé d'une brique tant que son fichier ne change pas. La CI part d'un dossier propre.
+- [ ] Les paramètres `colonnes` (`pas-a-pas`) et `caractere` (`bascule-bits`) n'ont que des tests unitaires : ajouter leur scénario de bout en bout avec la première brique qui les emploie.
 - [ ] Sur une brique qui a un prérequis, le bloc « Ce que cette brique suppose » et l'infobulle du lien affichent le même résumé : rappel doublé, accepté pour l'instant.
 - [ ] La lampe allumée est bleue dans le schéma de `bit` et jaune dans le widget : la charte des schémas n'a pas de jaune.
 - [ ] `tenir` a deux sens dans le parcours : « tient sur un bit, sur un octet » (suffit pour noter) et « le poids tient dans ce qui reste » (`binaire-ecrire`).
@@ -75,6 +78,7 @@ est résumé ici au fil de l'eau.
 - [x] Lot 5 : `algo/variable`, `algo/condition`, `algo/boucle`, avec `pas-a-pas`. Relecture adverse : 3 écarts bloquants levés (condition proposée sous forme d'affirmation, exercice de boucle recopiable depuis la manipulation, raison circulaire). Conventions fixées pour la suite : un nom de variable entre guillemets, « vaut moins de », « les étapes du oui ».
 - [x] Sources ouvertes et confirmées sur les pages (Académie française, Wikipédia anglophone, IBM) ; l'adresse de l'article de Shannon, qui redirigeait ailleurs, est remplacée ; une phrase attribuée à Shannon, confirmée nulle part, est retirée. L'environnement cloud « IAdmin » autorise désormais ces hôtes.
 - [x] Captures des 10 briques envoyées au propriétaire.
+- [x] Espaces insécables posées par le site avant « : ; ? ! » » et après « « », dans l'explication et dans les textes du frontmatter ; `pas-a-pas` range ses cases en grille (`colonnes`) ; `bascule-bits` affiche le caractère du code écrit (`caractere`).
 
 ### Mise en ligne (2026-11-17)
 

@@ -17,6 +17,7 @@ import {
   schemaIssues,
   schemaMarker,
 } from './mechanisms.ts';
+import { typeset } from '../core/typography.ts';
 
 type MdastPluginEntry = NonNullable<SatteriProcessorOptions['mdastPlugins']>[number];
 
@@ -29,6 +30,9 @@ export const mechanismsPlugin: MdastPluginEntry = ({ fileURL }) => {
   const fail = (rule: string): never => {
     throw new ContentError(file, rule);
   };
+  // The language is the first folder under `briques/`: `briques/fr/donnees/bit.md`.
+  const lang = /(?:^|[\\/])briques[\\/]([^\\/]+)[\\/]/.exec(file)?.[1] ?? '';
+  const t = (text: string) => typeset(text, lang);
   let tooltips = 0;
   let schemas = 0;
 
@@ -52,7 +56,7 @@ export const mechanismsPlugin: MdastPluginEntry = ({ fileURL }) => {
         ctx.replaceNode(node, [
           { type: 'html', value: noteOpen(n) },
           ...node.children,
-          { type: 'html', value: noteClose(n, node.title!) },
+          { type: 'html', value: noteClose(n, t(node.title!)) },
         ]);
       }
     },
@@ -64,7 +68,12 @@ export const mechanismsPlugin: MdastPluginEntry = ({ fileURL }) => {
       if (name === null) return;
       const issues = schemaIssues(name, only.alt ?? '', ++schemas);
       if (issues.length > 0) fail(issues.join(' ; '));
-      ctx.replaceNode(node, { type: 'html', value: schemaMarker(name, only.alt ?? '') });
+      ctx.replaceNode(node, { type: 'html', value: schemaMarker(name, t(only.alt ?? '')) });
+    },
+    // Inline code and code blocks are not text nodes: they keep their spaces.
+    text(node, ctx) {
+      const value = t(node.value);
+      if (value !== node.value) ctx.setField(node, 'value', value);
     },
     image(node, ctx) {
       if (parseSchemaSrc(node.url) === null) return;
