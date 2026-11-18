@@ -6,9 +6,6 @@ est résumé ici au fil de l'eau.
 
 ## À faire
 
-### J4 — Parcours Fondements complet
-
-
 ### J5 à J9
 
 - [ ] J5 — Terminal intégré : type d'exercice `terminal`, trois briques `shell/`. Reprendre `spike/terminal` (image Debian 12, `machine.mjs`, `control-agent`), puis supprimer le dossier `spike/` et son workflow.
