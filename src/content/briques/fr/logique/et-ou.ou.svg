@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320">
+  <text x="320" y="36" font-size="26" text-anchor="middle" class="texte">Menu « fromage ou dessert »</text>
+  <rect x="520" y="56" width="112" height="256" rx="8" class="accent" />
+  <g font-size="22" text-anchor="middle" class="texte-doux">
+    <text x="240" y="100">aucun</text>
+    <text x="352" y="86">
+      <tspan x="352">fromage</tspan>
+      <tspan x="352" dy="28">seul</tspan>
+    </text>
+    <text x="464" y="86">
+      <tspan x="464">dessert</tspan>
+      <tspan x="464" dy="28">seul</tspan>
+    </text>
+    <text x="576" y="86" class="texte-accent">
+      <tspan x="576">les</tspan>
+      <tspan x="576" dy="28">deux</tspan>
+    </text>
+  </g>
+  <line x1="8" y1="136" x2="632" y2="136" class="doux" />
+  <g font-size="24" class="texte">
+    <text x="16" y="174">
+      <tspan x="16">« ou »</tspan>
+      <tspan x="16" dy="30">du menu</tspan>
+    </text>
+    <text x="16" y="262">
+      <tspan x="16">OU</tspan>
+      <tspan x="16" dy="30">logique</tspan>
+    </text>
+  </g>
+  <line x1="8" y1="224" x2="632" y2="224" class="doux" />
+  <g font-size="32" font-family="monospace" text-anchor="middle" class="texte">
+    <text x="240" y="192">0</text>
+    <text x="352" y="192">1</text>
+    <text x="464" y="192">1</text>
+    <text x="576" y="192" class="ko-plein">0</text>
+    <text x="240" y="280">0</text>
+    <text x="352" y="280">1</text>
+    <text x="464" y="280">1</text>
+    <text x="576" y="280" class="texte-accent">1</text>
+  </g>
+</svg>

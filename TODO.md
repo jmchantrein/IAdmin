@@ -10,7 +10,7 @@ est résumé ici au fil de l'eau.
 
 - [ ] Envoyer au propriétaire les captures de chaque lot terminé (il ne voit le rendu qu'après fusion).
 - [ ] Lot 2 : `donnees/addition-binaire` et `donnees/texte-code` sont relues et corrigées ; `donnees/hash` est relue, corrections en cours.
-- [ ] Lot 3 : relu. Décision : `non-et-ou` est scindée en `logique/non` et `logique/et-ou` (NON n'y était pas manipulé avant d'être expliqué) ; l'enchaînement d'opérations passe au lot 4. Corrections en cours, puis seconde relecture des deux briques nouvelles.
+- [ ] Lot 3 : `logique/vrai-faux`, `logique/non`, `logique/et-ou`, `logique/table-de-verite`. Relu et corrigé ; `non-et-ou` a été scindée en `non` et `et-ou` (NON n'y était pas manipulé avant d'être expliqué) et l'enchaînement d'opérations passe au lot 4. Reste la seconde relecture des deux briques issues de la scission.
 - [ ] Lot 4 : `logique/portes-logiques` (une porte est un composant qui réalise une opération ; la sortie d'une porte peut servir d'entrée à une autre ; OU exclusif) et `logique/additionneur`. Le widget `porte` avec deux portes sur les mêmes entrées (`ou-exclusif` pour la somme, `et` pour la retenue) montre le demi-additionneur sans éditeur de circuit ; l'enchaînement se dessine en schéma. L'additionneur complet est reporté s'il demande un vrai circuit.
 - [ ] Fin de J4 : une seule demande de fusion, puis contrôle du job `deployer` et `npm run e2e:live`.
 
