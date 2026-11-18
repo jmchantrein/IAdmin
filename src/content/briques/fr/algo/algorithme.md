@@ -1,6 +1,6 @@
 ---
 titre: L'algorithme
-resume: Un algorithme est une suite d'étapes précises, suivies dans l'ordre, qui mène au résultat cherché quelle que soit la situation de départ. Il se termine toujours.
+resume: Un algorithme est une suite d'étapes précises, suivies dans l'ordre, qui mène au résultat cherché quelle que soit la situation de départ. Il doit se terminer pour donner ce résultat.
 niveau: haut
 acquis:
   - Dérouler pas à pas un algorithme donné sur un exemple.
