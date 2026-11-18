@@ -156,5 +156,8 @@ describe('readingText', () => {
     const body =
       'Un [octet](note "Mot forgé en 1956.") a huit bits.\n\n![Huit cases.](schema:cases)';
     expect(readingText(body).trim()).toBe('Un [octet] a huit bits.');
+    expect(readingText("Un [octet](note 'Mot forgé en 1956.') a huit bits.")).toBe(
+      'Un [octet] a huit bits.',
+    );
   });
 });

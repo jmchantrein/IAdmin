@@ -82,9 +82,12 @@ export function schemaRefs(body: string): { name: string; alt: string }[] {
 /**
  * The body as the learner reads it at first: hover notes and alternative texts are left out.
  * They have their own budgets, so they do not eat the word budget of the explanation.
+ * A note title comes in double or single quotes: Prettier picks the one the text allows.
  */
 export const readingText = (body: string) =>
-  body.replace(/!\[[^\]]*\]\(schema:[^)\s]*\)/g, '').replace(/\]\(note\s+"[^"]*"\)/g, ']');
+  body
+    .replace(/!\[[^\]]*\]\(schema:[^)\s]*\)/g, '')
+    .replace(/\]\(note\s+(?:"[^"]*"|'[^']*')\)/g, ']');
 
 // --- Markers written while compiling Markdown ---
 

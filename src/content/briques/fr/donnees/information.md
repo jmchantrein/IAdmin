@@ -37,7 +37,7 @@ exercices:
     retour: Avance une question à la fois. La première élimine la moitié des 32 cartes, il en reste 16. Chaque question suivante élimine la moitié de ce qui reste.
 plus_loin:
   - question: D'où vient ce sens du mot « information » ?
-    reponse: Du chercheur Claude Shannon. En 1948, dans l'article « A Mathematical Theory of Communication », il ne s'occupe pas du sens d'un message. Il regarde seulement parmi combien de messages possibles il a été choisi. Plus ce nombre est grand, plus le message choisi apporte d'information.
+    reponse: Le chercheur Claude Shannon l'a formulé en 1948, dans l'article « A Mathematical Theory of Communication », en s'appuyant sur des travaux antérieurs. Il ne s'occupe pas du sens d'un message. Il regarde seulement parmi combien de messages possibles il a été choisi. Quand tous sont aussi probables, plus ce nombre est grand, plus le message choisi apporte d'information.
     source: https://www.stat.berkeley.edu/~binyu/212A/papers/shannon48.pdf
 ---
 
@@ -56,4 +56,4 @@ Deux conséquences :
   en élimine la moitié, que la réponse soit oui ou non. Avec de telles questions, 3
   suffisent toujours ici.
 
-![Huit cases en quatre rangées. À chaque réponse, la moitié des cases encore possibles s'éteint : il en reste 8, puis 4, puis 2, puis 1.](schema:moities)
+![Quatre rangées de huit cases. À chaque réponse, la moitié des cases encore possibles s'éteint : il en reste 8, puis 4, puis 2, puis 1.](schema:moities)

@@ -1,6 +1,6 @@
 ---
 titre: L'algorithme
-resume: Un algorithme est une suite d'étapes précises, suivies dans l'ordre, qui mène au résultat cherché quelles que soient les données de départ. Il se termine toujours.
+resume: Un algorithme est une suite d'étapes précises, suivies dans l'ordre, qui mène au résultat cherché quelle que soit la situation de départ. Il se termine toujours.
 niveau: haut
 acquis:
   - Dérouler pas à pas un algorithme donné sur un exemple.
@@ -51,15 +51,15 @@ manipulation:
         etiquettes: { 1: la plus grande }
 exercices:
   - type: saisie
-    consigne: Tu cherches la plus grande carte de la rangée 3, 8, 5. Tu as retenu la première carte, 3, puis tu lui as comparé la carte suivante, 8. Quelle carte retiens-tu maintenant ?
+    consigne: Tu cherches la plus grande carte de la rangée 3, 8, 9. Tu as retenu la première carte, 3, puis tu lui as comparé la carte suivante, 8. Quelle carte retiens-tu maintenant ?
     verif: [rogner, { nombre: 8 }]
     solution: '8'
-    contre_exemples: ['3', '5']
-    retour: Après chaque comparaison, tu retiens la plus grande des deux cartes. Compare 8 à la carte retenue, 3. La carte 5 n'a pas encore été regardée.
+    contre_exemples: ['3', '9']
+    retour: Après chaque comparaison, tu retiens la plus grande des deux cartes. Compare 8 à la carte retenue, 3. La carte 9 est plus grande, mais elle n'a pas encore été comparée. Tu ne peux donc pas encore la retenir.
   - type: choix
     consigne: Laquelle de ces consignes est assez précise pour être une étape d'algorithme ?
     options:
-      - texte: Écarte la plus petite des deux cartes que tu viens de comparer.
+      - texte: Retiens la carte comparée si elle est plus grande que la carte retenue.
         correct: true
       - texte: Regarde les cartes et choisis la meilleure.
         retour: « La meilleure » n'est pas défini, et la consigne ne dit pas dans quel ordre regarder les cartes. Deux personnes pourraient faire deux choses différentes.
@@ -88,31 +88,31 @@ exercices:
     retour: La première carte est retenue sans comparaison. Chacune des autres cartes est comparée une seule fois à la carte retenue, jamais aux cartes écartées. Compte les cartes qui suivent la première.
 plus_loin:
   - question: D'où vient le mot « algorithme » ?
-    reponse: Il apparaît en français au XIIIe siècle, sous la forme « augorisme ». Il vient de l'arabe Al-Khuwarizmi, le surnom d'un mathématicien. Sa forme actuelle a été modifiée sous l'influence du mot grec « arithmos », qui veut dire « nombre ».
+    reponse: Il vient d'« algorisme », un mot qui remonte, par l'espagnol, à l'arabe Al-Khuwarizmi, le surnom d'un mathématicien. On le trouve en français au XIIIe siècle, sous la forme « augorisme ». Sa forme actuelle a été modifiée sous l'influence du mot grec « arithmos », qui veut dire « nombre ».
     source: https://dictionnaire-academie.fr/article/A9A1163
 ---
 
-Tu viens de trouver la plus grande carte en trois comparaisons, en répétant le
+Tu as trouvé la plus grande carte en trois comparaisons, en répétant le
 même geste. Ce procédé est un **algorithme** : une suite d'étapes précises, à suivre dans
 l'ordre.
 
-Le voici en entier :
+Le voici :
 
 1. Retiens la première carte.
 2. Compare la carte suivante à la carte retenue, et retiens la plus grande des deux. Si
    elles sont égales,
    [garde la carte retenue](note "Les deux cartes ont la même valeur : garder l'une ou l'autre donne le même résultat. L'étape choisit quand même, pour que personne n'ait à hésiter.").
-3. Recommence l'étape 2 tant qu'il reste une carte.
+3. Recommence l'étape 2 tant qu'il reste une carte que tu n'as pas comparée.
+4. La carte retenue est la plus grande.
 
-![Une rangée de 4 cartes et une de 6 cartes passent par les trois mêmes étapes. Chacune en sort avec sa plus grande carte : 9 et 8.](schema:rangees)
+![Une rangée de 4 cartes et une de 6 cartes passent par les mêmes étapes. Chacune en sort avec sa plus grande carte : 9 et 8.](schema:rangees)
 
 Écrit une fois, il sert pour toute rangée. Trois règles le définissent :
 
 - chaque étape dit **comment faire**, pas seulement quoi obtenir : deux personnes qui le
   suivent font la même chose ;
-- l'ordre est fixé, car chaque étape se sert de la précédente : tu ne compares rien avant
-  d'avoir retenu une carte ;
-- il **se termine**, sinon tu n'aurais jamais de résultat : une comparaison par
+- l'ordre est fixé, car chaque étape se sert de la précédente ;
+- il **se termine**, sinon pas de résultat : une comparaison par
   carte, sauf pour la première.
 
 Un ordinateur ne devine rien : il lui faut des étapes aussi précises.

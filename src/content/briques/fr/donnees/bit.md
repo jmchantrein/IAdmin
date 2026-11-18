@@ -1,6 +1,6 @@
 ---
 titre: Le bit
-resume: Un bit est la plus petite unité d'information. C'est un choix entre deux possibilités, que l'on note 0 et 1.
+resume: Un bit est un choix entre deux possibilités, le choix le plus simple qui puisse apporter une information. Ses deux valeurs se notent 0 et 1.
 niveau: bas
 acquis:
   - Citer les deux valeurs d'un bit et noter avec elles une situation à deux possibilités.
@@ -49,7 +49,7 @@ plus_loin:
   - question: Pourquoi 0 et 1, et pas d'autres symboles ?
     reponse: Ce sont de simples étiquettes pour désigner deux possibilités. On aurait pu choisir A et B. Le choix de 0 et 1 a un avantage, ces deux chiffres servent ensuite à écrire des nombres.
   - question: Qui a inventé le mot « bit » ?
-    reponse: Le mot a été proposé par John W. Tukey. Claude Shannon l'a fait connaître en 1948, dans son article « A Mathematical Theory of Communication ». Il y présente « bit » comme l'abréviation de « binary digit », chiffre binaire. Il y note aussi qu'une pièce à deux positions stables garde un bit.
+    reponse: Le mot a été proposé par John W. Tukey. Claude Shannon l'a fait connaître en 1948, dans son article « A Mathematical Theory of Communication ». Il y note aussi qu'une pièce à deux positions stables garde un bit.
     source: https://www.stat.berkeley.edu/~binyu/212A/papers/shannon48.pdf
 ---
 
@@ -57,15 +57,18 @@ L'interrupteur n'a que deux positions : la lampe est **éteinte** ou **allumée*
 peut pas faire plus simple. Avec une seule position, il n'y aurait rien à apprendre en
 regardant la lampe.
 
-Ce choix entre deux possibilités est la plus petite unité
-d'[information](brique:donnees/information). On l'appelle un
+Ce choix entre deux possibilités est le choix le plus simple qui puisse apporter une
+[information](brique:donnees/information). On l'appelle un
 [**bit**](note "Le mot vient de l'anglais « binary digit », chiffre binaire : un chiffre qui n'a que deux valeurs.").
 Par convention, ses deux valeurs se notent `0` et `1` :
 
 ![Deux lampes : la lampe éteinte est notée 0, la lampe allumée est notée 1.](schema:etats)
 
+On aurait pu noter l'inverse : 1 pour éteinte, 0 pour allumée.
+
 Une information **tient sur un bit** quand elle n'a que deux possibilités, comme oui ou
 non. Dès qu'il y en a trois, un seul bit ne suffit plus.
 
-Dans une machine, toute information est notée avec des bits, parce qu'il est facile de
-fabriquer une pièce qui n'a que deux positions, comme un interrupteur.
+Dans un ordinateur, toute information est notée avec des bits, parce qu'une
+pièce à deux positions, comme un interrupteur, est simple à fabriquer et que ses deux
+états ne se confondent pas.

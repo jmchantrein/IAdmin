@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 312">
+  <rect x="112" y="24" width="416" height="56" rx="8" class="accent fond" />
+  <text x="320" y="58" font-size="18" text-anchor="middle" class="texte-accent">carte plus grande que « plus grande » ?</text>
+  <line x1="168" y1="80" x2="168" y2="142" class="trait" />
+  <polygon points="161,140 175,140 168,152" class="plein" />
+  <line x1="472" y1="80" x2="472" y2="142" class="trait" />
+  <polygon points="465,140 479,140 472,152" class="plein" />
+  <g font-size="18" class="texte">
+    <text x="180" y="122">oui</text>
+    <text x="484" y="122">non</text>
+  </g>
+  <rect x="40" y="152" width="256" height="56" rx="8" class="trait fond" />
+  <rect x="344" y="152" width="256" height="56" rx="8" class="trait fond" />
+  <g font-size="18" text-anchor="middle" class="texte">
+    <text x="168" y="186">remplace la valeur</text>
+    <text x="472" y="186">écarte la carte</text>
+  </g>
+  <polyline points="168,208 168,232 472,232 472,208" class="trait" />
+  <line x1="320" y1="232" x2="320" y2="254" class="trait" />
+  <polygon points="313,252 327,252 320,264" class="plein" />
+  <text x="320" y="292" font-size="18" text-anchor="middle" class="texte-doux">carte suivante</text>
+</svg>

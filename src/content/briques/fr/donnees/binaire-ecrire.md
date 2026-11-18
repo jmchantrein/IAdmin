@@ -79,10 +79,8 @@ exercices:
 ---
 
 Tu viens d'écrire 13 en [binaire](brique:donnees/binaire-lire) en te demandant, pour
-chaque [poids](brique:donnees/binaire-lire), s'il tient dans ce qui reste. Tu as ainsi
-**décomposé** 13 en une somme de poids :
-
-![Écriture de 13 en binaire : le reste passe de 13 à 5, puis à 1. Les poids 8, 4 et 1 tiennent, d'où 1101.](schema:decomposition)
+chaque poids, s'il **tient**, c'est-à-dire s'il ne dépasse pas ce qui reste. Tu as ainsi
+**décomposé** 13 en une somme de poids. Pour décomposer un nombre :
 
 1. Pars du plus grand poids qui ne dépasse pas le nombre.
 2. Si le poids ne dépasse pas ce qui reste, il tient : écris 1 et retire-le. Sinon,
@@ -90,11 +88,12 @@ chaque [poids](brique:donnees/binaire-lire), s'il tient dans ce qui reste. Tu as
 3. Passe au poids suivant, deux fois plus petit, et recommence l'étape 2 jusqu'au
    poids 1 compris.
 
+![Écrire 13 en binaire : retirer 8 laisse 5, retirer 4 laisse 1, le poids 2 ne tient pas, retirer 1 laisse 0. Les chiffres 1101 donnent 13 = 8 + 4 + 1.](schema:decomposition)
+
 Pourquoi le plus grand d'abord ? Les poids plus petits, même réunis, font un de moins
 que lui : s'il tient, rien ne le remplace.
 
-Lus de gauche à droite, dans l'ordre où tu les as écrits, les chiffres forment
-l'écriture binaire. Pour vérifier, additionne les poids des bits à 1.
+Pour vérifier, additionne les poids des bits à 1.
 
 Un nombre qui est lui-même un poids s'écrit avec un seul 1 suivi de 0 : 8 s'écrit
 `1000`. Le nombre 0 s'écrit `0`.

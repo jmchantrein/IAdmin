@@ -31,5 +31,5 @@
     <text x="412" y="175">×</text>
   </g>
   <text x="488" y="176" font-size="24" class="texte-accent">= 256</text>
-  <text x="488" y="204" font-size="16" class="texte-doux">combinaisons</text>
+  <text x="488" y="208" font-size="20" class="texte">combinaisons</text>
 </svg>

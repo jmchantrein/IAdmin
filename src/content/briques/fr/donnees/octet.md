@@ -5,7 +5,7 @@ niveau: bas
 acquis:
   - Dire combien de bits compte un octet et combien de combinaisons il a.
   - Donner le plus grand nombre qu'un groupe de bits peut écrire.
-  - Dire si un nombre tient dans un octet.
+  - Dire si un nombre tient sur un octet.
 requiert:
   - donnees/binaire-lire
 manipulation:
@@ -29,7 +29,7 @@ exercices:
     contre_exemples: ['32', '5', '16', '255']
     retour: Le plus grand nombre s'obtient en mettant tous les bits à 1. Additionne les cinq poids. Le résultat est un de moins que le nombre de combinaisons, car la première combinaison écrit 0.
   - type: choix
-    consigne: Lequel de ces nombres tient dans un seul octet ?
+    consigne: Lequel de ces nombres tient sur un seul octet ?
     options:
       - texte: '200'
         correct: true
@@ -50,35 +50,33 @@ exercices:
     contre_exemples: ['254', '2', '257', '7']
     retour: Un bit à 0 n'ajoute pas son poids. Par rapport à 11111111, qui écrit 255, il manque donc seulement le poids 2.
 plus_loin:
-  - question: D'où vient le mot « octet » ?
-    reponse: Il est formé de oct-, tiré du latin octo, « huit », et de la terminaison -et. Le mot dit donc lui-même combien de bits le groupe compte. En français, son sens en informatique est attesté en 1968.
-    source: https://www.cnrtl.fr/definition/octet
   - question: Les machines ont-elles toujours groupé les bits par 8 ?
     reponse: Non. Avant le milieu des années 1960, beaucoup de machines notaient chaque lettre ou chiffre sur 6 bits. Avec seulement 64 combinaisons, la plupart se passaient des minuscules.
     source: https://en.wikipedia.org/wiki/Six-bit_character_code
-  - question: Quelle machine a répandu l'octet de 8 bits ?
-    reponse: L'IBM System/360, lancé en 1964. IBM la présente comme la machine qui a ouvert la voie à l'octet de 8 bits encore employé aujourd'hui.
+  - question: Quelle machine a ouvert la voie à l'octet de 8 bits ?
+    reponse: "Le System/360 d'IBM, annoncé en 1964 : IBM le présente comme ayant ouvert la voie à l'octet de 8 bits encore utilisé aujourd'hui."
     source: https://www.ibm.com/history/system-360
 ---
 
-En allumant les huit [bits](brique:donnees/bit), tu as atteint 255, et il est impossible
-d'aller plus haut avec cette rangée.
+En allumant les huit bits, tu as atteint 255 : impossible d'aller plus haut.
 
-Ce groupe de 8 bits s'appelle un **octet**, d'après le latin _octo_, « huit ». C'est
-l'unité dans laquelle on compte la taille d'un texte, d'une photo ou de la mémoire d'une
-machine.
+Ce groupe de 8 bits s'appelle un **octet**, d'après le latin _octo_, « huit ».
 
 Un octet a **256 [combinaisons](brique:donnees/combinaisons)**, car chaque bit ajouté
 double leur nombre :
 
 ![Huit cases forment un octet. Sous chaque case, un 2 : chaque bit double le nombre de combinaisons. Le produit des huit 2 vaut 256.](schema:combinaisons)
 
-Elles écrivent les nombres de **0 à 255**. La première, `00000000`, écrit 0 : la
-dernière écrit donc 255, et non 256.
+Lues en [binaire](brique:donnees/binaire-lire), elles écrivent les nombres de **0 à
+255**. La première, `00000000`, écrit 0 : la dernière écrit donc 255, et non 256.
 
-Pourquoi 8 bits ? Avec 6, tu n'aurais que 64 combinaisons : trop peu pour les 26 lettres
-en majuscules et en minuscules, les 10 chiffres et la ponctuation. Avec 256, il reste de
-la marge.
+Pourquoi grouper les bits par 8 ? Avec 6 bits, 64 combinaisons ne suffisent pas pour 52
+lettres (26 majuscules, 26 minuscules), 10 chiffres et la ponctuation. 7 bits
+suffiraient. Les constructeurs ont retenu 8, qui laisse de la marge : elle a servi
+ensuite aux lettres accentuées.
 
-Un nombre **tient dans un octet** s'il est compris entre 0 et 255. Pour un nombre plus
-grand, une machine utilise plusieurs octets à la suite.
+Un octet suffit ainsi à noter une lettre ou un chiffre : d'où l'habitude de compter les
+tailles en octets.
+
+Un nombre **tient sur un octet** s'il est compris entre 0 et 255. Au-delà, une machine
+utilise plusieurs octets à la suite.
