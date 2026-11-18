@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 328">
+  <g font-size="22" text-anchor="end" class="texte-doux">
+    <text x="120" y="70">texte</text>
+    <text x="120" y="291">empreinte</text>
+  </g>
+  <rect x="136" y="24" width="144" height="72" rx="8" class="trait fond" />
+  <rect x="304" y="24" width="320" height="72" rx="8" class="trait fond" />
+  <g text-anchor="middle" class="texte">
+    <text x="208" y="70" font-size="26">« chat »</text>
+    <text x="464" y="54" font-size="22">« Il était une fois un</text>
+    <text x="464" y="83" font-size="22">petit chat très gris »</text>
+  </g>
+  <g class="trait">
+    <line x1="208" y1="104" x2="208" y2="132" />
+    <line x1="464" y1="104" x2="464" y2="132" />
+  </g>
+  <g class="plein">
+    <polygon points="201,130 208,142 215,130" />
+    <polygon points="457,130 464,142 471,130" />
+  </g>
+  <rect x="136" y="148" width="488" height="56" rx="8" class="trait fond" />
+  <text x="380" y="185" font-size="24" text-anchor="middle" class="texte">fonction de hachage</text>
+  <g class="trait">
+    <line x1="208" y1="212" x2="208" y2="240" />
+    <line x1="464" y1="212" x2="464" y2="240" />
+  </g>
+  <g class="plein">
+    <polygon points="201,238 208,250 215,238" />
+    <polygon points="457,238 464,250 471,238" />
+  </g>
+  <rect x="136" y="256" width="144" height="56" rx="8" class="accent fond" />
+  <rect x="392" y="256" width="144" height="56" rx="8" class="accent fond" />
+  <g font-size="28" text-anchor="middle" class="texte-accent">
+    <text x="208" y="294">30917</text>
+    <text x="464" y="294">43589</text>
+  </g>
+</svg>
