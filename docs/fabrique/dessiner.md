@@ -23,7 +23,12 @@ relecteur et l'orchestrateur vérifient le reste sur capture d'écran.
   moitié taille, un corps 22 y fait 11 pixels.
 - Empile plutôt qu'étaler : une étiquette longue passe sur deux lignes ou au-dessus de sa
   forme, une suite de plus de quatre blocs se plie en deux rangées.
-- Emploie les mots de l'explication, dans le même sens.
+- Emploie les mots de l'explication et du widget, dans le même sens : si le widget écrit
+  « il reste 5 » après avoir retiré 8, le schéma aussi.
+- Dessine un exemple dont l'ordre compte : `1011` plutôt que `1001`, qui se lit pareil
+  dans les deux sens.
+- Applique dans le dessin les conventions d'écriture de la brique (guillemets autour d'un
+  nom de variable).
 - Fais lire de gauche à droite et de haut en bas ; indique un ordre par des numéros.
 - Réserve la couleur d'accent à l'élément dont parle la brique ; laisse le reste en trait.
 - Montre un changement par deux états côte à côte, reliés par une flèche.

@@ -8,13 +8,12 @@ est résumé ici au fil de l'eau.
 
 ### J4 — Parcours Fondements complet
 
-- [ ] Reprendre les 7 briques existantes avec ces mécanismes : liens vers les notions requises, raison de chaque convention, schémas à la place du texte ; deux relectures.
 - [ ] Envoyer au propriétaire les captures des briques reprises (il ne voit le rendu qu'après fusion).
-- [ ] Lot 5 : `algo/variable`, `algo/condition`, `algo/boucle`, avec `pas-a-pas`.
+- [ ] Lot 5 : `algo/variable`, `algo/condition`, `algo/boucle`, avec `pas-a-pas`. Écrit et relu (3 écarts bloquants) ; corrections en cours.
 - [ ] Lot 6 : `algo/recherche-lineaire`, `algo/recherche-dichotomique`, un défi de synthèse (`genre: defi`).
-- [ ] Lot 2 : `donnees/addition-binaire`, `donnees/texte-code`, `donnees/hash`. Widgets pressentis, à proposer ici avant de les écrire : `pas-a-pas` à plusieurs rangées pour l'addition posée, un widget d'empreinte pour `hash`.
-- [ ] Lot 3 : `logique/vrai-faux`, `logique/non-et-ou`, `logique/table-de-verite`. Widget pressenti : une porte logique (interrupteurs, porte, lampe).
-- [ ] Lot 4 : `logique/portes-logiques`, `logique/additionneur`. Même widget, peut-être un petit circuit ; lot à réduire si le widget dépasse ce qu'il justifie.
+- [ ] Lot 2 : `donnees/addition-binaire`, `donnees/texte-code`, `donnees/hash`. Widgets proposés, forme minimale : (a) `pas-a-pas` gagne un paramètre `colonnes` — les cases se rangent en grille, les indices restent linéaires, 24 cases au plus — pour poser une addition en lignes (retenues, deux nombres, résultat) ; (b) `bascule-bits` gagne un paramètre `caractere` qui affiche le caractère dont le code est le nombre écrit ; (c) nouveau widget `empreinte` : un champ de texte et son empreinte courte, calculée par une fonction pure de `src/core`, pour observer « même texte, même empreinte » et « un caractère change, l'empreinte change ».
+- [ ] Lot 3 : `logique/vrai-faux`, `logique/non-et-ou`, `logique/table-de-verite`. Widget proposé, forme minimale : `porte` — 1 ou 2 interrupteurs, une ou deux portes (`non`, `et`, `ou`, `ou-exclusif`) branchées sur les mêmes entrées, une lampe par porte, et un paramètre `table` qui liste les lignes de la table de vérité déjà trouvées.
+- [ ] Lot 4 : `logique/portes-logiques`, `logique/additionneur`. Le widget `porte` avec deux portes sur les mêmes entrées (`ou-exclusif` pour la somme, `et` pour la retenue) montre le demi-additionneur sans éditeur de circuit ; l'additionneur complet est reporté s'il demande un vrai circuit.
 - [ ] Fin de J4 : une seule demande de fusion, puis contrôle du job `deployer` et `npm run e2e:live`.
 
 ### J5 à J9
@@ -50,6 +49,12 @@ est résumé ici au fil de l'eau.
 - [ ] Aucune étude trouvée sur l'effet d'une infobulle qui rappelle un prérequis, ni sur la fréquence d'ouverture des notes et des sections repliées : à observer avec de vrais apprenants.
 - [ ] Le widget de la manipulation reste utilisable pendant les exercices : dans `donnees/octet`, il permet encore de lire la réponse de l'exercice sur 5 bits. Accepté pour l'instant ; le masquer ou le replier après la manipulation serait une réponse générale.
 - [ ] Écarts mineurs laissés après relecture du lot 1 : deux acquis d'`octet` contiennent un « et » ; trois exercices de `binaire-ecrire` donnent encore la liste des poids ; la première étape de son animation ne suit pas le même découpage que les suivantes.
+- [ ] Typographie française : une espace ordinaire précède « : », « ; », « ? », « ! » et suit « « », donc le signe peut passer seul à la ligne sur téléphone (constaté dans `octet` et `boucle`). Une espace insécable posée par le site, dans l'explication comme dans les consignes, réglerait le cas partout.
+- [ ] Sur une brique qui a un prérequis, le bloc « Ce que cette brique suppose » et l'infobulle du lien affichent le même résumé : rappel doublé, accepté pour l'instant.
+- [ ] La lampe allumée est bleue dans le schéma de `bit` et jaune dans le widget : la charte des schémas n'a pas de jaune.
+- [ ] `tenir` a deux sens dans le parcours : « tient sur un bit, sur un octet » (suffit pour noter) et « le poids tient dans ce qui reste » (`binaire-ecrire`).
+- [ ] `combinaisons`, exercice 3 : les sept combinaisons données se comparent à l'arbre du schéma. Gardé : comparer à une liste ordonnée est la méthode enseignée.
+- [ ] Dans `variable`, le widget `pas-a-pas` montre la variable comme une case de plus dans la rangée des cartes : une seule rangée ne sait pas séparer les données de la variable.
 - [ ] Zod est chargé dans le navigateur pour valider la progression et les paramètres de widget : mesurer son poids si les pages ralentissent.
 - [ ] Infobulles et schémas sont remplis au rendu de la page (`expandMechanisms`), pas par le plugin Markdown : Astro garde en cache le corps compilé d'une brique tant que son fichier ne change pas, et un résumé ou un schéma modifié ailleurs resterait périmé en local. La page lit donc `entry.rendered.html` au lieu de `<Content />`.
 - [ ] Infobulles en CSS seul : la touche Échap ne les ferme pas (WCAG 1.4.13) ; une infobulle ouverte couvre les lignes du dessous ; un lien de brique touché sur téléphone ouvre la brique sans montrer le rappel ; le toucher d'une note n'est testé que sous Chromium.
@@ -63,6 +68,9 @@ est résumé ici au fil de l'eau.
 - [x] `docs/fabrique/orchestrer.md` (rôles), `docs/fabrique/dessiner.md` (charte des schémas), procédures de rédaction et de relecture complétées.
 - [x] `docs/pedagogie.md` amendé, toujours 15 règles : « montrer, avec le texte sur le dessin » (preuve robuste pour le schéma explicatif, mince pour la bande dessinée), « dire pourquoi » (modérée), rappel d'un prérequis par lien (débattue : la recherche sur l'hypertexte montre aussi des liens qui distraient, d'où un seul lien par notion, à sa première mention). Références contrôlées sur notices et résumés, sans lecture du texte intégral.
 - [x] Mécanismes de contenu (`src/markdown/`) : lien `[bit](brique:donnees/bit)` avec infobulle « titre + résumé », note de survol `[mot](note "…")` (40 mots), champ `plus_loin` (3 entrées de 80 mots, `source` en https), schémas `![alt](schema:nom)` intégrés à la page et contrôlés selon la charte. Démonstration dans `donnees/bit`. Notes et textes alternatifs hors du budget de 150 mots.
+- [x] Reprise des 7 briques existantes : première mention de chaque notion requise liée, raison de chaque convention (dans le texte, en note ou dans « Pour aller plus loin »), un schéma par brique là où il remplace du texte. Deux relectures adverses : aucun écart bloquant, corrections appliquées (entre autres : « la plus petite unité d'information » retiré de `bit`, raison des 8 bits réécrite dans `octet`, étape de résultat ajoutée à `algorithme`).
+- [x] Schémas lisibles sur téléphone : corps 22 à 32 (le cadre de 640 s'y affiche à moitié taille), largeur plafonnée à 520 px sur grand écran, les 10 schémas redessinés. `scripts/apercu-schema.mjs` rend un schéma sans construire le site ; `tests/e2e/briques.spec.ts` capture chaque explication à 360 px en thème sombre.
+- [x] Leçons des relectures inscrites dans `rediger-brique.md`, `relire-brique.md` et `dessiner.md` : raison non circulaire et qui ne fait pas croire à un minimum faux, mot défini avant son emploi, exemple dessiné dont l'ordre compte, mots du widget dans le schéma, source ouverte et non simple extrait.
 
 ### Mise en ligne (2026-11-17)
 

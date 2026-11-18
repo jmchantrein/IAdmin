@@ -55,12 +55,17 @@ Pour chaque point, cite la ligne en cause et dis ce qui cloche.
     Signale un lien vers une notion que la phrase n'emploie pas, et un texte qui ne se
     comprend plus si l'on ne survole pas le lien.
 14. **Pourquoi.** Relève chaque convention affirmée sans raison. Vérifie la raison donnée
-    et sa `source`. Signale une information indispensable à un exercice qui ne se trouve
-    que dans une note ou dans « Pour aller plus loin ».
+    et sa `source`, en ouvrant la page. Signale une raison circulaire, une raison qui
+    laisse croire à un minimum ou à une nécessité qui n'en est pas (refais le calcul que
+    l'apprenant sait faire), et une information indispensable à un exercice qui ne se
+    trouve que dans une note ou dans « Pour aller plus loin ».
 15. **Schémas.** Compare chaque schéma au texte : mêmes mots, mêmes valeurs, aucun
     désaccord. Lis le dessin sans le texte : se comprend-il ? Signale un schéma
     décoratif, une étiquette loin de ce qu'elle nomme, un texte alternatif qui ne dit pas
-    ce que le dessin montre, et une phrase que le schéma rend inutile.
+    ce que le dessin montre, et une phrase que le schéma rend inutile. Regarde la capture
+    `…-telephone-sombre.png` : chaque mot se lit sans zoom. Vérifie que l'exemple dessiné
+    ne se lit pas pareil dans les deux sens quand l'ordre compte, et qu'un exercice ne se
+    résout pas en recopiant le schéma.
 
 ## Rapporter
 
