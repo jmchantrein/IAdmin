@@ -1,6 +1,6 @@
 ---
 titre: La recherche dichotomique
-resume: Dans une rangée triée, de la plus petite à la plus grande carte, la recherche dichotomique compare la valeur cherchée à la carte du milieu, puis garde la seule moitié qui peut la contenir. Doubler les cartes n'ajoute qu'une comparaison.
+resume: Sur des cartes triées, de la plus petite à la plus grande, la recherche dichotomique compare la valeur cherchée à la carte du milieu, puis garde la moitié qui peut la contenir. Au pire, doubler les cartes n'ajoute qu'une comparaison.
 niveau: haut
 acquis:
   - Dérouler une recherche dichotomique en donnant la carte du milieu comparée et les cartes qui restent.
@@ -54,12 +54,12 @@ exercices:
   - type: choix
     consigne: Tu veux chercher la carte 15 par recherche dichotomique. Avec une rangée de 5 cartes, la carte du milieu est la troisième. Dans laquelle de ces rangées la recherche est-elle sûre de trouver 15 ?
     options:
-      - texte: 2, 7, 15, 21, 30
+      - texte: 2, 7, 12, 15, 30
         correct: true
       - texte: 2, 7, 30, 15, 21
         retour: Cette rangée n'est pas triée. La carte du milieu est 30, et 15 est plus petit. Tu écarterais donc 30 et les cartes à sa droite, parmi lesquelles se trouve 15. Seule une rangée triée garantit que la valeur n'est pas du côté écarté.
-      - texte: 21, 2, 30, 7, 15
-        retour: Cette rangée n'est pas triée. La carte du milieu est 30, et 15 est plus petit. Tu écarterais donc 30, 7 et 15, et tu ne trouverais jamais 15. Seule une rangée triée garantit que la valeur n'est pas du côté écarté.
+      - texte: 21, 2, 7, 15, 30
+        retour: "Ici, la recherche trouverait 15, mais par chance : la rangée n'est pas triée, puisque 21 vient avant 2. Si 15 s'était trouvé à gauche de 7, la carte du milieu, tu l'aurais écarté. Seule une rangée triée garantit que la valeur n'est pas du côté écarté."
   - type: saisie
     consigne: Une rangée triée compte 63 cartes. Chaque comparaison à la carte du milieu écarte cette carte et la moitié des autres. Tu t'arrêtes quand tu trouves la valeur, ou quand il ne reste plus aucune carte. Au pire, c'est-à-dire dans le cas qui demande le plus de comparaisons, combien en fais-tu ?
     verif: [rogner, { nombre: 6 }]
@@ -68,28 +68,31 @@ exercices:
     retour: "Suis le nombre de cartes qui restent avant chaque comparaison : 63, 31, 15, 7, 3, puis 1, soit 6 comparaisons. Ce n'est pas le nombre de comparaisons qui est divisé par deux, c'est la rangée restante, à chaque comparaison."
 plus_loin:
   - question: D'où vient le mot « dichotomique » ?
-    reponse: Il vient de « dichotomie », un mot emprunté au grec au XVIIIe siècle. Le mot grec « dikhotomia » veut dire « division en deux parties égales ». C'est ce que fait la recherche à chaque comparaison avec les cartes qui restent.
+    reponse: Il vient de « dichotomie », un mot emprunté au grec au XVIIIe siècle. Le mot grec « dikhotomia » veut dire « division en deux parties égales ». Dans cette recherche, chaque comparaison divise les cartes qui restent en deux parties égales ou presque.
     source: https://dictionnaire-academie.fr/article/A9D2403
 ---
 
-Tu as trouvé 8 en 3 comparaisons. La [recherche linéaire](brique:algo/recherche-lineaire)
-en aurait demandé 5.
+Tu as trouvé 8 en 3 comparaisons, contre 5 en
+[recherche linéaire](brique:algo/recherche-lineaire).
 
-Cette méthode est la **recherche dichotomique** :
+C'est la **recherche dichotomique** :
 
-1. Compare la valeur cherchée à la carte du milieu de celles qui restent. Entre deux
-   cartes du milieu, prends celle de
+1. [Compare](note "Une comparaison donne l'une de trois réponses : égale, plus petite ou plus grande. Elle compte pour une seule comparaison.")
+   la valeur cherchée à la carte du milieu de celles qui restent. Entre deux cartes du
+   milieu, prends celle de
    [gauche](note "Une rangée d'un nombre pair de cartes en a deux au milieu. Les deux choix marchent, mais l'étape en fixe un, pour que personne n'hésite.").
-2. Si cette carte vaut la valeur cherchée, tu as trouvé : arrête-toi.
+2. Si cette carte vaut la valeur cherchée, arrête-toi.
 3. Si la valeur est plus petite, écarte la carte du milieu et celles à sa droite ; si elle
-   est plus grande, celles à sa gauche.
+   est plus grande, écarte la carte du milieu et celles à sa gauche.
 4. Tant qu'il reste une carte, recommence à l'étape 1. Sinon, la valeur est absente.
 
-Elle exige une rangée **triée**, c'est-à-dire rangée de la plus petite carte à la plus
-grande. Sinon, la valeur pourrait se trouver du côté écarté. Le prix : il faut d'abord
-trier la rangée.
+Elle exige une rangée
+**[triée](note "Le prix : trier demande bien plus de comparaisons qu'une recherche linéaire. Cela ne paie que si tu cherches souvent dans la même rangée.")**,
+de la plus petite carte à la plus grande. Sinon, la valeur pourrait se trouver du côté
+écarté.
 
-![Quatre rangées de 15 cases. À chaque comparaison avec la carte du milieu, au moins la moitié des cartes restantes est écartée : il en reste 7, puis 3, puis 1.](schema:moities)
+![Quatre rangées de 15 cartes. À chaque comparaison avec la carte du milieu, au moins la moitié des cartes restantes est écartée : il en reste 7, puis 3, puis 1.](schema:moities)
 
-Doubler les cartes n'ajoute donc qu'une comparaison : au pire, 10 pour 1 000 cartes,
-contre 1 000 en recherche linéaire.
+Chaque comparaison écarte au moins la moitié des cartes qui restent. Avec deux fois plus de
+cartes, une comparaison ramène donc au cas d'avant : au pire, 10 comparaisons pour 1 000
+cartes.
