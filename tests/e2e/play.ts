@@ -8,13 +8,25 @@ const NUMBER_ONLY = 'Écris seulement le nombre, en chiffres, sans unité ni aut
 
 /** Brings a widget to the state described by `value` (the string its exercises check). */
 async function driveWidget(scope: Locator, widget: string, value: string): Promise<void> {
-  if (widget === 'bascule-bits') {
+  if (widget === 'bascule-bits' || widget === 'porte') {
+    // `porte` exposes its inputs before the colon; the outputs follow from them.
+    const bits = widget === 'porte' ? value.split(':')[0]! : value;
     const switches = scope.getByRole('switch');
-    await expect(switches).toHaveCount(value.length);
-    for (const [i, bit] of [...value].entries()) {
+    await expect(switches).toHaveCount(bits.length);
+    for (const [i, bit] of [...bits].entries()) {
       const on = (await switches.nth(i).getAttribute('aria-checked')) === 'true';
       if (on !== (bit === '1')) await switches.nth(i).click();
     }
+    return;
+  }
+  if (widget === 'empreinte') {
+    // `texte=empreinte` per field, separated by a space: the fingerprint follows from the text.
+    const fields = scope.getByRole('textbox');
+    const count = await fields.count();
+    const pattern = count === 2 ? /^(.*?)=\d{5} (.*)=\d{5}$/ : /^(.*)=\d{5}$/;
+    const texts = pattern.exec(value)?.slice(1);
+    if (!texts) throw new Error(`valeur « ${value} » illisible pour ${count} champ(s)`);
+    for (const [i, text] of texts.entries()) await fields.nth(i).fill(text);
     return;
   }
   if (widget === 'pas-a-pas') {

@@ -131,6 +131,24 @@ export const fr = {
           : `Trouvé\u00a0: c'est ${secret}, en ${n} question.`,
       replay: 'Rejouer',
     },
+    gate: {
+      /** Names of the inputs, in order. */
+      inputs: ['A', 'B'],
+      input: (name: string) => `Entrée ${name}`,
+      names: { non: 'NON', et: 'ET', ou: 'OU', 'ou-exclusif': 'OU exclusif' },
+      output: 'Sortie',
+      lampOn: 'lampe allumée',
+      lampOff: 'lampe éteinte',
+      tableCaption: 'Lignes trouvées',
+      found: (done: number) => (done > 1 ? `${done} lignes trouvées` : `${done} ligne trouvée`),
+      complete: (total: number) => `Tu as trouvé toutes les lignes : il y en a ${total}.`,
+    },
+    fingerprint: {
+      text: (n: number, total: number) => (total > 1 ? `Texte ${n}` : 'Texte'),
+      fingerprint: 'Empreinte',
+      same: 'Les deux empreintes sont égales.',
+      different: 'Les deux empreintes sont différentes.',
+    },
   },
 };
 

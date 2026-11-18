@@ -59,6 +59,8 @@ est résumé ici au fil de l'eau.
 - [ ] Dans `variable`, le widget `pas-a-pas` montre la variable comme une case de plus dans la rangée des cartes : une seule rangée ne sait pas séparer les données de la variable.
 - [ ] L'article original de Shannon (1948) n'a pas été ouvert : ses affirmations reposent sur Wikipédia, source secondaire.
 - [ ] Écarts mineurs laissés après relecture du lot 5 : `condition`, exercice 4, refuse « frais. » avec un point ; les mots écrits par un algorithme (« écris le mot chaud ») n'ont pas de marque propre.
+- [ ] Widget `empreinte` : les empreintes publiées sont figées par un test ; changer la fonction de `src/core/fingerprint.ts` casserait les solutions des briques. Le texte n'est pas normalisé (un « é » composé et un « é » décomposé n'ont pas la même empreinte). `node scripts/empreinte.mjs "texte"` donne l'empreinte d'un texte aux auteurs.
+- [ ] Widget `porte` : 2 entrées et 2 portes au plus, branchées sur les mêmes entrées. Un additionneur complet demandera un vrai circuit.
 - [ ] Zod est chargé dans le navigateur pour valider la progression et les paramètres de widget : mesurer son poids si les pages ralentissent.
 - [ ] Infobulles et schémas sont remplis au rendu de la page (`expandMechanisms`), pas par le plugin Markdown : Astro garde en cache le corps compilé d'une brique tant que son fichier ne change pas, et un résumé ou un schéma modifié ailleurs resterait périmé en local. La page lit donc `entry.rendered.html` au lieu de `<Content />`.
 - [ ] Infobulles en CSS seul : la touche Échap ne les ferme pas (WCAG 1.4.13) ; une infobulle ouverte couvre les lignes du dessous ; un lien de brique touché sur téléphone ouvre la brique sans montrer le rappel ; le toucher d'une note n'est testé que sous Chromium.
@@ -79,6 +81,7 @@ est résumé ici au fil de l'eau.
 - [x] Sources ouvertes et confirmées sur les pages (Académie française, Wikipédia anglophone, IBM) ; l'adresse de l'article de Shannon, qui redirigeait ailleurs, est remplacée ; une phrase attribuée à Shannon, confirmée nulle part, est retirée. L'environnement cloud « IAdmin » autorise désormais ces hôtes.
 - [x] Captures des 10 briques envoyées au propriétaire.
 - [x] Espaces insécables posées par le site avant « : ; ? ! » » et après « « », dans l'explication et dans les textes du frontmatter ; `pas-a-pas` range ses cases en grille (`colonnes`) ; `bascule-bits` affiche le caractère du code écrit (`caractere`).
+- [x] Widgets `porte` (une ou deux portes logiques, table de vérité à remplir) et `empreinte` (texte et empreinte de 5 chiffres), avec leur logique pure dans `src/core` et leurs pilotes de test.
 
 ### Mise en ligne (2026-11-17)
 

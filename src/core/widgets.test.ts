@@ -67,3 +67,45 @@ describe('paramètres du widget « bascule-bits »', () => {
     expect(schema.safeParse({ bits: 4, couleur: 'rouge' }).success).toBe(false);
   });
 });
+
+describe('paramètres du widget « porte »', () => {
+  const schema = WIDGET_PARAMS.porte;
+  const messages = (params: object) =>
+    schema.safeParse(params).error?.issues.map((issue) => issue.message) ?? [];
+
+  it('accepts one or two gates and hides the table unless asked', () => {
+    expect(schema.parse({ portes: ['non'] })).toEqual({ portes: ['non'], table: false });
+    expect(schema.parse({ portes: ['ou-exclusif', 'et'], table: true }).table).toBe(true);
+  });
+
+  it('keeps between one and two known gates', () => {
+    expect(schema.safeParse({ portes: [] }).success).toBe(false);
+    expect(schema.safeParse({ portes: ['et', 'ou', 'ou-exclusif'] }).success).toBe(false);
+    expect(schema.safeParse({ portes: ['non-et'] }).success).toBe(false);
+  });
+
+  it('refuses `non` with a two-input gate, and a gate twice, with a clear message', () => {
+    expect(messages({ portes: ['non', 'et'] })).toEqual([
+      'la porte `non` a une seule entrée : elle ne se combine pas avec une porte à deux entrées',
+    ]);
+    expect(messages({ portes: ['et', 'et'] })).toEqual([
+      'deux portes identiques montreraient la même sortie',
+    ]);
+  });
+});
+
+describe('paramètres du widget « empreinte »', () => {
+  const schema = WIDGET_PARAMS.empreinte;
+
+  it('takes one or two starting texts, empty ones included', () => {
+    expect(schema.parse({ textes: [''] })).toEqual({ textes: [''] });
+    expect(schema.parse({ textes: ['chat', 'chas'] }).textes).toHaveLength(2);
+  });
+
+  it('refuses no text, three texts and a text over 40 characters', () => {
+    expect(schema.safeParse({ textes: [] }).success).toBe(false);
+    expect(schema.safeParse({ textes: ['a', 'b', 'c'] }).success).toBe(false);
+    expect(schema.safeParse({ textes: ['x'.repeat(40)] }).success).toBe(true);
+    expect(schema.safeParse({ textes: ['x'.repeat(41)] }).success).toBe(false);
+  });
+});

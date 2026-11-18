@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { GATES, sharedInputs } from './logic.ts';
 
 /**
  * Contract of every widget: it receives validated `params` and exposes its state as a string
@@ -20,6 +21,33 @@ export const WIDGET_PARAMS = {
   /** Guess a secret number with yes/no questions. Value: number of questions once found. */
   devinette: z.strictObject({
     max: z.number().int().min(2).max(32),
+  }),
+  /**
+   * Text fields, each with its fingerprint, updated at every keystroke.
+   * Value: `texte=empreinte` per field, separated by a space, e.g. "chat=30917 chas=00705".
+   */
+  empreinte: z.strictObject({
+    /** Starting text of each field; a field holds 40 characters at most. */
+    textes: z.array(z.string().max(40)).min(1).max(2),
+  }),
+  /**
+   * One or two logic gates wired on the same inputs, a switch per input and a lamp per gate.
+   * Value: the inputs, a colon, then the output of each gate in order, e.g. "10:1", "11:01".
+   */
+  porte: z.strictObject({
+    portes: z
+      .array(z.enum(GATES))
+      .min(1)
+      .max(2)
+      .refine((gates) => sharedInputs(gates) !== null, {
+        message:
+          'la porte `non` a une seule entrée : elle ne se combine pas avec une porte à deux entrées',
+      })
+      .refine((gates) => new Set(gates).size === gates.length, {
+        message: 'deux portes identiques montreraient la même sortie',
+      }),
+    /** List the rows of the truth table already found, in the order the learner finds them. */
+    table: z.boolean().default(false),
   }),
   /**
    * Step-by-step animation declared in the brick: a row of cells per step, advanced by the
