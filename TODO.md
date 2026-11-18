@@ -9,9 +9,8 @@ est résumé ici au fil de l'eau.
 ### J4 — Parcours Fondements complet
 
 - [ ] Envoyer au propriétaire les captures de chaque lot terminé (il ne voit le rendu qu'après fusion).
-- [ ] Lot 6 : `algo/recherche-lineaire`, `algo/recherche-dichotomique`, un défi de synthèse (`genre: defi`). En cours d'écriture.
-- [ ] Lot 2 : `donnees/addition-binaire`, `donnees/texte-code`, `donnees/hash`. Widgets proposés, forme minimale : (a) `pas-a-pas` gagne un paramètre `colonnes` — les cases se rangent en grille, les indices restent linéaires, 24 cases au plus — pour poser une addition en lignes (retenues, deux nombres, résultat) ; (b) `bascule-bits` gagne un paramètre `caractere` qui affiche le caractère dont le code est le nombre écrit ; (c) nouveau widget `empreinte` : un champ de texte et son empreinte courte, calculée par une fonction pure de `src/core`, pour observer « même texte, même empreinte » et « un caractère change, l'empreinte change ».
-- [ ] Lot 3 : `logique/vrai-faux`, `logique/non-et-ou`, `logique/table-de-verite`. Widget proposé, forme minimale : `porte` — 1 ou 2 interrupteurs, une ou deux portes (`non`, `et`, `ou`, `ou-exclusif`) branchées sur les mêmes entrées, une lampe par porte, et un paramètre `table` qui liste les lignes de la table de vérité déjà trouvées.
+- [ ] Lot 2 : `donnees/addition-binaire`, `donnees/texte-code`, `donnees/hash`. Écrites ; relecture et corrections en cours.
+- [ ] Lot 3 : `logique/vrai-faux`, `logique/non-et-ou`, `logique/table-de-verite`, avec le widget `porte`. Écrites ; relecture en cours.
 - [ ] Lot 4 : `logique/portes-logiques`, `logique/additionneur`. Le widget `porte` avec deux portes sur les mêmes entrées (`ou-exclusif` pour la somme, `et` pour la retenue) montre le demi-additionneur sans éditeur de circuit ; l'additionneur complet est reporté s'il demande un vrai circuit.
 - [ ] Fin de J4 : une seule demande de fusion, puis contrôle du job `deployer` et `npm run e2e:live`.
 
@@ -46,7 +45,7 @@ est résumé ici au fil de l'eau.
 - [ ] Un exercice `saisie` n'a qu'un seul `retour`, commun à toutes les mauvaises réponses : un retour par contre-exemple nommerait mieux chaque erreur (relevé par la relecture adverse).
 - [ ] Les distracteurs et contre-exemples sont jugés « typiques » par des LLM, sans essai par un débutant.
 - [ ] Aucune étude trouvée sur l'effet d'une infobulle qui rappelle un prérequis, ni sur la fréquence d'ouverture des notes et des sections repliées : à observer avec de vrais apprenants.
-- [ ] Le widget de la manipulation reste utilisable pendant les exercices : dans `donnees/octet`, il permet encore de lire la réponse de l'exercice sur 5 bits. Accepté pour l'instant ; le masquer ou le replier après la manipulation serait une réponse générale.
+- [ ] Le widget de la manipulation reste utilisable pendant les exercices : dans `donnees/octet`, il permet encore de lire la réponse de l'exercice sur 5 bits. Accepté pour l'instant ; le masquer ou le replier après la manipulation serait une réponse générale. Le cas se répète : dans `texte-code`, `bascule-bits` avec `caractere` lit n'importe quel code de 32 à 126 ; dans `hash`, `empreinte` calcule toute empreinte. Les exercices sont écrits pour ne pas en dépendre (table fictive, question qui se raisonne).
 - [ ] Écarts mineurs laissés après relecture du lot 1 : deux acquis d'`octet` contiennent un « et » ; trois exercices de `binaire-ecrire` donnent encore la liste des poids ; la première étape de son animation ne suit pas le même découpage que les suivantes.
 - [ ] Typographie française : le site pose l'espace insécable dans le contenu (`src/core/typography.ts`), mais les textes d'interface de `src/i18n/fr.ts` la portent à la main, et le texte des schémas SVG n'est pas traité.
 - [ ] L'ordre des options d'un exercice `choix` est tiré de sa consigne : toute retouche de la consigne, même typographique, change l'ordre affiché.
@@ -61,6 +60,9 @@ est résumé ici au fil de l'eau.
 - [ ] Écarts mineurs laissés après relecture du lot 5 : `condition`, exercice 4, refuse « frais. » avec un point ; les mots écrits par un algorithme (« écris le mot chaud ») n'ont pas de marque propre.
 - [ ] Widget `empreinte` : les empreintes publiées sont figées par un test ; changer la fonction de `src/core/fingerprint.ts` casserait les solutions des briques. Le texte n'est pas normalisé (un « é » composé et un « é » décomposé n'ont pas la même empreinte). `node scripts/empreinte.mjs "texte"` donne l'empreinte d'un texte aux auteurs.
 - [ ] Widget `porte` : 2 entrées et 2 portes au plus, branchées sur les mêmes entrées. Un additionneur complet demandera un vrai circuit.
+- [ ] `pas-a-pas` en grille ne distingue pas une retenue d'un chiffre, et encadre un signe « + » comme une valeur. Proposition : un paramètre par étape (par exemple `discrets`) qui affiche des cases en petit ou en couleur douce.
+- [ ] Le widget `porte` ne combine pas NON avec ET et OU, n'enchaîne pas deux opérations (NON (A ET B)) et liste les lignes de sa table dans l'ordre où l'apprenant les trouve, pas dans l'ordre 00, 01, 10, 11.
+- [ ] Écarts mineurs laissés après relecture du lot 6 : dans les deux recherches, la boucle sort aussi quand la valeur est trouvée, alors que `boucle` n'enseigne que la sortie par sa question ; `recherche-lineaire`, exercice 3, applique presque telle quelle une phrase de l'explication.
 - [ ] Zod est chargé dans le navigateur pour valider la progression et les paramètres de widget : mesurer son poids si les pages ralentissent.
 - [ ] Infobulles et schémas sont remplis au rendu de la page (`expandMechanisms`), pas par le plugin Markdown : Astro garde en cache le corps compilé d'une brique tant que son fichier ne change pas, et un résumé ou un schéma modifié ailleurs resterait périmé en local. La page lit donc `entry.rendered.html` au lieu de `<Content />`.
 - [ ] Infobulles en CSS seul : la touche Échap ne les ferme pas (WCAG 1.4.13) ; une infobulle ouverte couvre les lignes du dessous ; un lien de brique touché sur téléphone ouvre la brique sans montrer le rappel ; le toucher d'une note n'est testé que sous Chromium.
@@ -82,6 +84,7 @@ est résumé ici au fil de l'eau.
 - [x] Captures des 10 briques envoyées au propriétaire.
 - [x] Espaces insécables posées par le site avant « : ; ? ! » » et après « « », dans l'explication et dans les textes du frontmatter ; `pas-a-pas` range ses cases en grille (`colonnes`) ; `bascule-bits` affiche le caractère du code écrit (`caractere`).
 - [x] Widgets `porte` (une ou deux portes logiques, table de vérité à remplir) et `empreinte` (texte et empreinte de 5 chiffres), avec leur logique pure dans `src/core` et leurs pilotes de test.
+- [x] Lot 6 : `algo/recherche-lineaire`, `algo/recherche-dichotomique`, `algo/defi-compter` (premier `genre: defi`). Relecture adverse sans écart bloquant ; corrections appliquées (la boucle nomme sa question, le schéma reprend le codage du widget, le prix du tri est dit).
 
 ### Mise en ligne (2026-11-17)
 
