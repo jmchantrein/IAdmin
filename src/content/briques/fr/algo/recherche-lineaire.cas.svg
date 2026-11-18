@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 392">
+  <text x="16" y="40" font-size="24" class="texte">valeur en premier</text>
+  <text x="624" y="40" font-size="24" text-anchor="end" class="texte-accent">1 comparaison</text>
+  <rect x="16" y="56" width="88" height="56" rx="6" class="ok ok-plein" />
+  <rect x="120" y="56" width="88" height="56" rx="6" class="doux" />
+  <rect x="224" y="56" width="88" height="56" rx="6" class="doux" />
+  <rect x="328" y="56" width="88" height="56" rx="6" class="doux" />
+  <rect x="432" y="56" width="88" height="56" rx="6" class="doux" />
+  <rect x="536" y="56" width="88" height="56" rx="6" class="doux" />
+  <text x="16" y="168" font-size="24" class="texte">valeur en dernier</text>
+  <text x="624" y="168" font-size="24" text-anchor="end" class="texte-accent">6 comparaisons</text>
+  <rect x="16" y="184" width="88" height="56" rx="6" class="accent fond" />
+  <rect x="120" y="184" width="88" height="56" rx="6" class="accent fond" />
+  <rect x="224" y="184" width="88" height="56" rx="6" class="accent fond" />
+  <rect x="328" y="184" width="88" height="56" rx="6" class="accent fond" />
+  <rect x="432" y="184" width="88" height="56" rx="6" class="accent fond" />
+  <rect x="536" y="184" width="88" height="56" rx="6" class="ok ok-plein" />
+  <text x="16" y="296" font-size="24" class="texte">valeur absente</text>
+  <text x="624" y="296" font-size="24" text-anchor="end" class="texte-accent">6 comparaisons</text>
+  <rect x="16" y="312" width="88" height="56" rx="6" class="accent fond" />
+  <rect x="120" y="312" width="88" height="56" rx="6" class="accent fond" />
+  <rect x="224" y="312" width="88" height="56" rx="6" class="accent fond" />
+  <rect x="328" y="312" width="88" height="56" rx="6" class="accent fond" />
+  <rect x="432" y="312" width="88" height="56" rx="6" class="accent fond" />
+  <rect x="536" y="312" width="88" height="56" rx="6" class="accent fond" />
+</svg>

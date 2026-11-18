@@ -4,4 +4,5 @@ cibles:
   - donnees/binaire-ecrire
   - donnees/octet
   - algo/algorithme
-  - algo/boucle
+  - algo/recherche-dichotomique
+  - algo/defi-compter

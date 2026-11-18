@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 424">
+  <text x="22" y="32" font-size="24" class="texte">comparaison 1</text>
+  <text x="618" y="32" font-size="24" text-anchor="end" class="texte-accent">15 cartes</text>
+  <rect x="22" y="48" width="36" height="48" rx="4" class="accent fond" />
+  <rect x="62" y="48" width="36" height="48" rx="4" class="accent fond" />
+  <rect x="102" y="48" width="36" height="48" rx="4" class="accent fond" />
+  <rect x="142" y="48" width="36" height="48" rx="4" class="accent fond" />
+  <rect x="182" y="48" width="36" height="48" rx="4" class="accent fond" />
+  <rect x="222" y="48" width="36" height="48" rx="4" class="accent fond" />
+  <rect x="262" y="48" width="36" height="48" rx="4" class="accent fond" />
+  <rect x="302" y="48" width="36" height="48" rx="4" class="accent accent-plein" />
+  <rect x="342" y="48" width="36" height="48" rx="4" class="accent fond" />
+  <rect x="382" y="48" width="36" height="48" rx="4" class="accent fond" />
+  <rect x="422" y="48" width="36" height="48" rx="4" class="accent fond" />
+  <rect x="462" y="48" width="36" height="48" rx="4" class="accent fond" />
+  <rect x="502" y="48" width="36" height="48" rx="4" class="accent fond" />
+  <rect x="542" y="48" width="36" height="48" rx="4" class="accent fond" />
+  <rect x="582" y="48" width="36" height="48" rx="4" class="accent fond" />
+  <text x="22" y="136" font-size="24" class="texte">comparaison 2</text>
+  <text x="618" y="136" font-size="24" text-anchor="end" class="texte-accent">7 restent</text>
+  <rect x="22" y="152" width="36" height="48" rx="4" class="doux" />
+  <rect x="62" y="152" width="36" height="48" rx="4" class="doux" />
+  <rect x="102" y="152" width="36" height="48" rx="4" class="doux" />
+  <rect x="142" y="152" width="36" height="48" rx="4" class="doux" />
+  <rect x="182" y="152" width="36" height="48" rx="4" class="doux" />
+  <rect x="222" y="152" width="36" height="48" rx="4" class="doux" />
+  <rect x="262" y="152" width="36" height="48" rx="4" class="doux" />
+  <rect x="302" y="152" width="36" height="48" rx="4" class="doux" />
+  <rect x="342" y="152" width="36" height="48" rx="4" class="accent fond" />
+  <rect x="382" y="152" width="36" height="48" rx="4" class="accent fond" />
+  <rect x="422" y="152" width="36" height="48" rx="4" class="accent fond" />
+  <rect x="462" y="152" width="36" height="48" rx="4" class="accent accent-plein" />
+  <rect x="502" y="152" width="36" height="48" rx="4" class="accent fond" />
+  <rect x="542" y="152" width="36" height="48" rx="4" class="accent fond" />
+  <rect x="582" y="152" width="36" height="48" rx="4" class="accent fond" />
+  <text x="22" y="240" font-size="24" class="texte">comparaison 3</text>
+  <text x="618" y="240" font-size="24" text-anchor="end" class="texte-accent">3 restent</text>
+  <rect x="22" y="256" width="36" height="48" rx="4" class="doux" />
+  <rect x="62" y="256" width="36" height="48" rx="4" class="doux" />
+  <rect x="102" y="256" width="36" height="48" rx="4" class="doux" />
+  <rect x="142" y="256" width="36" height="48" rx="4" class="doux" />
+  <rect x="182" y="256" width="36" height="48" rx="4" class="doux" />
+  <rect x="222" y="256" width="36" height="48" rx="4" class="doux" />
+  <rect x="262" y="256" width="36" height="48" rx="4" class="doux" />
+  <rect x="302" y="256" width="36" height="48" rx="4" class="doux" />
+  <rect x="342" y="256" width="36" height="48" rx="4" class="accent fond" />
+  <rect x="382" y="256" width="36" height="48" rx="4" class="accent accent-plein" />
+  <rect x="422" y="256" width="36" height="48" rx="4" class="accent fond" />
+  <rect x="462" y="256" width="36" height="48" rx="4" class="doux" />
+  <rect x="502" y="256" width="36" height="48" rx="4" class="doux" />
+  <rect x="542" y="256" width="36" height="48" rx="4" class="doux" />
+  <rect x="582" y="256" width="36" height="48" rx="4" class="doux" />
+  <text x="22" y="344" font-size="24" class="texte">comparaison 4</text>
+  <text x="618" y="344" font-size="24" text-anchor="end" class="texte-accent">1 reste</text>
+  <rect x="22" y="360" width="36" height="48" rx="4" class="doux" />
+  <rect x="62" y="360" width="36" height="48" rx="4" class="doux" />
+  <rect x="102" y="360" width="36" height="48" rx="4" class="doux" />
+  <rect x="142" y="360" width="36" height="48" rx="4" class="doux" />
+  <rect x="182" y="360" width="36" height="48" rx="4" class="doux" />
+  <rect x="222" y="360" width="36" height="48" rx="4" class="doux" />
+  <rect x="262" y="360" width="36" height="48" rx="4" class="doux" />
+  <rect x="302" y="360" width="36" height="48" rx="4" class="doux" />
+  <rect x="342" y="360" width="36" height="48" rx="4" class="doux" />
+  <rect x="382" y="360" width="36" height="48" rx="4" class="doux" />
+  <rect x="422" y="360" width="36" height="48" rx="4" class="accent accent-plein" />
+  <rect x="462" y="360" width="36" height="48" rx="4" class="doux" />
+  <rect x="502" y="360" width="36" height="48" rx="4" class="doux" />
+  <rect x="542" y="360" width="36" height="48" rx="4" class="doux" />
+  <rect x="582" y="360" width="36" height="48" rx="4" class="doux" />
+</svg>
