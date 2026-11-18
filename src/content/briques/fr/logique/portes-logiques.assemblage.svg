@@ -1,44 +1,43 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 336">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 384">
+  <rect x="96" y="8" width="464" height="360" rx="12" fill="none" class="doux" />
+  <text x="112" y="42" font-size="24" class="texte">OU exclusif</text>
   <g font-size="26" class="texte">
-    <text x="8" y="89">A = <tspan class="texte-accent">1</tspan></text>
-    <text x="8" y="297">B = <tspan class="texte-accent">1</tspan></text>
+    <text x="8" y="129">A = <tspan class="texte-accent">1</tspan></text>
+    <text x="8" y="337">B = <tspan class="texte-accent">1</tspan></text>
   </g>
   <g class="trait" fill="none">
-    <line x1="80" y1="80" x2="176" y2="80" />
-    <line x1="96" y1="80" x2="96" y2="232" />
-    <path d="M96 232 H120 A8 8 0 0 1 136 232 H176" />
-    <line x1="80" y1="288" x2="176" y2="288" />
-    <line x1="128" y1="288" x2="128" y2="136" />
-    <line x1="128" y1="136" x2="176" y2="136" />
-    <line x1="272" y1="108" x2="440" y2="108" />
-    <line x1="272" y1="260" x2="320" y2="260" />
-    <line x1="400" y1="260" x2="440" y2="260" />
-    <line x1="520" y1="184" x2="632" y2="184" />
+    <line x1="80" y1="120" x2="192" y2="120" />
+    <line x1="112" y1="120" x2="112" y2="272" />
+    <path d="M112 272 H136 A8 8 0 0 1 152 272 H192" />
+    <line x1="80" y1="328" x2="192" y2="328" />
+    <line x1="144" y1="328" x2="144" y2="176" />
+    <line x1="144" y1="176" x2="192" y2="176" />
+    <line x1="288" y1="148" x2="456" y2="148" />
+    <line x1="288" y1="300" x2="336" y2="300" />
+    <line x1="416" y1="300" x2="456" y2="300" />
+    <line x1="536" y1="224" x2="632" y2="224" />
   </g>
   <g class="plein">
-    <circle cx="96" cy="80" r="5" />
-    <circle cx="128" cy="288" r="5" />
+    <circle cx="112" cy="120" r="5" />
+    <circle cx="144" cy="328" r="5" />
   </g>
   <g class="trait fond">
-    <rect x="176" y="56" width="96" height="104" rx="8" />
-    <rect x="176" y="208" width="96" height="104" rx="8" />
-    <rect x="320" y="232" width="80" height="56" rx="8" />
-    <rect x="440" y="80" width="80" height="208" rx="8" />
+    <rect x="192" y="96" width="96" height="104" rx="8" />
+    <rect x="192" y="248" width="96" height="104" rx="8" />
+    <rect x="336" y="272" width="80" height="56" rx="8" />
+    <rect x="456" y="120" width="80" height="208" rx="8" />
   </g>
   <g font-size="26" text-anchor="middle" class="texte">
-    <text x="224" y="117">OU</text>
-    <text x="224" y="269">ET</text>
-    <text x="360" y="269">NON</text>
-    <text x="480" y="193">ET</text>
+    <text x="240" y="157">OU</text>
+    <text x="240" y="309">ET</text>
+    <text x="376" y="309">NON</text>
+    <text x="496" y="233">ET</text>
   </g>
   <g font-size="24" text-anchor="middle" class="texte-accent">
-    <text x="356" y="96">1</text>
-    <text x="296" y="248">1</text>
-    <text x="420" y="248">0</text>
-    <text x="584" y="220">0</text>
+    <text x="372" y="136">1</text>
+    <text x="312" y="288">1</text>
+    <text x="436" y="288">0</text>
+    <text x="600" y="210">0</text>
   </g>
-  <g font-size="22" text-anchor="middle" class="texte-accent">
-    <text x="580" y="136">OU</text>
-    <text x="580" y="164">exclusif</text>
-  </g>
+  <text x="600" y="258" font-size="22" text-anchor="middle" class="texte">sortie</text>
 </svg>
