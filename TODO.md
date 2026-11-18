@@ -8,9 +8,7 @@ est résumé ici au fil de l'eau.
 
 ### J4 — Parcours Fondements complet
 
-- [ ] Envoyer au propriétaire les captures de chaque lot terminé (il ne voit le rendu qu'après fusion).
-- [ ] Lot 4 : `logique/portes-logiques`, `logique/additionneur`. Relu deux fois, sans écart bloquant ; `portes-logiques` recentrée sur la porte et l'assemblage. Dernières corrections en cours. L'additionneur complet (trois entrées) reste hors du parcours.
-- [ ] Fin de J4 : une seule demande de fusion, puis contrôle du job `deployer` et `npm run e2e:live`.
+- [ ] Fin de J4 : la demande de fusion est ouverte ; après fusion par le propriétaire, contrôler le job `deployer` puis lancer `npm run e2e:live`.
 
 ### J5 à J9
 
@@ -90,6 +88,9 @@ est résumé ici au fil de l'eau.
 - [x] Espaces insécables posées par le site avant « : ; ? ! » » et après « « », dans l'explication et dans les textes du frontmatter ; `pas-a-pas` range ses cases en grille (`colonnes`) ; `bascule-bits` affiche le caractère du code écrit (`caractere`).
 - [x] Widgets `porte` (une ou deux portes logiques, table de vérité à remplir) et `empreinte` (texte et empreinte de 5 chiffres), avec leur logique pure dans `src/core` et leurs pilotes de test.
 - [x] Lot 6 : `algo/recherche-lineaire`, `algo/recherche-dichotomique`, `algo/defi-compter` (premier `genre: defi`). Relecture adverse sans écart bloquant ; corrections appliquées (la boucle nomme sa question, le schéma reprend le codage du widget, le prix du tri est dit).
+- [x] Lot 4 : `logique/portes-logiques`, `logique/additionneur`. Deux relectures adverses, sans écart bloquant. `portes-logiques` recentrée sur une notion (une porte est un composant, on assemble des portes), avec un `pas-a-pas` qui déroule l'assemblage ; le OU exclusif n'en est que l'exemple. L'additionneur complet (trois entrées) reste hors du parcours : il demanderait un vrai circuit.
+- [x] Parcours « Fondements » complet : 22 briques (9 `donnees`, 6 `logique`, 7 `algo`), chacune relue par un agent qui ne l'a pas écrite. Captures de chaque lot envoyées au propriétaire.
+- [x] `scripts/verifier-isole.sh` : vérifier une livraison dans une copie isolée du dépôt, après un incident où une commande de vérification avait tourné dans le dossier de travail et effacé des corrections non commitées (restituées depuis).
 - [x] Lot 2 : `donnees/addition-binaire` (grille de `pas-a-pas`), `donnees/texte-code` (`bascule-bits` avec `caractere`), `donnees/hash` (widget `empreinte`). Relectures adverses sans écart bloquant ; corrections appliquées (un octet par caractère borné à l'ASCII, règle de la dernière retenue écrite, une empreinte évite de garder une copie).
 - [x] Lot 3 : `logique/vrai-faux`, `logique/non`, `logique/et-ou`, `logique/table-de-verite` (widget `porte`). Première relecture : `non-et-ou` scindée en `non` et `et-ou`, l'enchaînement d'opérations renvoyé au lot 4. Seconde relecture des deux briques nouvelles : le contraire logique est défini, les suites de valeurs acceptent les virgules.
 
