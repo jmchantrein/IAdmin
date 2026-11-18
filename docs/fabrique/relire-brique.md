@@ -41,6 +41,9 @@ Pour chaque point, cite la ligne en cause et dis ce qui cloche.
    exercice que l'on réussit sans exercer son `acquis`. Essaie en particulier de faire
    donner la réponse par le widget de la manipulation, qui reste sous les yeux, et
    vérifie qu'une erreur typique (ordre inversé) ne redonne pas la bonne réponse.
+   Cherche aussi une autre voie que la méthode enseignée (repasser par le décimal), une
+   règle fausse qui réussit dans tous les cas de la brique, et une réponse à deux
+   valeurs que le hasard donne une fois sur deux.
 9. **Retours.** Chaque `retour` nomme l'erreur et donne une raison. Signale un retour qui
    se contente de dire « faux », et un retour qui donne la réponse sans raison.
 10. **Distracteurs.** Chaque mauvaise option correspond à une erreur qu'un débutant

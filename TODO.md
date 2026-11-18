@@ -9,9 +9,9 @@ est résumé ici au fil de l'eau.
 ### J4 — Parcours Fondements complet
 
 - [ ] Envoyer au propriétaire les captures de chaque lot terminé (il ne voit le rendu qu'après fusion).
-- [ ] Lot 2 : `donnees/addition-binaire`, `donnees/texte-code`, `donnees/hash`. Écrites ; relecture et corrections en cours.
-- [ ] Lot 3 : `logique/vrai-faux`, `logique/non-et-ou`, `logique/table-de-verite`, avec le widget `porte`. Écrites ; relecture en cours.
-- [ ] Lot 4 : `logique/portes-logiques`, `logique/additionneur`. Le widget `porte` avec deux portes sur les mêmes entrées (`ou-exclusif` pour la somme, `et` pour la retenue) montre le demi-additionneur sans éditeur de circuit ; l'additionneur complet est reporté s'il demande un vrai circuit.
+- [ ] Lot 2 : `donnees/addition-binaire` et `donnees/texte-code` sont relues et corrigées ; `donnees/hash` est relue, corrections en cours.
+- [ ] Lot 3 : relu. Décision : `non-et-ou` est scindée en `logique/non` et `logique/et-ou` (NON n'y était pas manipulé avant d'être expliqué) ; l'enchaînement d'opérations passe au lot 4. Corrections en cours, puis seconde relecture des deux briques nouvelles.
+- [ ] Lot 4 : `logique/portes-logiques` (une porte est un composant qui réalise une opération ; la sortie d'une porte peut servir d'entrée à une autre ; OU exclusif) et `logique/additionneur`. Le widget `porte` avec deux portes sur les mêmes entrées (`ou-exclusif` pour la somme, `et` pour la retenue) montre le demi-additionneur sans éditeur de circuit ; l'enchaînement se dessine en schéma. L'additionneur complet est reporté s'il demande un vrai circuit.
 - [ ] Fin de J4 : une seule demande de fusion, puis contrôle du job `deployer` et `npm run e2e:live`.
 
 ### J5 à J9
@@ -63,6 +63,9 @@ est résumé ici au fil de l'eau.
 - [ ] `pas-a-pas` en grille ne distingue pas une retenue d'un chiffre, et encadre un signe « + » comme une valeur. Proposition : un paramètre par étape (par exemple `discrets`) qui affiche des cases en petit ou en couleur douce.
 - [ ] Le widget `porte` ne combine pas NON avec ET et OU, n'enchaîne pas deux opérations (NON (A ET B)) et liste les lignes de sa table dans l'ordre où l'apprenant les trouve, pas dans l'ordre 00, 01, 10, 11.
 - [ ] Écarts mineurs laissés après relecture du lot 6 : dans les deux recherches, la boucle sort aussi quand la valeur est trouvée, alors que `boucle` n'enseigne que la sortie par sa question ; `recherche-lineaire`, exercice 3, applique presque telle quelle une phrase de l'explication.
+- [ ] Widget `empreinte` : sa valeur `texte=empreinte`, séparée par une espace, est ambiguë quand un texte contient « = » ou une espace, et rien ne verrouille un champ. Un exercice se contourne en modifiant le premier champ (cas artificiel).
+- [ ] Widget `porte` : chaque interrupteur d'entrée porte aussi une lampe ; les consignes disent donc « la lampe NON », « la lampe ET ».
+- [ ] `logique/vrai-faux` dit qu'une question n'est pas une affirmation, `algo/condition` définit une condition comme une question à réponse oui ou non. Une demi-phrase fait le pont ; harmoniser le vocabulaire si un apprenant s'y perd.
 - [ ] Zod est chargé dans le navigateur pour valider la progression et les paramètres de widget : mesurer son poids si les pages ralentissent.
 - [ ] Infobulles et schémas sont remplis au rendu de la page (`expandMechanisms`), pas par le plugin Markdown : Astro garde en cache le corps compilé d'une brique tant que son fichier ne change pas, et un résumé ou un schéma modifié ailleurs resterait périmé en local. La page lit donc `entry.rendered.html` au lieu de `<Content />`.
 - [ ] Infobulles en CSS seul : la touche Échap ne les ferme pas (WCAG 1.4.13) ; une infobulle ouverte couvre les lignes du dessous ; un lien de brique touché sur téléphone ouvre la brique sans montrer le rappel ; le toucher d'une note n'est testé que sous Chromium.
